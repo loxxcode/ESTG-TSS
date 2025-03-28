@@ -39,7 +39,7 @@ const Campus = () => {
               <img src={Running} alt="activity" className='w-full p-2 h-[300px]'/>
               <h2>Dr. John Smith</h2>
               <div>
-                <p className='text-start justify-start'>At the helm of [School Name] is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
+                <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
                  <div className="p-1">
                    
 
@@ -67,7 +67,7 @@ const Campus = () => {
               <img src={Tv} alt="activity" className='w-full p-2 h-[300px]'/>
               <h2>Dr. John Smith</h2>
               <div>
-                <p className='text-start justify-start'>At the helm of [School Name] is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
+                <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
                  <div className="p-1">
                    
 
@@ -94,7 +94,7 @@ const Campus = () => {
               <img src={Refe} alt="activity" className='w-full p-2 h-[300px]'/>
               <h2>Dr. John Smith</h2>
               <div>
-                <p className='text-start justify-start'>At the helm of [School Name] is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
+                <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.....</p> 
                  <div className="p-1">
                    
 
