@@ -22,7 +22,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="#" className="text-gray-500 hover:text-estg-blue transition-colors">
                 <Facebook size={18} />
-                <span className="sr-only">Facebook</span>
+                <span className="sr-only">Whatsapp</span>
               </a>
               <a href="#" className="text-gray-500 hover:text-estg-blue transition-colors">
                 <Instagram size={18} />
@@ -42,11 +42,8 @@ const Footer = () => {
           <div>
             <h3 className="font-medium text-sm uppercase tracking-wider text-foreground mb-4">Programs</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Computer Science</Link></li>
-              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Business Administration</Link></li>
-              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Civil Engineering</Link></li>
-              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Electrical Engineering</Link></li>
-              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Mechanical Engineering</Link></li>
+              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Software Development</Link></li>
+              <li><Link to="/programs" className="text-muted-foreground hover:text-estg-blue transition-colors">Electrical Technology</Link></li>
             </ul>
           </div>
           
@@ -54,9 +51,7 @@ const Footer = () => {
             <h3 className="font-medium text-sm uppercase tracking-wider text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/about" className="text-muted-foreground hover:text-estg-blue transition-colors">About Us</Link></li>
-              <li><Link to="/campus" className="text-muted-foreground hover:text-estg-blue transition-colors">Campus Life</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Library</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Research</a></li>
+              <li><Link to="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Campus Life</Link></li>
               <li><a href="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Academic Calendar</a></li>
             </ul>
           </div>
@@ -67,13 +62,13 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-estg-blue shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  1234 Campus Drive, University City, 10001
+                  1234 Rubavu, Gisenyi, 10001
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-estg-blue" />
                 <a href="tel:+123456789" className="text-muted-foreground hover:text-estg-blue transition-colors">
-                  +1 (234) 567-890
+                  +250 796260747
                 </a>
               </li>
               <li className="flex items-center space-x-3">
