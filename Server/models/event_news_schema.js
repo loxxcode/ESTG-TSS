@@ -14,12 +14,7 @@ const eventNewsSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now
   },
-  tags: {
-    type: String,
-    required: [true, 'Tags are required'],
-  }
 }, {
   timestamps: true
 });
