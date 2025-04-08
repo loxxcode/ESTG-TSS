@@ -71,7 +71,6 @@ const Campus = () => {
               <h1 className='p-4'>Dr. John Smith 2</h1>
                 <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
                  <div className="p-1">
-                   
 
                     {/* Hidden checkbox with peer class */}
                     <input type="checkbox" id="toggle2" className="peer hidden" />
