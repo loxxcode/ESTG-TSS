@@ -70,7 +70,7 @@ exports.adminlogin = async (req, res) => {
 
 // Admin signup function
 exports.adminsignup = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password,phone } = req.body;
 
     // Validate input
     if (!email || !password || !username) {
@@ -98,6 +98,7 @@ exports.adminsignup = async (req, res) => {
             username,
             email,
             password: hashedPassword,
+            phone:phone,
             role: "Admin"
         });
 

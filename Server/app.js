@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+dotenv.config();
 const cors = require('cors');
 const connectDB = require('./database/DB.js');
 const session = require("express-session")
@@ -8,7 +9,6 @@ const annoucement_router = require('./routers/annoucement_router.js');
 const event_news_router = require('./routers/event_news_route.js');
 const account_routes = require('./routers/account_routes.js');
 const Accountmodel = require("./models/account_schema")
-dotenv.config();
 const app = express();
 connectDB();
 
