@@ -15,7 +15,7 @@ const ContactPage = () => {
       <Navbar />
       
       {/* Page Header */}
-      <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
+      {/* <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
         <div className="container px-4">
           <AnimatedSection animation="slide-up" className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 dark:text-white">
@@ -27,7 +27,7 @@ const ContactPage = () => {
           </AnimatedSection>
         </div>
       </div>
-      
+       */}
       {/* Contact Form Component */}
       <Contact />
       

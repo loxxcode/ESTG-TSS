@@ -47,12 +47,14 @@ const Campus = () => {
                     <input type="checkbox" id="toggle" className="peer hidden" />
 
                     {/* Content that appears when checkbox is checked */}
-                    <div className="hidden peer-checked:block flex">
-                      <p className='text-start'> With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally. 
-                        <label htmlFor="toggle" className="cursor-pointer w-28 pl-2 text-blue-500 rounded">
-                          See Less
-                        </label>
-                      </p>
+                    <div className="hidden peer-checked:block">
+                      <div className='flex'>
+                        <p className='text-start'> With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally. 
+                          <label htmlFor="toggle" className="cursor-pointer w-28 pl-2 text-blue-500 rounded">
+                            See Less
+                          </label>
+                        </p>
+                      </div>
                     </div>
 
                      {/* Label acts as a clickable button */}
