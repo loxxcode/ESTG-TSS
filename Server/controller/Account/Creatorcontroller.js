@@ -2,13 +2,13 @@ const Account = require("../../models/account_schema");
 const bcrypt = require("bcrypt");
 // Admin signup function
 exports.creatorsignup = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, phone } = req.body;
 
     // Validate input
-    if (!email || !password || !username) {
+    if (!email || !password || !username || !phone) {
         return res.status(400).json({
             success: false,
-            message: "Email, password and username are required"
+            message: "Email, password ,phone number and username are required"
         });
     }
 
@@ -30,7 +30,8 @@ exports.creatorsignup = async (req, res) => {
             username,
             email,
             password: hashedPassword,
-            role: "Content_creator"
+            role: "Content_creator",
+            phone: phone
         });
 
         await newUser.save();
@@ -40,7 +41,8 @@ exports.creatorsignup = async (req, res) => {
             id: newUser._id,
             username: newUser.username,
             email: newUser.email,
-            role: newUser.role
+            role: newUser.role,
+            phone: phone
         };
 
         return res.status(201).json({
@@ -72,7 +74,7 @@ exports.creatorlogin = async (req, res) => {
     try {
         // Add await and proper error handling for database query
         const user = await Account.findOne({ email }).select('+password').exec();
-        
+
         if (!user) {
             return res.status(401).json({
                 success: false,
@@ -117,9 +119,9 @@ exports.creatorlogin = async (req, res) => {
         });
     } catch (error) {
         console.error("Login error:", error);
-        return res.status(500).json({ 
-            success: false, 
-            message: "Internal server error during login" 
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error during login"
         });
     }
 };
