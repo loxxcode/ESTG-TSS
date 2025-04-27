@@ -19,8 +19,8 @@ const News = () => {
 
       <section className="py-16 text-center">
         <AnimatedSection>
-            <h2 className="text-4xl font-bold mb-4 text-white">News</h2>
-            <p className="text-white max-w-xl mx-auto mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">News</h2>
+            <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
              Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
             </p>
         </AnimatedSection>
