@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({ path: './config.env' }); 
 const cors = require('cors');
 const connectDB = require('./database/DB.js');
 const session = require("express-session")
@@ -23,7 +23,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/estg-tss', // MongoDB URL
+    mongoUrl: `${process.env.MONGODB_URI}`, // MongoDB URL
     collectionName: 'sessions', // Optional: name of the collection to store sessions
   }),
   cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24, sameSite: 'lax' }
