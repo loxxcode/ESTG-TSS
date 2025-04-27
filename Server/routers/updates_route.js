@@ -5,19 +5,20 @@ const upload = multer({ storage });
 const router = express.Router();
 const updates_model = require('../models/updates_schema.js');
 const middleware = require("../middleware/AuthMiddleware.js")
+const mongoose = require("mongoose")
 
 // GET all updates news
 router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
   try {
-    const user = await Account.findById(req.session.Userid)
+    const user = req.session.Userid
     let data;
 
-    if (user.role === 'Admin') {
+    if (req.session.role === 'Admin') {
       data = await updates_model.find();
 
-    } else if (user.role === 'Content_creator') {
+    } else if (req.session.role === 'Content_creator') {
+      data = await updates_model.find({ author: user});
 
-      data = await updates_model.find({ author: user._id });
     }
     return res.status(200).json({ message: 'success', data });
   } catch (err) {
@@ -56,19 +57,22 @@ router.post('/upload_update', upload.single('file'), middleware.ensureAuthentica
 // GET updates news by ID
 router.get('/single_update/:id', middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
+  
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid update id" });
+  }
+
   try {
     const data = await updates_model.findById(id);
-    // if (!mongoose.Types.ObjectId.isValid("680cace52f794a774caa144b")) {
-    //   return res.status(404).json({ message: "invalid update id" });
-    // }
     if (!data) {
-      return res.status(404).json({ message: "invalid update id" });
+      return res.status(404).json({ message: "Update not found" });
     }
     return res.status(200).json(data);
   } catch (err) {
     return res.status(400).json({ message: "Failed", err });
   }
 });
+
 
 // PUT (update) updates news by ID
 router.put('/edit_update/:id', upload.single('file'), middleware.ensureAuthenticated, async (req, res) => {
@@ -85,6 +89,9 @@ router.put('/edit_update/:id', upload.single('file'), middleware.ensureAuthentic
     authorId
   };
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid update id" });
+  }
   try {
     const data = await updates_model.findByIdAndUpdate(id, updated_data, { new: true });
     if (!data) {
@@ -99,6 +106,9 @@ router.put('/edit_update/:id', upload.single('file'), middleware.ensureAuthentic
 // DELETE updates news by ID
 router.delete('/delete_update/:id', middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid update id" });
+  }
   try {
     const data = await updates_model.findByIdAndDelete(id);
     if (!data) {
