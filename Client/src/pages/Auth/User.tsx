@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function User() {
+  const [Form, setForm] = useState({
+    email: "",
+    password: "",
+
+  });
+  const handleForm = async () => {
+    const response = await axios.post('http://localhost:5000/api/v1/auth/user', Form);
+    if (response.status === 200) { 
+      console.log("Login successful", response.data);
+      // Handle successful login (e.g., redirect to dashboard)
+    }
+    else {
+      console.error("Login failed", response.data);
+      // Handle login failure (e.g., show error message)
+    }
+  }
   return (
     <div className='min-h-screen flex flex-col bg-gray-50 dark:bg-black'>
       {/* Navbar */}
@@ -20,7 +37,7 @@ function User() {
           </div>
 
           {/* Form */}
-          <form className="mt-8 space-y-6">
+          <form className="mt-8 space-y-6" onSubmit={handleForm}>
                       <div className="space-y-4">
               {/* Email Field */}
               <div>
@@ -28,6 +45,8 @@ function User() {
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
+                  value={Form.email}
+                  onChange={(e)=>setForm({...Form, email: e.target.value})}
                   type="email"
                   id="email"
                   name="email"
@@ -43,6 +62,8 @@ function User() {
                   Password <span className="text-red-500">*</span>
                 </label>
                 <input
+                  value={Form.password}
+                  onChange={(e)=>setForm({...Form, password: e.target.value})}
                   type="password"
                   id="password"
                   name="password"
@@ -53,7 +74,7 @@ function User() {
               </div>
 
               {/* Remember Me & Forgot Password */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between md:flex-row flex-col gap-4">
                 <div className="flex items-center">
                   <input
                     id="remember-me"

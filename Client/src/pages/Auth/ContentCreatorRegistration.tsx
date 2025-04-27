@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function ContentCreatorRegistration() {
+  const [Form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    role: "",
+    phone: "",
+  });
+
+  const handleForm = async () => {
+    const response = await axios.post('http://localhost:5000/api/v1/auth/content-creator', Form);
+    if (response.status === 200) { 
+      console.log("Registration successful", response.data);
+      // Handle successful registration (e.g., redirect to dashboard)
+    } else {
+      console.error("Registration failed", response.data);
+      // Handle registration failure (e.g., show error message)
+    }
+  }
   return (
     <div className='min-h-screen flex flex-col bg-gray-50 dark:bg-black '>
       {/* Navbar */}
@@ -19,8 +38,8 @@ function ContentCreatorRegistration() {
             </p>
           </div>
 
-          {/* Form */}
-          <form className="mt-8 space-y-6 ">
+          {/* Form */}  
+          <form className="mt-8 space-y-6" onSubmit={handleForm} >
             <div className="space-y-4">
               {/* Username Field */}
               <div>
@@ -28,6 +47,8 @@ function ContentCreatorRegistration() {
                   Username <span className="text-red-500">*</span>
                 </label>
                 <input
+                  value={Form.username}
+                  onChange={(e)=>setForm({...Form, username: e.target.value})}
                   type="text"
                   id="username"
                   name="username"
@@ -43,6 +64,8 @@ function ContentCreatorRegistration() {
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
+                  value={Form.email}
+                  onChange={(e)=>setForm({...Form, email: e.target.value})}
                   type="email"
                   id="email"
                   name="email"
@@ -58,6 +81,8 @@ function ContentCreatorRegistration() {
                   Password <span className="text-red-500">*</span>
                 </label>
                 <input
+                  value={Form.password}
+                  onChange={(e)=>setForm({...Form, password: e.target.value})}
                   type="password"
                   id="password"
                   name="password"
@@ -73,6 +98,8 @@ function ContentCreatorRegistration() {
                   Content Role <span className="text-red-500">*</span>
                 </label>
                 <select
+                  value={Form.role}
+                  onChange={(e)=>setForm({...Form, role: e.target.value})}
                   id="role"
                   name="role"
                   required
@@ -94,6 +121,8 @@ function ContentCreatorRegistration() {
                   Phone Number
                 </label>
                 <input
+                  value={Form.phone}
+                  onChange={(e)=>setForm({...Form, phone: e.target.value})}
                   type="tel"
                   id="phone"
                   name="phone"
@@ -105,6 +134,7 @@ function ContentCreatorRegistration() {
               {/* Terms Agreement */}
               <div className="flex items-center">
                 <input
+                  
                   id="terms"
                   name="terms"
                   type="checkbox"

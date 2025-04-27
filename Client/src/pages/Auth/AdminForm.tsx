@@ -1,9 +1,28 @@
 import React from 'react';
 import Navbar from '../../components/layout/Navbar';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
 function AdminForm() {
+  const [Form, setForm] = React.useState({
+    email: "",
+    password: "",
+  });
+   
+  const handleForm = async () => {
+  
+    const response = await axios.post('http://localhost:5000/api/v1/auth/admin', Form);
+    if (response.status === 200) { 
+      console.log("Login successful", response.data);
+      // Handle successful login (e.g., redirect to dashboard)
+    }
+    else {
+      console.error("Login failed", response.data);
+      // Handle login failure (e.g., show error message)
+    }
+    
+  }
   return (
     <div className='min-h-screen flex flex-col'>
       {/* Navbar with centered title */}
@@ -23,7 +42,7 @@ function AdminForm() {
           </div>
 
           {/* Form */}
-          <form className="mt-8 space-y-6">
+          <form className="mt-8 space-y-6" onSubmit={ handleForm}>
             <div className="space-y-4">
               {/* Email Field */}
               <div>
@@ -31,6 +50,8 @@ function AdminForm() {
                   Email
                 </label>
                 <input
+                  value={Form.email}
+                  onChange={(e)=>setForm({...Form, email: e.target.value})}
                   type="email"
                   id="email"
                   name="email"
@@ -45,6 +66,8 @@ function AdminForm() {
                   Password
                 </label>
                 <input
+                  value={Form.password}
+                  onChange={(e)=>setForm({...Form, password: e.target.value})}
                   type="password"
                   id="password"
                   name="password"
@@ -52,12 +75,12 @@ function AdminForm() {
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-estg-gray-light dark:bg-black"
                 />
               </div>
-              <div className='flex'>
+              <div className='flex justify-between md:flex-row flex-col gap-4'>
                 <div>
                   <input type="checkbox" name="" id="" />
                   <span className='pl-2'>Remember Me</span>
                 </div>
-                <div className='ml-[120px]'>
+                <div className='flex justify-between '>
                   <h2><a href="" className='text-blue-400'>forget password</a></h2>
                 </div>
               </div>
