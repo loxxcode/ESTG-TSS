@@ -11,6 +11,9 @@ import Campus from "./pages/Campus";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AdminForm from "./pages/Auth/AdminForm";
+import User from "./pages/Auth/User";
+import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +30,9 @@ const App = () => (
             <Route path="/admission" element={<Campus />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin"  element={<AdminForm />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
