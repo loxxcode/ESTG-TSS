@@ -1,0 +1,57 @@
+
+import React, { useEffect } from 'react';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import AnimatedSection from '../components/ui/AnimatedSection';
+import Future from '../assets/future.png'
+import newsData from '@/data/newsData';
+import { useNavigate } from 'react-router-dom';
+
+const News = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+
+      <section className="py-16 text-center">
+        <AnimatedSection>
+            <h2 className="text-4xl font-bold mb-4 text-white">News</h2>
+            <p className="text-white max-w-xl mx-auto mb-12">
+             Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
+            </p>
+        </AnimatedSection>
+
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto px-6">
+            {newsData.map((news) => (
+            <div
+                key={news.id}
+                className="rounded-2xl border-2 overflow-hidden shadow-md hover:shadow-xl transition duration-300"
+                onClick={() => navigate(`/news/${news.id}`)}
+            >
+                <div className="relative w-full h-56">
+                <img
+                    src={news.imageUrl}
+                    alt={news.title}
+                    className="w-full h-full object-cover"
+                />
+                </div>
+                <div className="p-6 text-left">
+                <p className="text-sm text-gray-400 mb-2">{news.date}</p>
+                <h3 className="text-lg font-semibold text-gray-800">{news.title}</h3>
+                </div>
+            </div>
+            ))}
+        </div>
+
+        </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default News;
