@@ -10,9 +10,9 @@ function AdminForm() {
     password: "",
   });
    
-  const handleForm = async () => {
-  
-    const response = await axios.post('http://localhost:5000/api/v1/auth/admin', Form);
+  const handleForm = async (e) => {
+    e.preventDefault();
+    const response = await axios.post('http://localhost:5000/api/account/admin/login', { email: Form.email, password: Form.password }, {withCredentials: true});
     if (response.status === 200) { 
       console.log("Login successful", response.data);
       // Handle successful login (e.g., redirect to dashboard)
