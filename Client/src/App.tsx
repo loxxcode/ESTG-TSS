@@ -16,7 +16,7 @@ import AdminForm from "./pages/Auth/AdminForm";
 import User from "./pages/Auth/User";
 import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
 import News from "./pages/News";
-import NewsDetail from "./pages/Newsdetail";
+import NewsDetail from "./pages/NewsDetail";
 
 
 const queryClient = new QueryClient();

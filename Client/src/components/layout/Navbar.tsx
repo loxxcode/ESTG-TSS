@@ -46,7 +46,7 @@ const Navbar = () => {
             to="/" 
             className="text-xl font-display font-bold tracking-tight text-estg-blue"
           >
-            ESTG<span className="text-foreground">.</span>
+            ESTG<span className="text-estg-blue">.</span>
           </Link>
           
           {/* Desktop Menu */}

@@ -19,10 +19,10 @@ const News = () => {
 
       <section className="py-16 text-center">
         <AnimatedSection>
-          <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">News</h2>
-          <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-            Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
-          </p>
+            <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">News</h2>
+            <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+             Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
+            </p>
         </AnimatedSection>
 
         <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-[89%] mx-auto px-6">
@@ -38,11 +38,11 @@ const News = () => {
                   alt={news.title}
                   className="w-full h-full object-fit"
                 />
-              </div>
-              <div className="p-6 text-left">
-                <p className="text-sm text-gray-800 mb-2">{news.date}</p>
-                <h3 className="text-lg font-semibold text-gray-400">{news.title}</h3>
-              </div>
+                </div>
+                <div className="p-6 text-left">
+                <p className="text-sm text-gray-400 mb-2">{news.date}</p>
+                <h3 className="text-lg font-semibold text-gray-800">{news.title}</h3>
+                </div>
             </div>
           ))}
         </div>
