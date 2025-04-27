@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({ path: './config.env' }); 
 const cors = require('cors');
 const connectDB = require('./database/DB.js');
 const session = require("express-session")
