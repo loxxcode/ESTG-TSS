@@ -15,21 +15,19 @@ const About = () => {
       <Navbar />
       
       {/* Page Header */}
-      <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
-        <div className="container px-80 justify-center">
-          <AnimatedSection animation="slide-up" className="max-w-3xl">
-            <h1 className="text-4xl text-center md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
-              About Our School
-            </h1>
-            <p className="text-lg text-center md:text-xl text-muted-foreground">
+      <div className="md:pt-10 text-center bg-estg-gray-light dark:bg-black">
+        <div className="py-8 text-center">
+        <AnimatedSection>
+            <h2 className="text-4xl font-bold mb-2 text-black dark:text-white">About Our School</h2>
+            <p className="text-black max-w-xl mx-auto mb-12 dark:text-white">
               Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
             </p>
-          </AnimatedSection>
+        </AnimatedSection>
         </div>
       </div>
       
       {/* About Content - Placeholder, will be replaced with actual content */}
-      <div className="py-5 md:py-5 bg-white dark:bg-black">
+      <div className="bg-white dark:bg-black mb-32">
         <div className="container ml-11 px-4">
           <AnimatedSection animation="fade-in" className="text-center">
             <div className='lg:ml-20 ml-10 mr-28 flex flex-col lg:flex-row gap-7' >

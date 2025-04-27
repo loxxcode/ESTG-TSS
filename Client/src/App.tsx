@@ -12,7 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import News from "./pages/News";
-import NewsDetail from "./pages/Newsdetail";
+import NewsDetail from "./pages/NewsDetail";
 
 const queryClient = new QueryClient();
 

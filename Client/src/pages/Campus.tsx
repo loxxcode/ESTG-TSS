@@ -16,21 +16,19 @@ const Campus = () => {
       <Navbar />
       
       {/* Page Header */}
-      <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
-        <div className="container px-80 justify-center">
-          <AnimatedSection animation="slide-up" className="max-w-3xl">
-            <h1 className="text-4xl text-center md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
-              Administrative
-            </h1>
-            <p className="text-lg text-center md:text-xl text-muted-foreground">
+      <div className="pt-20 bg-estg-gray-light dark:bg-black">
+        <div className="container text-center justify-center">
+        <AnimatedSection>
+            <h2 className="text-4xl font-bold mb-2 text-black dark:text-white">Administrative</h2>
+            <p className="text-black max-w-xl mx-auto mb-12 dark:text-white">
               Experience our vibrant college community and world-class facilities designed to support your academic journey.
             </p>
-          </AnimatedSection>
+        </AnimatedSection>
         </div>
       </div>
       
       {/* Campus Content - Placeholder, will be replaced with actual content */}
-      <div className="py-16 md:py-24 bg-white dark:bg-black">
+      <div className="py-4 bg-white dark:bg-black">
         <div className="container px-4">
           <AnimatedSection animation="fade-in" className="text-center">
             <div className='lg:ml-20 w-[1100px]'>
@@ -59,7 +57,7 @@ const Campus = () => {
 
                      {/* Label acts as a clickable button */}
                     <label htmlFor="toggle" className="cursor-pointer w-28 peer-checked:hidden text-blue-500 p-2 rounded">
-                      <p className='absolute mt-[-28px] ml-[473px] cursor-default'>.....</p>
+                      <p className='absolute mt-[-28px] ml-[99px] cursor-defau text-white'>..</p>
                       See More
                     </label>
                   </div>
@@ -88,7 +86,7 @@ const Campus = () => {
 
                      {/* Label acts as a clickable button */}
                     <label htmlFor="toggle2" className="cursor-pointer w-28 peer-checked:hidden text-blue-500 p-2 rounded">
-                      <p className='absolute mt-[-28px] ml-[473px] cursor-default'>.....</p>
+                      <p className='absolute mt-[-28px] ml-[99px] cursor-default text-white'>..</p>
                       See More
                     </label>
                   </div>
@@ -119,7 +117,7 @@ const Campus = () => {
                      {/* Label acts as a clickable button */}
         
                     <label htmlFor="toggle3" className="cursor-pointer w-28 peer-checked:hidden text-blue-500 p-2 rounded">
-                      <p className='absolute mt-[-28px] ml-[473px] cursor-default'>.....</p>
+                      <p className='absolute mt-[-28px] ml-[99px] cursor-default text-white'>..</p>
                       See More
                     </label>
                   </div>

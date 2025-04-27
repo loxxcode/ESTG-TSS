@@ -22,13 +22,19 @@ const Programs = () => {
       <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
         <div className="lg:ml-[250px] container px-4">
           <AnimatedSection animation="slide-up" className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
+            <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">
               Academic Programs
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
               Discover our comprehensive range of undergraduate and graduate programs designed to prepare you for success in your chosen field.
             </p>
           </AnimatedSection>
+          <AnimatedSection>
+            <h2 className="text-4xl font-bold mb-2 text-black dark:text-white">Academic Programs</h2>
+            <p className="text-black max-w-xl mx-auto mb-12 dark:text-white">
+              Discover our comprehensive range of undergraduate and graduate programs designed to prepare you for success in your chosen field.
+            </p>
+        </AnimatedSection>
         </div>
       </div>
       

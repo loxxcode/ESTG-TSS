@@ -29,14 +29,13 @@ const contactInfo = [
 
 const Contact = () => {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-background">
-      <div className="container px-4">
-        <AnimatedSection animation="slide-up" className="text-center max-w-3xl mx-auto mb-12">
-          <h5 className="text-estg-blue font-medium mb-3">GET IN TOUCH</h5>
-          <h2 className="section-heading mb-6 dark:text-white">Contact Us</h2>
-          <p className="text-lg text-muted-foreground">
-            Have questions or need more information? We're here to help. Reach out to us and we'll get back to you as soon as possible.
-          </p>
+    <section className="py-12 md:py-24 bg-white dark:bg-background">
+      <div className="container text-center justify-center px-4">
+        <AnimatedSection>
+            <h2 className="text-4xl font-bold mb-2 text-black dark:text-white">Contact Us</h2>
+            <p className="text-black max-w-xl mx-auto mb-12 dark:text-white">
+              Have questions or need more information? We're here to help. Reach out to us and we'll get back to you as soon as possible.
+            </p>
         </AnimatedSection>
         
         <div className="max-w-5xl mx-auto">
