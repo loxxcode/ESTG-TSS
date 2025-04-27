@@ -13,10 +13,10 @@ export default function NewsDetail() {
     <section className="py-16 px-6">
       <Navbar />
       <div className="max-w-4xl mx-auto mt-10">
-        <h1 className="text-2xl font-bold mb-4">{news.title}</h1>
-        <img src={news.imageUrl} alt={news.title} className="w-full shadow-lg rounded-lg mb-6" />
-        <p className="text-gray-400 mb-8">{news.date}</p>
-        <p className="text-gray-700">{news.description}</p>
+        <h1 className="text-3xl font-bold mb-4">{news.title}</h1>
+        <img src={Future} alt={news.title} className="w-full shadow-lg rounded-lg mb-6" />
+        <p className="text-gray-800 mb-8">{news.date}</p>
+        <p className="text-gray-400">{news.description}</p>
       </div>
     </section>
   );
