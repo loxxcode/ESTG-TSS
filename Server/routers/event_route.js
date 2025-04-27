@@ -6,6 +6,7 @@ const router = express.Router();
 const event_model = require('../models/event_schema.js');
 const middleware = require("../middleware/AuthMiddleware")
 const Account = require("../models/account_schema");
+const mongoose = require("mongoose")
 
 
 // GET all event news
@@ -60,6 +61,9 @@ router.post('/upload_events', upload.single('file'), middleware.ensureAuthentica
 // GET event news by ID
 router.get('/single_event/:id', middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid event id" });
+  }
   try {
     const data = await event_model.findById(id);
     if (!data) {
@@ -87,7 +91,9 @@ router.put('/update_event/:id', upload.single('file'), middleware.ensureAuthenti
     author: authorId
 
   };
-
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid update id" });
+  }
   try {
     const data = await event_model.findByIdAndUpdate(id, updated_data, { new: true });
     if (!data) {
@@ -102,6 +108,9 @@ router.put('/update_event/:id', upload.single('file'), middleware.ensureAuthenti
 // DELETE event news by ID
 router.delete('/delete_event/:id', middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "invalid event id" });
+  }
   try {
     const data = await event_model.findByIdAndDelete(id);
     if (!data) {
