@@ -12,6 +12,7 @@ const navLinks = [
   { name: 'Admission', path: '/admission' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
+ 
 ];
 
 const Navbar = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
         isScrolled || isOpen ? 'backdrop-blur py-3' : 'py-5'
       )}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 ">
         <div className="flex items-center justify-between">
           <Link 
             to="/" 
@@ -67,11 +68,16 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center ml-4 gap-2">
+            <div className="flex items-center ml-7 gap-2">
               <ThemeToggle />
-              <Button variant="default" size="default">
-                Student Portal
-              </Button>
+             <Link
+                    to='/admin'
+                    className={cn(
+                      'px-3 py-2 rounded-md text-sm font-medium transition-colors bg-blue-500 text-white hover:bg-blue-600',
+                    )}
+                  >
+                Admin Pannel
+              </Link>
             </div>
           </div>
           
@@ -98,7 +104,7 @@ const Navbar = () => {
                 <Link
                   to={link.path}
                   className={cn(
-                    'block px-3 py-2 rounded-md text-base font-medium transition-colors',
+                    'block px-3 py-2 rounded-md text-base font-medium transition-colors ',
                     link.path === location.pathname
                       ? 'text-estg-blue bg-estg-gray-light dark:bg-gray-800'
                       : 'text-foreground/80 hover:text-foreground hover:bg-estg-gray-light dark:hover:bg-gray-800'
@@ -108,11 +114,13 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
-              <Button variant="default" size="default" className="w-full">
-                Student Portal
-              </Button>
-            </li>
+            <Link to={'/admin'}
+              className={cn(
+                'block px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-500 text-white hover:bg-blue-600',
+              )}>
+              Admin Pannel
+            </Link>
+         
           </ul>
         </div>
       </div>
