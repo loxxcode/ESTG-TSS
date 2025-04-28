@@ -3,13 +3,14 @@ import newsData from "@/data/newsData";
 import Navbar from "@/components/layout/Navbar";
 import Future from '../assets/future.png'
 import { useState } from "react";
+import Footer from "@/components/layout/Footer";
 
 export default function NewsDetail() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const news = newsData.find((n) => n.id === Number(id));
 
-  const [visibleNewsCount, setVisibleNewsCount] = useState(6); // show 3 news first
+  const [visibleNewsCount, setVisibleNewsCount] = useState(3); // show 3 news first
   
     const handleLoadMore = () => {
       setVisibleNewsCount((prev) => prev + 3); // load 3 more each time
@@ -49,7 +50,7 @@ export default function NewsDetail() {
           </div>
             {/* Load More Button */}
                   {visibleNewsCount < newsData.length && (
-                    <div className="mt-12 text-center">
+                    <div className="mt-12 text-center mb-20">
                       <button
                         onClick={handleLoadMore}
                         className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-3 rounded-full transition"
@@ -58,6 +59,8 @@ export default function NewsDetail() {
                       </button>
                     </div>
                   )}
+
+                  <Footer />
     </section>
   );
 }
