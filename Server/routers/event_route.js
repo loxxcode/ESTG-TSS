@@ -7,9 +7,21 @@ const event_model = require('../models/event_schema.js');
 const middleware = require("../middleware/AuthMiddleware")
 const Account = require("../models/account_schema");
 const mongoose = require("mongoose")
+ 
+// GET all event for content creator
+router.get('/all_events', async (req, res) => {
+  try {
 
+    data = await event_model.find();
+    return res.status(200).json({ message: 'success', data });
 
-// GET all event news
+  } catch (err) {
+    return res.status(500).json({ message: 'Failed', err });
+  }
+
+});
+
+// GET all event news for admin
 router.get('/events', middleware.ensureAuthenticated, async (req, res) => {
   try {
 

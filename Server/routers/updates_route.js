@@ -7,7 +7,17 @@ const updates_model = require('../models/updates_schema.js');
 const middleware = require("../middleware/AuthMiddleware.js")
 const mongoose = require("mongoose")
 
-// GET all updates news
+// GET all updates news for content creator
+router.get('/all_updates', async (req, res) => {
+  try {
+    data = await updates_model.find();
+    return res.status(200).json({ message: 'success', data });
+  } catch (err) {
+    return res.status(500).json({ message: 'Failed', err });
+  }
+});
+
+// GET all updates news for admin
 router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
   try {
     const user = req.session.Userid
