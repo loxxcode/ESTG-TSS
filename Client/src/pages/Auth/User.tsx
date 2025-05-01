@@ -9,7 +9,8 @@ function User() {
     password: "",
 
   });
-  const handleForm = async () => {
+  const handleForm = async (e) => {
+    e.preventDefault();
     const response = await axios.post('http://localhost:5000/api/v1/auth/user', Form);
     if (response.status === 200) { 
       console.log("Login successful", response.data);
