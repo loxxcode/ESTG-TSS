@@ -48,7 +48,7 @@ export default function NewsDetailPage() {
       <Navbar />
       <div className="max-w-4xl mt-10 mb-20 mx-auto">
         <h1 className="text-4xl font-bold mb-2">{data.title}</h1>
-        <img src={data.imageUrl} alt={data.title} className="w-full rounded-lg mb-6" />
+        <img src={Future} alt={data.title} className="w-full rounded-lg mb-6" />
         <p className="text-sm text-gray-800 mb-2">{new Date(data.createdAt).toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
