@@ -8,6 +8,8 @@ import ThemeToggle from '../ui/ThemeToggle';
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Programs', path: '/programs' },
+  { name: 'News', path: '/news' },
+  { name: 'Updates', path: '/announcement' },
   { name: 'Events', path: '/events' },
   { name: 'Admission', path: '/admission' },
   { name: 'About', path: '/about' },
