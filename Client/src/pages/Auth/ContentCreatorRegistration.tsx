@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -24,15 +23,12 @@ function ContentCreatorRegistration() {
   }
   return (
     <div className='min-h-screen flex flex-col bg-gray-50 dark:bg-black '>
-      {/* Navbar */}
-      <Navbar />
-      
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
           {/* Form Header */}
           <div className="text-center ">
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Content Creator Registration</h1>
+            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-500">Content Creator Registration</h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Join our creative community
             </p>

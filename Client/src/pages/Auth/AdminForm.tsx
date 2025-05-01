@@ -10,7 +10,7 @@ function AdminForm() {
     password: "",
   });
   const navigate = useNavigate()
-  const [errormsg,Seterrmsg] = React.useState("yyuyuyu")   
+  const [errormsg,Seterrmsg] = React.useState("")   
 const handleForm = async (e) => {
   e.preventDefault();
   Seterrmsg(""); // clear old errors
@@ -60,11 +60,11 @@ const handleForm = async (e) => {
       
       {/* Centered Form Container - flex-grow will make it take available space */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg  border-spacing-11 shadow-md shadow-gray-400 ">
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-500">Admin Form</h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">Admin Form</h1>
+            <p className="mt-2 text-sm text-gray-100">
               Please fill in the details below
             </p>
           </div>
@@ -86,7 +86,8 @@ const handleForm = async (e) => {
                   id="email"
                   name="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-estg-gray-light dark:bg-black" 
+                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder="creator@example.com"
                 />
               </div>
 
@@ -102,7 +103,8 @@ const handleForm = async (e) => {
                   id="password"
                   name="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-estg-gray-light dark:bg-black"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder="password"
                 />
               </div>
               <div className='flex justify-between md:flex-row flex-col gap-4'>
