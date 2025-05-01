@@ -10,7 +10,7 @@ import axios from 'axios';
 const News = () => {
   const navigate = useNavigate();
   const [visibleNewsCount, setVisibleNewsCount] = useState(6); 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const handleLoadMore = () => {
     setVisibleNewsCount((prev) => prev + 3); // load 3 more each time
@@ -51,7 +51,7 @@ const News = () => {
             <div
               key={news.id}
               className="rounded-sm border-1 overflow-hidden shadow-md hover:shadow-xl transition duration-300"
-              onClick={() => navigate(`/news/${news.id}`)}
+              onClick={() => navigate(`/news/${news._id}`)}
             >
               <div className="relative  h-56">
                 <img
