@@ -12,7 +12,7 @@ const Accountmodel = require("./models/account_schema")
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors({origin:"http://localhost:8000", credentials:true})); // Allow requests from the frontend
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

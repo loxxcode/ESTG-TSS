@@ -18,6 +18,7 @@ import User from "./pages/Auth/User";
 import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
+import Adminpanel from "./pages/Adminpanel";
 
 
 const queryClient = new QueryClient();
@@ -32,12 +33,21 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/programs" element={<Programs />} />
+
             <Route path="/news" element={<News />} />
             <Route path="/announcement" element={<Announcement />} />
             <Route path="/admission" element={<Campus />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminForm />} />
+
+            <Route path="/events" element={<News />} />
+            <Route path="/admission" element={<Campus />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin"  element={<AdminForm />} />
+            <Route path="/adminpanel"  element={<Adminpanel />} />
+
             <Route path="/user" element={<User />} />
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
             <Route path="/news/:id" element={<NewsDetail />} />
