@@ -17,6 +17,7 @@ import User from "./pages/Auth/User";
 import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
+import Adminpanel from "./pages/Adminpanel";
 
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin"  element={<AdminForm />} />
+            <Route path="/adminpanel"  element={<Adminpanel />} />
             <Route path="/user" element={<User />} />
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
             <Route path="/news/:id" element={<NewsDetail />} />

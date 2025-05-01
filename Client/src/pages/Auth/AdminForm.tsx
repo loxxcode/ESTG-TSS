@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/layout/Navbar';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function AdminForm() {
@@ -9,20 +9,48 @@ function AdminForm() {
     email: "",
     password: "",
   });
-   
-  const handleForm = async (e) => {
-    e.preventDefault();
-    const response = await axios.post('http://localhost:5000/api/account/admin/login', { email: Form.email, password: Form.password }, {withCredentials: true});
-    if (response.status === 200) { 
+  const navigate = useNavigate()
+  const [errormsg,Seterrmsg] = React.useState("yyuyuyu")   
+const handleForm = async (e) => {
+  e.preventDefault();
+  Seterrmsg(""); // clear old errors
+
+  try {
+    const response = await axios.post(
+      'http://localhost:5000/api/account/admin/login',
+      {
+        email: Form.email,
+        password: Form.password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 200) {
       console.log("Login successful", response.data);
-      // Handle successful login (e.g., redirect to dashboard)
+       navigate("/adminpanel")
+      // Redirect or handle success
+    } else {
+      Seterrmsg("Unexpected error. Please try again.");
     }
-    else {
-      console.error("Login failed", response.data);
-      // Handle login failure (e.g., show error message)
+  } catch (error) {
+    if (error.response) {
+      // Server responded with a status outside 2xx
+      const msg = error.response.data?.message || "Login failed. Check your credentials.";
+      Seterrmsg(msg);
+      console.error("Backend error:", error.response);
+    } else if (error.request) {
+      // Request made but no response received
+      Seterrmsg("No response from server. Please check your connection or server.");
+      console.error("No response error:", error.request);
+    } else {
+      // Something else happened
+      Seterrmsg("An unexpected error occurred.");
+      console.error("Error", error.message);
     }
-    
   }
+};
   return (
     <div className='min-h-screen flex flex-col'>
       {/* Navbar with centered title */}
@@ -40,7 +68,9 @@ function AdminForm() {
               Please fill in the details below
             </p>
           </div>
-
+          <div>
+            <p className='text-red-500'>{errormsg}</p>
+          </div>
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={ handleForm}>
             <div className="space-y-4">
