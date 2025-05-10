@@ -80,7 +80,7 @@ export default function NewsDetailPage() {
       </div>
       <div className="max-w-6xl mx-auto mt-20 mb-10 px-10 ml-20">
         <h2 className="text-2xl font-semibold mb-6">More News</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 cursor-pointer gap-6">
           {otherNews.slice(0, visibleNewsCount).map((item) => (
             <div
               key={item.id}

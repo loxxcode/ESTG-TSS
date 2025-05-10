@@ -46,7 +46,7 @@ const News = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-[89%] mx-auto px-6">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-3 cursor-pointer max-w-[89%] mx-auto px-6">
           {data && data.slice(0, visibleNewsCount).map((news) => (
             <div
               key={news.id}
