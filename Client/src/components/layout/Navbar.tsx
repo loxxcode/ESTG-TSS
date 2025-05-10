@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/button';
 import ThemeToggle from '../ui/ThemeToggle';
+import axios from 'axios';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -20,6 +21,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const [showlogout,Setshowlogout] =useState(false)
   
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +30,24 @@ const Navbar = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+   useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/account/dashboard", {
+          withCredentials: true,
+        });
+        if (response.data.loggedIn) {
+      localStorage.setItem("username",response.data.user)
+      localStorage.setItem("role",response.data.role)
+      localStorage.setItem("email",response.data.user)
+        }
+      } catch (err) {
+        console.error("Error checking auth:", err);
+      }
+    };
+    checkAuth();
   }, []);
   
   useEffect(() => {
@@ -77,7 +97,7 @@ const Navbar = () => {
                       'px-3 py-2 rounded-md text-sm font-medium transition-colors bg-blue-500 text-white hover:bg-blue-600',
                     )}
                   >
-                Admin Pannel
+               Admin Panel
               </Link>
             </div>
           </div>
@@ -119,9 +139,8 @@ const Navbar = () => {
               className={cn(
                 'block px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-500 text-white hover:bg-blue-600',
               )}>
-              Admin Pannel
+              Admin Panel
             </Link>
-         
           </ul>
         </div>
       </div>

@@ -5,11 +5,17 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 function AdminForm() {
+  const navigate = useNavigate()
+ 
   const [Form, setForm] = React.useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate()
+  React.useEffect(() => {
+  if (localStorage.getItem("username")) {
+    navigate('/adminpanel');
+  }
+}, [navigate]);
   const [errormsg,Seterrmsg] = React.useState("")   
 const handleForm = async (e) => {
   e.preventDefault();
