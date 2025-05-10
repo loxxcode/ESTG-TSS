@@ -57,9 +57,12 @@ const handleForm = async (e) => {
       {/* <Navbar /> */}
       
      
-      
+      <Link to="/" className="font-medium text-blue-600  ml-9 mt-9 w-24 flex justify-center items-center h-9 text-center  bg-white rounded shadow-md hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                      back
+                    </Link>
       {/* Centered Form Container - flex-grow will make it take available space */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
