@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ContentCreatorRegistration() {
+  const navigate = useNavigate()
   const [Form, setForm] = useState({
     username: "",
     email: "",
@@ -10,6 +11,11 @@ function ContentCreatorRegistration() {
     role: "",
     phone: "",
   });
+    React.useEffect(() => {
+    if (localStorage.getItem("username")) {
+      navigate('/adminpanel');
+    }
+  }, [navigate]);
 
   const handleForm = async () => {
     const response = await axios.post('http://localhost:5000/api/v1/auth/content-creator', Form);
