@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function ContentCreatorRegistration() {
-  const navigate = useNavigate();
   const [Form, setForm] = useState({
     username: "",
     email: "",
@@ -11,6 +10,7 @@ function ContentCreatorRegistration() {
     role: "",
     phone: "",
   });
+  const navigate = useNavigate();
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -33,11 +33,8 @@ function ContentCreatorRegistration() {
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
           {/* Back Button */}
-          <button
-            onClick={() => navigate(-1)}
-            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
-          >
-            <svg
+          <Link to="/adminpanel" className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">
+          <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-1"
               viewBox="0 0 20 20"
@@ -49,8 +46,9 @@ function ContentCreatorRegistration() {
                 clipRule="evenodd"
               />
             </svg>
-            Back
-          </button>
+            back
+          </Link>
+        
 
           {/* Form Header */}
           <div className="text-center ">

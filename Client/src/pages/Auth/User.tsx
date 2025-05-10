@@ -11,6 +11,12 @@ function User() {
     password: "",
 
   });
+  
+    React.useEffect(() => {
+  if (localStorage.getItem("username")) {
+    navigate('/adminpanel');
+  }
+}, [navigate]);
  const handleForm = async (e) => {
   e.preventDefault();
   setMsg('');
