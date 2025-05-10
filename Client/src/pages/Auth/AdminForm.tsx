@@ -66,8 +66,8 @@ const handleForm = async (e) => {
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">Admin Form</h1>
-            <p className="mt-2 text-sm text-gray-100">
+            <h1 className="text-3xl font-bold dark:text-gray-200 text-gray-800">Admin Form</h1>
+            <p className="mt-2 text-sm dark:text-gray-100 text-gray-800">
               Please fill in the details below
             </p>
           </div>
