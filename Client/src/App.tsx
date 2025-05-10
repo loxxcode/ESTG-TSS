@@ -21,7 +21,7 @@ import Adminpanel from "./pages/Adminpanel";
 
 import Update from './pages/Adminpanel/Adminpages/update';
 import Event from './pages/Adminpanel/Adminpages/event';
-import Logout from './pages/Adminpanel/Adminpages/logout';
+import Logout from './pages/Adminpanel/Adminpages/usermagement';
 
 const queryClient = new QueryClient();
 

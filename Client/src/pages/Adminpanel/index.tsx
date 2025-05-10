@@ -1,50 +1,49 @@
-// Adminpanel.js
 import React from 'react';
 import Navbar from '../../components/layout/Navbar';
 import Update from './Adminpages/update';
 import Event from './Adminpages/event';
-import Logout from './Adminpages/logout';
+import UserManagement from './Adminpages/usermagement';
 
 function Adminpanel() {
   const [activeTab, setActiveTab] = React.useState(0);
-  
+
   const tabs = [
     { name: 'Updates', component: <Update /> },
     { name: 'Events', component: <Event /> },
-    { name: 'Logout', component: <Logout /> },
+    { name: 'User Management', component: <UserManagement /> },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Sidebar Navigation */}
-            <div className="w-full md:w-64 flex-shrink-0">
-              <nav className="flex md:flex-col gap-2 p-2 bg-white rounded-lg shadow">
-                {tabs.map((tab, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTab(index)}
-                    className={`px-4 py-2 rounded-md text-left transition-colors ${
-                      activeTab === index
-                        ? 'bg-blue-600 text-white'
-                        : 'hover:bg-gray-100 text-gray-700'
-                    }`}
-                  >
-                    {tab.name}
-                  </button>
-                ))}
-              </nav>
-            </div>
-            {/* Content Area */}
-            <div className="flex-1 bg-white p-6 rounded-lg shadow">
-              {tabs[activeTab].component}
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen bg-estg-gray-light dark:bg-black">
+      {/* Fixed Navbar */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-estg-gray-light dark:bg-black">
+        <Navbar />
+      </div>
+
+      {/* Layout after navbar */}
+      <div className="pt-16 flex">
+        {/* Fixed Sidebar */}
+        <aside className="hidden md:block fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-estg-gray-light dark:bg-black border-r shadow-md z-40">
+          <nav className="flex flex-col gap-2 p-4 bg-estg-gray-light dark:bg-black">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`px-4 py-2 rounded-md text-left transition-colors w-full ${activeTab === index
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-blue-600 text-white-700'
+                  }`}
+              >
+                <p className='text-dark-800 dark:text-white'>{tab.name}</p>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        {/* Main content with margin to avoid overlapping fixed sidebar */}
+        <main className="flex-1 ml-0 md:ml-64 p-6 min-h-[calc(100vh-4rem)] bg-estg-gray-light dark:bg-black overflow-y-auto">
+          {tabs[activeTab].component}
+        </main>
       </div>
     </div>
   );

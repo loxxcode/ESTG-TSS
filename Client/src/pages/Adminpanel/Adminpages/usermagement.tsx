@@ -3,7 +3,7 @@ import React from 'react'
 function logout() {
   return (
     <div>
-      logout
+      user management
     </div>
   )
 }
