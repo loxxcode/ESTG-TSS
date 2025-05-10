@@ -10,6 +10,7 @@ import Programs from "./pages/Programs";
 import Campus from "./pages/Campus";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Announcement from "./pages/Announcement";
 import NotFound from "./pages/NotFound";
 
 import AdminForm from "./pages/Auth/AdminForm";
@@ -38,12 +39,23 @@ const App = () => (
             <Route path="/logout" element={<Logout />} />
             <Route path="/" element={<Index />} />
             <Route path="/programs" element={<Programs />} />
+
             <Route path="/news" element={<News />} />
+            <Route path="/announcement" element={<Announcement />} />
+            <Route path="/admission" element={<Campus />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminForm />} />
+
+            <Route path="/events" element={<News />} />
             <Route path="/admission" element={<Campus />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminForm />} />
             <Route path="/adminpanel" element={<Adminpanel />} />
+            <Route path="/admin"  element={<AdminForm />} />
+            <Route path="/adminpanel"  element={<Adminpanel />} />
+            
             <Route path="/user" element={<User />} />
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
             <Route path="/news/:id" element={<NewsDetail />} />

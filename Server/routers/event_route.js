@@ -71,7 +71,7 @@ router.post('/upload_events', upload.single('file'), middleware.ensureAuthentica
 });
 
 // GET event news by ID
-router.get('/single_event/:id', middleware.ensureAuthenticated, async (req, res) => {
+router.get('/single_event/:id', async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ message: "invalid event id" });

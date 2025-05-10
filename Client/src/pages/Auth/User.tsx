@@ -1,40 +1,77 @@
-import React, { useState } from 'react';
-import Navbar from '../../components/layout/Navbar';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function User() {
+  const navigate = useNavigate();
+  const [msg, setMsg] = useState('');
   const [Form, setForm] = useState({
     email: "",
     password: "",
 
   });
-  const handleForm = async (e) => {
-    e.preventDefault();
-    const response = await axios.post('http://localhost:5000/api/v1/auth/user', Form);
-    if (response.status === 200) { 
+ const handleForm = async (e) => {
+  e.preventDefault();
+  setMsg('');
+
+  try {
+    const response = await axios.post(
+      'http://localhost:5000/api/account/creator/login',
+      {
+        email: Form.email,
+        password: Form.password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 200) {
       console.log("Login successful", response.data);
-      // Handle successful login (e.g., redirect to dashboard)
+      navigate('/adminpanel');
+    } else {
+      console.error("Unexpected response", response.data);
+      setMsg('Login failed. Please try again.');
     }
-    else {
-      console.error("Login failed", response.data);
-      // Handle login failure (e.g., show error message)
+  } catch (error) {
+    console.error("Error during login:", error);
+
+    if (error.response) {
+      // Server responded with a status outside 2xx
+      if (error.response.status === 401) {
+        setMsg('Invalid credentials. Please try again.');
+      } else {
+        setMsg(`Error: ${error.response.data?.message || 'Server error occurred.'}`);
+      }
+    } else if (error.request) {
+      // No response received
+      setMsg('No response from server. Please check your internet connection.');
+    } else {
+      // Other errors
+      setMsg('An unexpected error occurred.');
     }
   }
+};
+
   return (
     <div className='min-h-screen flex flex-col bg-gray-50 dark:bg-black'>
-      {/* Navbar */}
-      <Navbar />
-      
+        <Link to="/admin" className="font-medium text-blue-600  ml-9 mt-9 w-24 flex justify-center items-center h-9 text-center  bg-white rounded shadow-md hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                back
+              </Link>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg  border-spacing-11 shadow-md shadow-gray-400  ">
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold dark:text-gray-200">Content Creator Login</h1>
+            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">Content Creator Login</h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Please enter your credentials to continue
             </p>
+
+          </div>
+          <div>
+            <p>{msg}</p>
           </div>
 
           {/* Form */}
@@ -111,11 +148,6 @@ function User() {
               <span className="text-gray-600 dark:text-gray-400">Not an admin? </span>
               <Link to="/admin" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
                 back
-              </Link>
-            </div>
-            <div>
-              <Link to="/contentcreatorregistration" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                Register as Content Creator
               </Link>
             </div>
           </form>
