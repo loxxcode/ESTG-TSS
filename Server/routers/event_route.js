@@ -29,11 +29,11 @@ router.get('/events', middleware.ensureAuthenticated, async (req, res) => {
     let data;
 
     if (user.role === 'Admin') {
-      data = await event_model.find();
+      data = await event_model.find().populate("author");
 
     } else if (user.role === 'Content_creator') {
 
-      data = await event_model.find({ author: user._id });
+      data = await event_model.find({ author: user._id }).populate("author");
     }
 
     return res.status(200).json({ message: 'success', data });

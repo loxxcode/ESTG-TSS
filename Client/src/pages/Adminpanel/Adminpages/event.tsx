@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Eventcards/cards';
+import axios from 'axios';
 
 function Event() {
+    const [data, setData] = useState([]);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/events",{withCredentials:true});
+        
+        setData(response.data.data);
+  
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
   return (
     <div className="p-6 bg-gray-100 dark:bg-black min-h-screen">
       <a href="/createevent">
@@ -12,14 +29,14 @@ function Event() {
       <h1 className="text-2xl font-bold text-white-800 mb-5 mt-5">Event Cards</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {[...Array(20)].map((_, index) => (
+        {data.map((item, index) => (
           <Card
             key={index}
-            title={'Welcome'}
+            title={item.title}
             description={
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. '
+              item.description
             }
-            author={'mpcodes'}
+            author={item.author.username}
             onUpdate={() => console.log('Update', index)}
             onDelete={() => console.log('Delete', index)}
           />

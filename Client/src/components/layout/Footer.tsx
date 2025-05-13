@@ -17,7 +17,7 @@ const Footer = () => {
               </h2>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
-              Escola Superior de Tecnologia e Gestão - providing quality education and innovation since 1985.
+              Ecole Secondaire Technique Gisenyi - providing quality education and innovation since 1985.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-500 hover:text-estg-blue transition-colors">
@@ -50,9 +50,11 @@ const Footer = () => {
           <div>
             <h3 className="font-medium text-sm uppercase tracking-wider text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
+              <li><Link to="/" className="text-muted-foreground hover:text-estg-blue transition-colors">Home</Link></li>
+              <li><Link to="/announcement" className="text-muted-foreground hover:text-estg-blue transition-colors">Updates</Link></li>
+              <li><Link to="/events" className="text-muted-foreground hover:text-estg-blue transition-colors">Events</Link></li>
               <li><Link to="/about" className="text-muted-foreground hover:text-estg-blue transition-colors">About Us</Link></li>
-              <li><Link to="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Campus Life</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-estg-blue transition-colors">Academic Calendar</a></li>
+
             </ul>
           </div>
           
