@@ -10,9 +10,9 @@ const updatesSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Description is required']
     },
-    fileUrl: {
-        type: String
-    },
+    // fileUrl: {
+    //     type: String
+    // },
     type: {
         type: String,
         required: true,
