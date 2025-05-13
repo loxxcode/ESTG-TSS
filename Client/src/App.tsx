@@ -23,6 +23,8 @@ import Adminpanel from "./pages/Adminpanel";
 import Update from './pages/Adminpanel/Adminpages/update';
 import Event from './pages/Adminpanel/Adminpages/event';
 import Logout from './pages/Adminpanel/Adminpages/usermagement';
+import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
+import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
 
 
 const queryClient = new QueryClient();
@@ -40,6 +42,8 @@ const App = () => (
             <Route path="/logout" element={<Logout />} />
             <Route path="/" element={<Index />} />
             <Route path="/programs" element={<Programs />} />
+            <Route path="/createevent" element={<CreateEvent />} />
+            <Route path="/createupdate" element={<CreateUpdate />} />
 
             <Route path="/news" element={<News />} />
             <Route path="/announcement" element={<Announcement />} />

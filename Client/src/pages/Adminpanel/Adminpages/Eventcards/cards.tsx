@@ -6,6 +6,7 @@ function StoryCard({ title, description, author, onUpdate, onDelete }) {
         {title}
       </div>
 
+
       {/* Body */}
       <div className="text-gray-600 dark:text-white">
         {description}
