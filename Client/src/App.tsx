@@ -24,6 +24,7 @@ import Update from './pages/Adminpanel/Adminpages/update';
 import Event from './pages/Adminpanel/Adminpages/event';
 import Logout from './pages/Adminpanel/Adminpages/usermagement';
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -46,7 +47,6 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminForm />} />
-
             <Route path="/events" element={<News />} />
             <Route path="/admission" element={<Campus />} />
             <Route path="/about" element={<About />} />
