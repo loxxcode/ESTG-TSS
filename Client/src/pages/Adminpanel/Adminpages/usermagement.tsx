@@ -3,27 +3,31 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const ViewContentCreators = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); // State to store API data
+  const [loading, setLoading] = useState(true); // State to handle loading
   const navigate = useNavigate();
 
+  // Fetch data from the backend API
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/account/contentcreator")
+      .get("http://localhost:5000/api/account/creators",{withCredentials: true})
       .then((res) => {
-        setData(res.data);
+        setData(res.data); // Set the fetched data
+        setLoading(false); // Stop loading
       })
       .catch((error) => {
         console.error("Error fetching content creators:", error);
+        setLoading(false); // Stop loading even if there's an error
       });
   }, []);
 
   return (
     <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8 gap-2 sm:gap-0">
-        <h1 className="text-xl sm:text-3xl font-bold text-gray-800">Content Creators</h1>
+        <h1 className="text-xl sm:text-3xl font-medium">Content Creators</h1>
         <Link
           to="/contentcreatorregistration"
-          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md transition-colors flex items-center text-sm sm:text-base"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md transition-colors flex items-center text-sm sm:text-base"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,71 +47,56 @@ const ViewContentCreators = () => {
 
       {/* Responsive Table that becomes cards on mobile */}
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        {/* Table Headers - Hidden on mobile */}
-        <div className="hidden sm:block">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-blue-600">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Phone</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {data.length > 0 ? (
-                data.map((item, index) => (
-                  <TableRow key={index} item={item} index={index} />
-                ))
-              ) : (
-                <>
-                  <TableRow item={{
-                    _id: "1",
-                    name: "Jane Doe",
-                    email: "jane@example.com",
-                    role: "Photographer",
-                    phone: "+1 123 456 7890"
-                  }} index={0} />
-                  <TableRow item={{
-                    _id: "2",
-                    name: "John Smith",
-                    email: "john@example.com",
-                    role: "Videographer",
-                    phone: "+1 987 654 3210"
-                  }} index={1} />
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
+        {/* Show loading state */}
+        {loading ? (
+          <div className="p-4 text-center text-gray-500">Loading...</div>
+        ) : data.length > 0 ? (
+          <>
+            {/* Table Headers - Hidden on mobile */}
+            <div className="hidden sm:block">
+              <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-500">
+                <thead className="bg-blue-600">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      No
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Role
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Phone
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black">
+                  {data.map((item, index) => (
+                    <TableRow key={index} item={item} index={index} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-        {/* Mobile Cards - Shows table data as cards */}
-        <div className="sm:hidden space-y-3 p-3">
-          {data.length > 0 ? (
-            data.map((item, index) => (
-              <MobileCard key={index} item={item} index={index} />
-            ))
-          ) : (
-            <>
-              <MobileCard item={{
-                _id: "1",
-                name: "Jane Doe",
-                email: "jane@example.com",
-                role: "Photographer",
-                phone: "+1 123 456 7890"
-              }} index={0} />
-              <MobileCard item={{
-                _id: "2",
-                name: "John Smith",
-                email: "john@example.com",
-                role: "Videographer",
-                phone: "+1 987 654 3210"
-              }} index={1} />
-            </>
-          )}
-        </div>
+            {/* Mobile Cards - Shows table data as cards */}
+            <div className="sm:hidden space-y-3 p-3">
+              {data.map((item, index) => (
+                <MobileCard key={index} item={item} index={index} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="p-4 text-center font-medium dark:bg-gray-800">
+            No content creators found.
+          </div>
+        )}
       </div>
     </div>
   );
@@ -116,13 +105,23 @@ const ViewContentCreators = () => {
 // Table Row Component (for desktop)
 const TableRow = ({ item, index }) => (
   <tr className="hover:bg-gray-50 transition-colors">
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.name}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.email}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.role}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.phone || "N/A"}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      <button 
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      {index + 1}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      {item.username}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      {item.email}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      {item.role}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      {item.phone || "N/A"}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      <button
         className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs transition-colors flex items-center"
         onClick={() => console.log("Delete", item._id)}
       >
@@ -150,9 +149,11 @@ const MobileCard = ({ item, index }) => (
     <div className="flex justify-between items-start">
       <div>
         <h3 className="font-medium text-gray-900">{item.name}</h3>
-        <p className="text-xs text-gray-500">#{index + 1} • {item.role}</p>
+        <p className="text-xs text-gray-500">
+          #{index + 1} • {item.role}
+        </p>
       </div>
-      <button 
+      <button
         className="bg-red-600 hover:bg-red-700 text-white p-1 rounded-md"
         onClick={() => console.log("Delete", item._id)}
       >
