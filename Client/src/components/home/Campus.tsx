@@ -72,12 +72,6 @@ const Campus = () => {
               </div>
             </AnimatedSection>
             
-            <AnimatedSection animation="fade-in" delay={600}>
-              <Button>
-                Explore Our Campus
-                <ArrowRight size={18} />
-              </Button>
-            </AnimatedSection>
           </div>
           
           {/* Image Side */}
