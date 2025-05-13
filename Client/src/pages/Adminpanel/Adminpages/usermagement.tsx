@@ -24,7 +24,10 @@ const ViewContentCreators = () => {
   return (
     <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8 gap-2 sm:gap-0">
+
+   
         <h1 className="text-xl sm:text-3xl font-medium">Content Creators</h1>
+
         <Link
           to="/contentcreatorregistration"
           className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md transition-colors flex items-center text-sm sm:text-base"
@@ -47,6 +50,45 @@ const ViewContentCreators = () => {
 
       {/* Responsive Table that becomes cards on mobile */}
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        {/* Table Headers - Hidden on mobile */}
+        <div className="hidden sm:block">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-blue-600 ">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Phone</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {data.length > 0 ? (
+                data.map((item, index) => (
+                  <TableRow key={index} item={item} index={index} />
+                ))
+              ) : (
+                <>
+                  <TableRow item={{
+                    _id: "1",
+                    name: "Jane Doe",
+                    email: "jane@example.com",
+                    role: "Photographer",
+                    phone: "+1 123 456 7890"
+                  }} index={0} />
+                  <TableRow item={{
+                    _id: "2",
+                    name: "John Smith",
+                    email: "john@example.com",
+                    role: "Videographer",
+                    phone: "+1 987 654 3210"
+                  }} index={1} />
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
         {/* Show loading state */}
         {loading ? (
           <div className="p-4 text-center text-gray-500">Loading...</div>

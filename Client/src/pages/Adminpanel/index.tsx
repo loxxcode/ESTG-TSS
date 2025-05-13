@@ -55,11 +55,20 @@ function Adminpanel() {
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
               </button>
             ))}
-<<<<<<< HEAD
+
+           <button 
+  onClick={handleLogout} 
+  className='mt-[340px] flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'
+>
+  {/* Inline SVG icon */}
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+  </svg>
+  Logout
+</button>
             <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-700 text-white hover:bg-blue-600'>Logout</button>
-=======
             <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
->>>>>>> 616596a19bd5f6ffd62f295b02bee3e085b73ac4
+
           </nav>
         </aside>
 
