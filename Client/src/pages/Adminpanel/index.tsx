@@ -18,7 +18,7 @@ function Adminpanel() {
     try {
       await axios.get('http://localhost:5000/api/account/logout', { withCredentials: true });
       navigate('/');
-       localStorage.removeItem("username")
+      localStorage.removeItem("username")
       localStorage.removeItem("role")
       localStorage.removeItem("email")
     } catch (error) {

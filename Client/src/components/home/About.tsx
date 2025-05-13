@@ -65,10 +65,11 @@ const About = () => {
             </AnimatedSection>
             
             <AnimatedSection animation="fade-in" delay={800}>
-              <Button>
+              <a href="/about"><Button>
                 Learn More About Us
                 <ArrowRight size={18} />
               </Button>
+              </a>
             </AnimatedSection>
           </div>
         </div>
