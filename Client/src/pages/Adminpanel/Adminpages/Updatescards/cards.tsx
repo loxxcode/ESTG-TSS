@@ -1,4 +1,4 @@
-function StoryCard({ title, description, updatestype, onUpdate, onDelete }) {
+function StoryCard({ title, description,author, updatestype, onUpdate, onDelete }) {
   return (
     <div className="max-w-md mx-auto bg-estg-gray-light dark:bg-black border border-gray-200 rounded-2xl shadow-md p-6 space-y-4">
       {/* Header */}
@@ -12,6 +12,10 @@ function StoryCard({ title, description, updatestype, onUpdate, onDelete }) {
       {/* Role */}
       <div className="text-sm text-gray-500 italic dark:text-white">
         update type: {updatestype}
+      </div>
+       {/* Role */}
+      <div className="text-sm text-gray-500 italic dark:text-white">
+        Written by: {author}
       </div>
       {/* Actions */}
       <div className="flex gap-4 pt-2">
