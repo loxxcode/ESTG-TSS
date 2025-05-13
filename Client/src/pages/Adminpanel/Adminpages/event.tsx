@@ -4,7 +4,7 @@ import Card from './Eventcards/cards';
 function Event() {
   return (
     <div className="p-6 bg-gray-100 dark:bg-black min-h-screen">
-      <a href="">
+      <a href="/createevent">
       <button
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
           Add Event
