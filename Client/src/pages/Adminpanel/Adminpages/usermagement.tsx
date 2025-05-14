@@ -37,12 +37,11 @@ const ViewContentCreators = () => {
   };
 
   return (
-    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5 flex flex-col">
+    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5  flex flex-col">
       <div className="flex flex-col gap-4">
-        <h2 className="text-xl sm:text-3xl font-medium">Content Creators</h2>
         <Link
           to="/contentcreatorregistration"
-          className="flex bg-blue-600 w-40 h-8 items-center justify-center rounded-sm
+          className="flex bg-blue-600 w-40 h-8 items-center justify-center rounded-sm text-white
            "
         >
           <svg
@@ -59,6 +58,7 @@ const ViewContentCreators = () => {
           </svg>
           New Creator
         </Link>
+        <h1 className="text-xl sm:text-2xl  font-bold ">Content Creators</h1>
       </div>
 
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -71,26 +71,48 @@ const ViewContentCreators = () => {
               <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-500">
                 <thead className="bg-blue-600">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Phone</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      No
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Role
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Phone
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-black">
                   {data.map((item, index) => (
-                    <TableRow key={index} item={item} index={index} onDelete={handleDelete} />
+                    <TableRow
+                      key={index}
+                      item={item}
+                      index={index}
+                      onDelete={handleDelete}
+                    />
                   ))}
                 </tbody>
-              </table>  
+              </table>
             </div>
 
             {/* Mobile Cards */}
             <div className="sm:hidden space-y-3 p-3">
               {data.map((item, index) => (
-                <MobileCard key={index} item={item} index={index} onDelete={handleDelete} />
+                <MobileCard
+                  key={index}
+                  item={item}
+                  index={index}
+                  onDelete={handleDelete}
+                />
               ))}
             </div>
           </>
@@ -105,7 +127,7 @@ const ViewContentCreators = () => {
 };
 
 const TableRow = ({ item, index, onDelete }) => (
-  <tr className="hover:bg-gray-50 transition-colors">
+  <tr className="bg-gray-50 dark:bg-black transition-colors">
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{index + 1}</td>
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.username}</td>
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.email}</td>

@@ -11,6 +11,9 @@ function ContentCreatorRegistration() {
     phone: "",
   });
   const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/adminpanel");
+  };
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -41,32 +44,31 @@ function ContentCreatorRegistration() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black ">
+      <button
+        onClick={handleBack}
+        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </button>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md text-black bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
-          {/* Back Button */}
-          <Link
-            to="/user"
-            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-            back
-          </Link>
-
           {/* Form Header */}
           <div className="text-center ">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-900">
+            <h1 className="text-2xl font-bold text-black  dark:bg-black dark:text-white">
               Content Creator Registration
             </h1>
             <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
