@@ -58,22 +58,15 @@ function Adminpanel() {
                 onClick={() => setActiveTab(index)}
                 className={`px-4 py-2 rounded-md text-left transition-colors w-full ${activeTab === index
 
-<<<<<<< HEAD
-
-
                   ? 'bg-blue-700 text-white'
                   : 'hover:bg-blue-700 text-white-700'
-
-
-=======
-                  ? 'bg-blue-600 text-white'
-                  : 'hover:bg-blue-600 text-white-700'
->>>>>>> a2052916c64f65c9df4cf1fa33d7747e5d5f4cbb
                   }`}
               >
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
               </button>
             ))}
+            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-700 text-white hover:bg-blue-600'>Logout</button>
+            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
 
             <button
               onClick={handleLogout}
