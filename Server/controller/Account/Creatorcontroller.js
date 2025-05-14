@@ -1,22 +1,23 @@
 const Account = require("../../models/account_schema");
 const bcrypt = require("bcrypt");
+
 // Admin signup function
 exports.creatorsignup = async (req, res) => {
-    const { username, email, password, phone } = req.body;
-
-    // Validate input
-    if (!email || !password || !username || !phone) {
-        return res.status(400).json({
-            success: false,
-            message: "Email, password ,phone number and username are required"
-        });
-    }
-
     try {
+        const { username, email, password, phone } = req.body;
+
+        // Validate input
+        if (!email || !password || !username || !phone) {
+            return res.status(400).json({
+                success: false,
+                message: "Email, password, phone number, and username are required"
+            });
+        }
+
         // Check for existing user
-        const userExists = await Account.findOne({ email });
-        if (userExists) {
-            return res.status(409).json({ // 409 Conflict for duplicate resources
+        const existingUser = await Account.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({
                 success: false,
                 message: "User already exists"
             });
@@ -31,7 +32,7 @@ exports.creatorsignup = async (req, res) => {
             email,
             password: hashedPassword,
             role: "Content_creator",
-            phone: phone
+            phone
         });
 
         await newUser.save();
@@ -42,12 +43,12 @@ exports.creatorsignup = async (req, res) => {
             username: newUser.username,
             email: newUser.email,
             role: newUser.role,
-            phone: phone
+            phone
         };
 
         return res.status(201).json({
             success: true,
-            message: "Content_creator registered successfully",
+            message: "Content creator registered successfully",
             user: userResponse
         });
     } catch (error) {
@@ -61,32 +62,32 @@ exports.creatorsignup = async (req, res) => {
 
 // Admin login function
 exports.creatorlogin = async (req, res) => {
-    const { email, password } = req.body;
-
-    // Validate input
-    if (!email || !password) {
-        return res.status(400).json({
-            success: false,
-            message: "Email and password are required"
-        });
-    }
-
     try {
-        // Add await and proper error handling for database query
+        const { email, password } = req.body;
+
+        // Validate input
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required"
+            });
+        }
+
+        // Find user by email
         const user = await Account.findOne({ email }).select('+password').exec();
 
         if (!user) {
             return res.status(401).json({
                 success: false,
-                message: "Invalid credentials" // Generic message for security
+                message: "Invalid credentials"
             });
         }
 
         // Check admin role
         if (user.role !== "Content_creator") {
-            return res.status(403).json({ // 403 Forbidden is more appropriate
+            return res.status(403).json({
                 success: false,
-                message: "Access denied: Content_creator privileges required"
+                message: "Access denied: Content creator privileges required"
             });
         }
 
@@ -107,10 +108,10 @@ exports.creatorlogin = async (req, res) => {
             role: user.role
         };
 
-        req.session.username = user.username
-        req.session.email = user.email
-        req.session.role = user.role
-        req.session.Userid = user._id
+        req.session.username = user.username;
+        req.session.email = user.email;
+        req.session.role = user.role;
+        req.session.Userid = user._id;
 
         return res.status(200).json({
             success: true,
