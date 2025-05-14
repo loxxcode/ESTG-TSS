@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
-import Refe from "../assets/eating.jpg"
-import Running from "../assets/elysee.jpg"
-import Tv from "../assets/gettyimages-1786348765-612x612.jpg"
+import Running from "../assets/elysee.jpg";
 
 const Campus = () => {
   useEffect(() => {
@@ -76,7 +74,6 @@ const Campus = () => {
                   </div>
                 </div>
               </div>
-
               {/* Third Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
                 <img src={Running} alt="activity" className="w-full md:w-[300px] h-full md:h-[300px] object-cover rounded-2xl"/>
@@ -101,7 +98,6 @@ const Campus = () => {
           </AnimatedSection>
         </div>
       </div>
-    
       <Footer />
     </div>
   );
