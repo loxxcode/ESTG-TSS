@@ -55,7 +55,7 @@ const News = () => {
             >
               <div className="relative  h-56">
                 <img
-                  src={Future}
+                  src={news.imageUrl}
                   alt={news.title}
                   className="w-full h-full object-fit"
                 />
@@ -66,7 +66,7 @@ const News = () => {
                   month: 'long',
                   day: 'numeric'
                 })}</p>
-                <h3 className="text-lg font-semibold text-gray-400">{news.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-400 uppercase">{news.title}</h3>
               </div>
             </div>
           ))}
