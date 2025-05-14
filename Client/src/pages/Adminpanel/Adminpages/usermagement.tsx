@@ -78,7 +78,7 @@ const ViewContentCreators = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black">
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black ">
                   {data.map((item, index) => (
                     <TableRow key={index} item={item} index={index} onDelete={handleDelete} />
                   ))}

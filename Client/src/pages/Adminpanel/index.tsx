@@ -33,8 +33,8 @@ function Adminpanel() {
 
   return (
     <div className="min-h-screen bg-estg-gray-light dark:bg-black">
-      
-     <div className="fixed top-0 left-0 right-0 z-50 bg-estg-gray-light dark:bg-black">
+
+      <div className="fixed top-0 left-0 right-0 z-50 bg-estg-gray-light dark:bg-black">
         <Navbar />
       </div>
 
@@ -58,12 +58,17 @@ function Adminpanel() {
                 onClick={() => setActiveTab(index)}
                 className={`px-4 py-2 rounded-md text-left transition-colors w-full ${activeTab === index
 
+<<<<<<< HEAD
 
 
                   ? 'bg-blue-700 text-white'
                   : 'hover:bg-blue-700 text-white-700'
 
 
+=======
+                  ? 'bg-blue-600 text-white'
+                  : 'hover:bg-blue-600 text-white-700'
+>>>>>>> a2052916c64f65c9df4cf1fa33d7747e5d5f4cbb
                   }`}
               >
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
