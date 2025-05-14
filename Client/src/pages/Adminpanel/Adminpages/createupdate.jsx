@@ -13,7 +13,13 @@ function CreateUpdate(){
                     <option value="Announcement">Announcement</option>
                 </select>
                 <button>Upload Updates</button>
+
+
+
             </div>
+
+
+
         </div>
     )
 }
