@@ -1,16 +1,44 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Event() {
   const navigate = useNavigate();
-  
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null);
+  const [uploadedData, setUploadedData] = useState(null); // New state for uploaded data
+
   const handleBack = () => {
-    navigate('/adminpanel', { state: { activeTab: 1 } }); // 1 is the index for Events tab
+    navigate('/adminpanel'  );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!title || !description || !image) {
+      alert("Please fill out all fields and add an image.");
+      return;
+    }
+    console.log(uploadedData)
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('file', image);
+    try {
+      const res = await axios.post('http://localhost:5000/api/upload_events', formData, { withCredentials: true });
+      setUploadedData(res.data);
+      alert('Event created successfully!');
+      navigate('/adminpanel', { state: { activeTab: 1 } });
+    } catch (error) {
+      console.error(error); 
+      alert('Failed to create event.');
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-10 relative dark:bg-black">
-      <button 
+      <button
         onClick={handleBack}
         className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
       >
@@ -21,21 +49,17 @@ function Event() {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg dark:bg-black text-black">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-semibold text-gray-800">Create Event</h2>
-          {/* <button
-            onClick={handleBack}
-            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
-          >
-            Back to Events
-          </button> */}
         </div>
-        
-        <form>
+
+        <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
               <label htmlFor="eventTitle" className="block text-sm font-medium text-gray-700">Event Title:</label>
               <input
                 type="text"
                 id="eventTitle"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -44,17 +68,18 @@ function Event() {
               <label htmlFor="eventImage" className="block text-sm font-medium text-gray-700">Add Image:</label>
               <input
                 type="file"
-                name="file"
+                accept=".jpg,.jpeg,.png"
+                onChange={(e) => setImage(e.target.files[0])}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                
-                />
+              />
             </div>
 
             <div>
               <label htmlFor="eventDesc" className="block text-sm font-medium text-gray-700">Event Description:</label>
               <textarea
-                name="Desc"
                 id="eventDesc"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -69,10 +94,20 @@ function Event() {
             </div>
           </div>
         </form>
+
+        {uploadedData && ( // Render uploaded data if available
+          <div className="mt-6 p-4 bg-gray-100 rounded-md">
+            <h3 className="text-lg font-semibold">Uploaded Event:</h3>
+            <p><strong>Title:</strong> {uploadedData.title}</p>
+            <p><strong>Description:</strong> {uploadedData.description}</p>
+            {uploadedData.imageUrl && (
+              <img src={uploadedData.imageUrl} alt="Uploaded Event" className="mt-2 w-full rounded-md" />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default Event;
- 

@@ -6,12 +6,12 @@ function Update() {
   const navigate = useNavigate();
   const [Form, setForm] = useState({
     title: '',
-    desc: '',
-    updateType: '',
+    description: '',
+    type: '',
   });
 
   const handleBack = () => {
-    navigate('/adminpanel', { state: { activeTab: 0 } }); // 0 is the index for Updates tab
+    navigate('/adminpanel', { state: { activeTab: 0 } });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -24,12 +24,12 @@ function Update() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     try {
-      const response = await axios.post('http://localhost:5000/api/upload_update', Form); 
+      const response = await axios.post('http://localhost:5000/api/upload_update', Form, { withCredentials: true });
       console.log('Form submitted successfully:', response.data);
       alert('Update submitted successfully!');
-      navigate('/adminpanel', { state: { activeTab: 0 } });
+      navigate('/adminpanel');
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to submit the update. Please try again.');
@@ -64,32 +64,33 @@ function Update() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
+            <div>
+              <label htmlFor="updateType" className="block text-sm font-medium text-gray-700">Update Type:</label>
+              <select
+                name="type"
+                id="updateType"
+                value={Form.type}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="hidden">Select Type</option>
+                <option value="news">News</option>
+                <option value="announcement">Announcement</option>
+              </select>
+            </div>
 
             <div>
               <label htmlFor="desc" className="block text-sm font-medium text-gray-700">Updates Description:</label>
               <textarea
-                name="desc"
+                name="description"
                 id="desc"
-                value={Form.desc}
+                value={Form.description}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
-            <div>
-              <label htmlFor="updateType" className="block text-sm font-medium text-gray-700">Update Type:</label>
-              <select
-                name="updateType"
-                id="updateType"
-                value={Form.updateType}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="">Select Type</option>
-                <option value="News">News</option>
-                <option value="Announcement">Announcement</option>
-              </select>
-            </div>
+
 
             <button
               type="submit"
