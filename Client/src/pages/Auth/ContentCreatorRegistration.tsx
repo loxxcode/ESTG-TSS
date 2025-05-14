@@ -23,7 +23,7 @@ function ContentCreatorRegistration() {
       );
       if (response.status === 200) {
         console.log("Registration successful", response.data);
-        navigate("/success"); // Redirect to a success page
+        navigate("/user"); // Redirect to a success page
       }
     } catch (error) {
       if (error.response) {
@@ -43,7 +43,7 @@ function ContentCreatorRegistration() {
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black ">
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md text-black bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
           {/* Back Button */}
           <Link
             to="/user"
@@ -66,22 +66,22 @@ function ContentCreatorRegistration() {
 
           {/* Form Header */}
           <div className="text-center ">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-500">
+            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-900">
               Content Creator Registration
             </h1>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
               Join our creative community
             </p>
           </div>
 
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleForm}>
-            <div className="space-y-4">
+            <div className="space-y-4 text-black">
               {/* Username Field */}
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Username <span className="text-red-500">*</span>
                 </label>
@@ -103,7 +103,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -123,7 +123,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Password <span className="text-red-500">*</span>
                 </label>
@@ -145,7 +145,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="role"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Content Role <span className="text-red-500">*</span>
                 </label>
@@ -167,7 +167,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Phone Number
                 </label>
@@ -193,7 +193,7 @@ function ContentCreatorRegistration() {
                 />
                 <label
                   htmlFor="terms"
-                  className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+                  className="ml-2 block text-sm text-gray-800 dark:text-gray-300"
                 >
                   I agree to the{" "}
                   <Link

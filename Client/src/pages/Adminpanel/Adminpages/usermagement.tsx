@@ -22,12 +22,13 @@ const ViewContentCreators = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8 gap-2 sm:gap-0">
-        <h1 className="text-xl sm:text-3xl font-medium">Content Creators</h1>
+    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5 flex flex-col">
+      <div className="flex flex-col gap-4">
+        <h2 className="text-xl sm:text-3xl font-medium">Content Creators</h2>
         <Link
           to="/contentcreatorregistration"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md transition-colors flex items-center text-sm sm:text-base"
+          className="flex bg-blue-600 w-40 h-8 items-center justify-center rounded-sm
+           "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
