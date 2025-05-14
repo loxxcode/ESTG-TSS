@@ -1,23 +1,42 @@
-function StoryCard({ title, description, author, onUpdate, onDelete }) {
+import React, { useState } from 'react';
+
+function Card({ title, description, author, onUpdate, onDelete, imageUrl }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const shortDescription = !isExpanded && description.length > 100
+    ? description.slice(0, 100) + '...'
+    : description;
+
   return (
-    <div className="max-w-md mx-auto bg-estg-gray-light dark:bg-black border border-gray-200 rounded-2xl shadow-md p-6 space-y-4">
-      {/* Header */}
-      <div className="text-xl font-semibold text-gray-800 dark:text-white">
+    <div className={`max-w-md mx-auto bg-white-500  border border-gray-100 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? 'h-auto' : 'h-[330px]'} overflow-hidden`}>
+      <img
+        src={imageUrl || 'https://via.placeholder.com/150'}
+        alt="Event"
+        className="h-24 w-full object-cover rounded-md mb-3"
+      />
+
+      <div className="text-xl font-semibold text-black dark:text-white mb-2">
         {title}
       </div>
 
-      {/* Body */}
-      <div className="text-gray-600 dark:text-white">
-        {description}
+      <div className={`text-black-200 text-sm mb-1 ${!isExpanded ? 'line-clamp-4' : ''} overflow-hidden`}>
+        {shortDescription}
       </div>
 
-      {/* Role */}
-      <div className="text-sm text-gray-500 italic dark:text-white">
+      {description.length > 100 && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="text-blue-400 text-sm underline self-start mb-2"
+        >
+          {isExpanded ? 'Show Less' : 'Show More'}
+        </button>
+      )}
+
+      <div className="text-sm text-gray-400 italic mb-3">
         Written by: {author}
       </div>
 
-      {/* Actions */}
-      <div className="flex gap-4 pt-2">
+      <div className="mt-auto flex gap-3">
         <button
           onClick={onUpdate}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
@@ -34,4 +53,5 @@ function StoryCard({ title, description, author, onUpdate, onDelete }) {
     </div>
   );
 }
-export default StoryCard;
+
+export default Card;

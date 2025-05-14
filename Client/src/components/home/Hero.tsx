@@ -41,19 +41,17 @@ const Hero = () => {
           
           <AnimatedSection animation="fade-in" delay={700}>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl">
-              Join a community dedicated to academic excellence, innovation, and professional success. Discover your potential at ESTG.
+              Join a school dedicated to academic secience, conscience, and work. Discover your potential at ESTG.
             </p>
           </AnimatedSection>
           
           <AnimatedSection animation="fade-in" delay={900}>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg">
+              <a href="/programs"><Button size="lg">
                 Explore Programs
                 <ArrowRight size={18} />
               </Button>
-              <Button variant="outline" size="lg" className="border-white/30 dark:text-white text-black hover:bg-white/10">
-                Virtual Tour
-              </Button>
+              </a>
             </div>
           </AnimatedSection>
         </div>

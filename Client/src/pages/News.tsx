@@ -53,20 +53,20 @@ const News = () => {
               className="rounded-sm border-1 overflow-hidden shadow-md hover:shadow-xl transition duration-300"
               onClick={() => navigate(`/news/${news._id}`)}
             >
-              <div className="relative  h-56">
+              <div className="relative h-[300px]">
                 <img
-                  src={Future}
+                  src={news.imageUrl}
                   alt={news.title}
                   className="w-full h-full object-fit"
                 />
               </div>
               <div className="p-6 text-left">
-                <p className="text-sm text-gray-800 mb-2">{new Date(news.createdAt).toLocaleDateString('en-US', {
+                <p className="text-sm text-black dark:text-white mb-2">{new Date(news.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
                 })}</p>
-                <h3 className="text-lg font-semibold text-gray-400">{news.title}</h3>
+                <h3 className="text-lg font-semibold text-black dark:text-white uppercase">{news.title}</h3>
               </div>
             </div>
           ))}

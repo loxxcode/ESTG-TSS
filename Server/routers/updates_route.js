@@ -24,10 +24,10 @@ router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
     let data;
 
     if (req.session.role === 'Admin') {
-      data = await updates_model.find();
-
-    } else if (req.session.role === 'Content_creator') {
-      data = await updates_model.find({ author: user});
+      data = await updates_model.find().populate("author");
+    }
+    else if (req.session.role === 'Content_creator') {
+      data = await updates_model.populate({ author: user }).populate("author");
 
     }
     return res.status(200).json({ message: 'success', data });
@@ -37,19 +37,19 @@ router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
 });
 
 // POST new updates 
-router.post('/upload_update', upload.single('file'), middleware.ensureAuthenticated, async (req, res) => {
+router.post('/upload_update', middleware.ensureAuthenticated, async (req, res) => {
   try {
     const { title, description, type } = req.body;
-    const fileUrl = req.file?.path;
+    // const fileUrl = req.file?.path;
     const authorId = req.session.Userid
 
-    if (!title || !fileUrl || !description || !type) {
+    if (!title || !description || !type) {
       return res.status(400).json({ message: 'No updates uploaded' });
     }
 
     const newupdates = new updates_model({
       title,
-      fileUrl,
+      // fileUrl,
       description,
       type,
       author: authorId
@@ -67,7 +67,7 @@ router.post('/upload_update', upload.single('file'), middleware.ensureAuthentica
 // GET updates news by ID
 router.get('/single_update/:id', middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
-  
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ message: "invalid update id" });
   }

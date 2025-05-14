@@ -1,73 +1,88 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; // Uncomment axios
 
 function ContentCreatorRegistration() {
   const [Form, setForm] = useState({
     username: "",
     email: "",
     password: "",
-    role: "",
     phone: "",
   });
   const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/adminpanel");
+  };
 
   const handleForm = async (e) => {
     e.preventDefault();
-    const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/content-creator",
-      Form
-    );
-    if (response.status === 200) {
-      console.log("Registration successful", response.data);
-      // Handle successful registration (e.g., redirect to dashboard)
-    } else {
-      console.error("Registration failed", response.data);
-      // Handle registration failure (e.g., show error message)
+    try {
+      console.log("Form Data:", Form); // Log form data to the console
+      const response = await axios.post(
+        "http://localhost:5000/api/account/creator/register",
+        Form,
+        { withCredentials: true }
+      );
+      if (response.status === 200) {
+        console.log("Registration successful", response.data);
+        navigate("/user"); // Redirect to a success page
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with an error:", error.response.data);
+        alert("Registration failed: " + error.response.data.message);
+      } else if (error.request) {
+        console.error("No response from server. Please check your connection.");
+        alert("Network error: Unable to reach the server.");
+      } else {
+        console.error("Unexpected error:", error.message);
+        alert("An unexpected error occurred.");
+      }
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black ">
+      <button
+        onClick={handleBack}
+        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </button>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
-          {/* Back Button */}
-          <Link to="/adminpanel" className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-            back
-          </Link>
-        
-
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md text-black bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
           {/* Form Header */}
           <div className="text-center ">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-500">
+            <h1 className="text-2xl font-bold text-black  dark:bg-black dark:text-white">
               Content Creator Registration
             </h1>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
               Join our creative community
             </p>
           </div>
 
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleForm}>
-            <div className="space-y-4">
+            <div className="space-y-4 text-black">
               {/* Username Field */}
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Username <span className="text-red-500">*</span>
                 </label>
@@ -89,7 +104,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -109,7 +124,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Password <span className="text-red-500">*</span>
                 </label>
@@ -131,7 +146,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="role"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Content Role <span className="text-red-500">*</span>
                 </label>
@@ -144,12 +159,8 @@ function ContentCreatorRegistration() {
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select your role</option>
-                  <option value="photographer">Photographer</option>
-                  <option value="videographer">Videographer</option>
-                  <option value="writer">Writer/Blogger</option>
-                  <option value="designer">Graphic Designer</option>
-                  <option value="podcaster">Podcaster</option>
-                  <option value="other">Other</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Content_creator">Content Creator</option>
                 </select>
               </div>
 
@@ -157,7 +168,7 @@ function ContentCreatorRegistration() {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
                 >
                   Phone Number
                 </label>
@@ -183,7 +194,7 @@ function ContentCreatorRegistration() {
                 />
                 <label
                   htmlFor="terms"
-                  className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+                  className="ml-2 block text-sm text-gray-800 dark:text-gray-300"
                 >
                   I agree to the{" "}
                   <Link

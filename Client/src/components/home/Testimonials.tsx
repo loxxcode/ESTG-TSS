@@ -2,28 +2,36 @@
 import React, { useState } from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-
+import Baskun from "../../assets/baskun.jpg"
+import Kirezi from "../../assets/kirezi.jpg"
 const testimonials = [
   {
     id: 1,
     quote: "Studying at ESTG was one of the best decisions I've made. The professors are top-notch, and the hands-on experience I gained has been invaluable in my career.",
-    name: "Sofia Martins",
+    name: "Mbarushimana Fabrice",
     title: "Software Engineer, Tech Innovations",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQGFArlg4dUrRw/profile-displayphoto-shrink_800_800/B4DZZJJXicHAAc-/0/1744983919144?e=1752710400&v=beta&t=kn3HDdxdciaFFcUj15FacO6-XFrCjsdJ5pN-1-KW83g"
   },
   {
     id: 2,
     quote: "The practical approach to learning at ESTG prepared me for the real challenges of the business world. The networking opportunities and internship programs helped me secure my dream job.",
-    name: "Miguel Costa",
-    title: "Business Development Manager, Global Solutions",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+    name: "Digne De Confiance",
+    title: "Student in mauritius university",
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQGNXW9Vs1wGlQ/profile-displayphoto-shrink_800_800/B4DZYgg9uJG4Ac-/0/1744302238481?e=1752710400&v=beta&t=nnr808zABL7wK1BWY_YuzH-0-Yljb39onzEbQqgPLak"
   },
   {
     id: 3,
     quote: "ESTG's emphasis on innovation and research gave me the skills to solve complex engineering problems. The faculty's support and guidance were instrumental in my academic success.",
-    name: "Ana Rodrigues",
-    title: "Civil Engineer, Building Futures Inc.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80"
+    name: "Kirezi",
+    title: "Student at Auc university",
+    image: Kirezi
+  },
+  {
+    id: 4,
+    quote: "ESTG gave me real-world experience through hands-on projects and internship opportunities, which made it easier for me to transition into the job market",
+    name: "Baskun Rwasa",
+    title: "Ceo and founder of bashion technology",
+    image: Baskun
   }
 ];
 

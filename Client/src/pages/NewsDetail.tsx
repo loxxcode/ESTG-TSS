@@ -16,7 +16,7 @@ interface NewsItem {
 
 export default function NewsDetailPage() {
   const { id } = useParams();
-  console.log("News id from Url",id);
+  console.log("News id from Url", id);
   const navigate = useNavigate();
   const [otherNews, setOtherNews] = useState<NewsItem[]>([]);
   const [visibleNewsCount, setVisibleNewsCount] = useState(3);
@@ -52,14 +52,14 @@ export default function NewsDetailPage() {
         console.error("Error fetching all news:", error);
       }
     };
-  
+
     fetchAllNews();
   }, [id]);
-  
+
   const handleLoadMore = () => {
     setVisibleNewsCount((prev) => prev + 3);
   };
-  
+
 
   if (loading) return <div className="p-8 text-center">Loading...</div>;
   if (!data) return <NotFound />
@@ -68,15 +68,16 @@ export default function NewsDetailPage() {
     <section className="py-16 px-6">
       <Navbar />
       <div className="max-w-4xl mt-10 mb-20 mx-auto">
-        <h1 className="text-4xl font-bold mb-2">{data.title}</h1>
-        <img src={Future} alt={data.title} className="w-full rounded-lg mb-6" />
+        <h1 className="text-4xl font-bold mb-2 uppercase">{data.title}</h1>
+        <img src={data.imageUrl}
+          alt={data.title} className="w-full rounded-lg mb-6" />
         <p className="text-sm text-gray-800 mb-2">{new Date(data.createdAt).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}</p>
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}</p>
         <p className="text-gray-700">{data.description}</p>
-       
+
       </div>
       <div className="max-w-6xl mx-auto mt-20 mb-10 px-10 ml-20">
         <h2 className="text-2xl font-semibold mb-6">More News</h2>
@@ -90,9 +91,13 @@ export default function NewsDetailPage() {
               <img src={item.imageUrl || Future} alt={item.title} className="h-48 w-full object-cover" />
               <div className="p-4">
                 <p className="text-sm text-gray-800">
-                  {new Date(item.createdAt).toLocaleDateString()}
+                 {new Date(data.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
                 </p>
-                <h3 className="text-lg font-bold mt-1 text-gray-400">{item.title}</h3>
+                <h3 className="text-lg font-bold mt-1 text-gray-400 uppercase">{item.title}</h3>
               </div>
             </div>
           ))}

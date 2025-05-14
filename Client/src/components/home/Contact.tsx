@@ -1,4 +1,3 @@
-
 import React from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import { Button } from '../ui/button';
@@ -28,6 +27,33 @@ const contactInfo = [
 ];
 
 const Contact = () => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    }).then((res) => res.json());
+
+    if (res.success) {
+      console.log("Success", res);
+      alert("Message sent successfully!");
+    } else {
+      console.error("Error", res);
+      alert("Failed to send the message. Please try again.");
+    }
+  };
+
   return (
     <section className="py-12 md:py-24 bg-white dark:bg-background">
       <div className="container text-center justify-center px-4">
@@ -45,7 +71,7 @@ const Contact = () => {
               <div className="bg-white dark:bg-card rounded-2xl shadow-soft p-8">
                 <h3 className="text-2xl font-display font-semibold mb-6 dark:text-white">Send us a message</h3>
                 
-                <form className="space-y-5">
+                <form onSubmit={onSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1.5">
@@ -54,8 +80,10 @@ const Contact = () => {
                       <input
                         type="text"
                         id="name"
+                        name="name"
                         className="w-full rounded-md border border-input px-4 py-2.5 focus:border-estg-blue focus:ring-1 focus:ring-estg-blue outline-none transition-colors bg-white dark:bg-muted dark:text-white"
                         placeholder="Your name"
+                        required
                       />
                     </div>
                     <div>
@@ -65,8 +93,10 @@ const Contact = () => {
                       <input
                         type="email"
                         id="email"
+                        name="email"
                         className="w-full rounded-md border border-input px-4 py-2.5 focus:border-estg-blue focus:ring-1 focus:ring-estg-blue outline-none transition-colors bg-white dark:bg-muted dark:text-white"
                         placeholder="Your email"
+                        required
                       />
                     </div>
                   </div>
@@ -78,8 +108,10 @@ const Contact = () => {
                     <input
                       type="text"
                       id="subject"
+                      name="subject"
                       className="w-full rounded-md border border-input px-4 py-2.5 focus:border-estg-blue focus:ring-1 focus:ring-estg-blue outline-none transition-colors bg-white dark:bg-muted dark:text-white"
                       placeholder="What is this regarding?"
+                      required
                     />
                   </div>
                   
@@ -89,9 +121,11 @@ const Contact = () => {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       rows={5}
                       className="w-full rounded-md border border-input px-4 py-2.5 focus:border-estg-blue focus:ring-1 focus:ring-estg-blue outline-none transition-colors resize-none bg-white dark:bg-muted dark:text-white"
                       placeholder="Your message..."
+                      required
                     ></textarea>
                   </div>
                   
