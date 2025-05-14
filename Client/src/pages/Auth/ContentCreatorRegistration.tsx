@@ -141,6 +141,7 @@ function ContentCreatorRegistration() {
                   placeholder="••••••••"
                 />
               </div>
+<<<<<<< HEAD
 
               {/* Role Selection */}
               <div>
@@ -162,6 +163,8 @@ function ContentCreatorRegistration() {
                 </select>
               </div>
 
+=======
+>>>>>>> 6df61f64b1c1ffb8461adc3165e14b4f2ebb8c1e
               {/* Phone Field */}
               <div>
                 <label

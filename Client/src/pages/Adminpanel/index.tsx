@@ -70,9 +70,7 @@ function Adminpanel() {
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
               </button>
             ))}
-            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-700 text-white hover:bg-blue-600'>Logout</button>
-            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
-
+       
             <button
               onClick={handleLogout}
               className='mt-[340px] flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'
@@ -83,8 +81,12 @@ function Adminpanel() {
               </svg>
               Logout
             </button>
+<<<<<<< HEAD
             <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
 
+=======
+           
+>>>>>>> 6df61f64b1c1ffb8461adc3165e14b4f2ebb8c1e
           </nav>
         </aside>
 
