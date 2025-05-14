@@ -11,7 +11,7 @@ const { allCreators } = require("../controller/Account/allCreators");
 const { deleteCreator } = require("../controller/Account/deleteCreators");
 
 
-router.post("/admin/register", Admincontroller.adminsignup)
+router.post("/admin/register", Admincontroller.adminsignup) //it is not neccessary
 router.post("/creator/login", creatorcontroller.creatorlogin)
 router.post("/admin/login", Admincontroller.adminlogin)
 router.put("/updateprofile", Updateprofilecontroller.update)
@@ -24,7 +24,7 @@ router.post('/forgot-password', forgetpasswordcontroller.requestPasswordReset);
 router.post('/reset-password', forgetpasswordcontroller.resetPassword);
 // Management of content creators
 router.post("/creator/register", Authmiddleware.ensureAdminprivellege, creatorcontroller.creatorsignup)
-router.get("/creators", Authmiddleware.ensureAdminprivellege, allCreators);
-router.delete("/creators/:id", Authmiddleware.ensureAdminprivellege, deleteCreator);
+router.get("/creators", Authmiddleware.ensureAdminprivellege, allCreators);  //for get all creators
+router.delete("/creators/:id", Authmiddleware.ensureAdminprivellege, deleteCreator); //for delete all creators
 
 module.exports = router;
