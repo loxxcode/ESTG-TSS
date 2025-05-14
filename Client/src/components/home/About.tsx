@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
-
+import Estgbanner from "../../assets/event_2.jfif";
 const stats = [
   { value: '35+', label: 'Years of Excellence' },
   { value: '8,500+', label: 'Students' },
@@ -16,7 +16,7 @@ const About = () => {
   
   useEffect(() => {
     const img = new Image();
-    img.src = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
+    img.src = Estgbanner;
     img.onload = () => setLoaded(true);
   }, []);
 
@@ -28,7 +28,7 @@ const About = () => {
           <AnimatedSection animation="fade-in" className="order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden shadow-soft">
               <img 
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                src={Estgbanner}
                 alt="ESTG Campus"
                 className={`w-full h-full object-cover aspect-[4/3] ${loaded ? 'loaded' : 'lazy-load'}`}
               />

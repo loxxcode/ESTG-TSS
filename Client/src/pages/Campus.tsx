@@ -4,7 +4,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import Refe from "../assets/eating.jpg"
-import Running from "../assets/PR.jpg"
+import Running from "../assets/elysee.jpg"
 import Tv from "../assets/gettyimages-1786348765-612x612.jpg"
 const Campus = () => {
   useEffect(() => {
@@ -34,7 +34,7 @@ const Campus = () => {
             <div className='lg:ml-20 w-[1100px]'>
             <div className='w-full flex gap-5 shadow-lg rounded-md p-2 border-b-2 border-gray'>
 
-              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-md'/>
+              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-2xl'/>
               <div className='p-2'>
                 <h1 className='p-4'>Dr. John Smith 1</h1>
                 <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
@@ -48,7 +48,7 @@ const Campus = () => {
                     <div className="hidden peer-checked:block">
                       <div className='flex'>
                         <p className='text-start'> With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally. 
-                          <label htmlFor="toggle" className="cursor-pointer w-28 pl-2 text-blue-500 rounded">
+                          <label htmlFor="toggle" className="cursor-pointer w-28 pl-2 text-blue-500 rounded-2xl">
                             See Less
                           </label>
                         </p>
@@ -91,11 +91,11 @@ const Campus = () => {
                     </label>
                   </div>
               </div>
-              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-md'/>
+              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-2xl'/>
             </div>
             <div className='w-full flex gap-5 shadow-lg mt-4 border-opacity-5 rounded-md p-2 border-gray'>
 
-              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-md'/>
+              <img src={Running} alt="activity" className='w-[50%] p-2 h-[300px] rounded-2xl'/>
               <div className='p-2'>
                 <h2 className='p-4'>Dr. John Smith 3</h2>
                 <p className='text-start justify-start'>At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
