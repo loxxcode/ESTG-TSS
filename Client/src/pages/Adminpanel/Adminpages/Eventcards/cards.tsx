@@ -8,7 +8,7 @@ function Card({ title, description, author, onUpdate, onDelete, imageUrl }) {
     : description;
 
   return (
-    <div className={`max-w-md mx-auto bg-white-500  border border-gray-100 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? 'h-auto' : 'h-[300px]'} overflow-hidden`}>
+    <div className={`max-w-md mx-auto bg-white-500  border border-gray-100 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? 'h-auto' : 'h-[330px]'} overflow-hidden`}>
       <img
         src={imageUrl || 'https://via.placeholder.com/150'}
         alt="Event"
