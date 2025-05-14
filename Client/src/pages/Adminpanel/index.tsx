@@ -9,8 +9,14 @@ import { Menu, X, PanelLeftOpen } from 'lucide-react';
 
 function Adminpanel() {
   const [activeTab, setActiveTab] = React.useState(0);
+
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  const isAdmin = localStorage.getItem("role") === "Admin";
+
+
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     if (!localStorage.getItem("username")) {
@@ -33,8 +39,9 @@ function Adminpanel() {
   const tabs = [
     { name: 'Updates', component: <Update /> },
     { name: 'Events', component: <Event /> },
-    { name: 'View Users', component: <UserManagement /> },
+    ...(isAdmin ? [{ name: 'View Users', component: <UserManagement /> }] : []),
   ];
+
 
   return (
     <div className="min-h-screen bg-estg-gray-light dark:bg-black">
@@ -89,6 +96,10 @@ function Adminpanel() {
               </svg>
               Logout
             </button>
+
+
+            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
+
           </nav>
         </aside>
 
