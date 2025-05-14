@@ -91,7 +91,7 @@ const ViewContentCreators = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black">
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black ">
                   {data.map((item, index) => (
                     <TableRow
                       key={index}

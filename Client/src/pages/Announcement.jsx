@@ -50,9 +50,9 @@ const Announcement = () => {
                         return (
                             <div
                                 key={item._id}
-                                className="group w-auto transition-all duration-300 ease-in-out p-6 mb-6 dark:bg-gray-900 dark:text-gray-100 rounded-2xl shadow-lg hover:shadow-xl flex flex-col items-start justify-between"
+                                className="group w-auto transition-all duration-300 ease-in-out p-6 mb-6 dark:bg-gray-900 dark:text-gray-100 rounded-2xl shadow-lg hover:shadow-xl flex flex-col items-start text-left justify-between "
                             >
-                                <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                                <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 uppercase">
                                     {item.title}
                                 </h1>
                                 <p className="text-sm text-gray-800 mb-2">{new Date(item.createdAt).toLocaleDateString('en-US', {
