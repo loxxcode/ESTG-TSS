@@ -7,7 +7,6 @@ function ContentCreatorRegistration() {
     username: "",
     email: "",
     password: "",
-    role: "",
     phone: "",
   });
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ const navLinks = [
   { name: 'Programs', path: '/programs' },
   { name: 'Events', path: '/events' },
   { name: 'Updates', path: '/announcement' },
-  { name: 'Admission', path: '/admission' },
+  { name: 'Administrative', path: '/admission' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
  

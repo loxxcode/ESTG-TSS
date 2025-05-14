@@ -57,9 +57,9 @@ function Adminpanel() {
                 key={index}
                 onClick={() => setActiveTab(index)}
                 className={`px-4 py-2 rounded-md text-left transition-colors w-full ${activeTab === index
-                  ? 'bg-blue-600 text-white'
-                  : 'hover:bg-blue-600 text-white-700'
 
+                  ? 'bg-blue-700 text-white'
+                  : 'hover:bg-blue-700 text-white-700'
                   }`}
               >
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
