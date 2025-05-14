@@ -8,18 +8,18 @@ function Card({ title, description, author, onUpdate, onDelete, imageUrl }) {
     : description;
 
   return (
-    <div className={`max-w-md mx-auto bg-black border border-gray-200 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? 'h-auto' : 'h-[280px]'} overflow-hidden`}>
+    <div className={`max-w-md mx-auto bg-white-500  border border-gray-100 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? 'h-auto' : 'h-[300px]'} overflow-hidden`}>
       <img
         src={imageUrl || 'https://via.placeholder.com/150'}
         alt="Event"
         className="h-24 w-full object-cover rounded-md mb-3"
       />
 
-      <div className="text-xl font-semibold text-white mb-2">
+      <div className="text-xl font-semibold text-black dark:text-white mb-2">
         {title}
       </div>
 
-      <div className={`text-gray-300 text-sm mb-1 ${!isExpanded ? 'line-clamp-4' : ''} overflow-hidden`}>
+      <div className={`text-black-200 text-sm mb-1 ${!isExpanded ? 'line-clamp-4' : ''} overflow-hidden`}>
         {shortDescription}
       </div>
 
