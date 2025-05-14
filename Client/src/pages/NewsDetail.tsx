@@ -85,13 +85,13 @@ export default function NewsDetailPage() {
           {otherNews.slice(0, visibleNewsCount).map((item) => (
             <div
               key={item.id}
-              onClick={() => navigate(`/news/${item._id}`)}
+              onClick={() => navigate(`/news/${item.id}`)}
               className="cursor-pointer rounded-lg shadow hover:shadow-lg transition overflow-hidden"
             >
               <img src={item.imageUrl || Future} alt={item.title} className="h-48 w-full object-cover" />
               <div className="p-4">
                 <p className="text-sm text-gray-800">
-                 {new Date(data.createdAt).toLocaleDateString('en-US', {
+                 {new Date(item.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'

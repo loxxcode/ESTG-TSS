@@ -6,9 +6,9 @@ import { ArrowRight } from 'lucide-react';
 import Estgbanner from "../../assets/event_2.jfif";
 const stats = [
   { value: '35+', label: 'Years of Excellence' },
-  { value: '8,500+', label: 'Students' },
+  { value: '600+', label: 'Students' },
   { value: '2', label: 'Combinations' },
-  { value: '55%', label: 'Employment Rate' },
+  { value: '85%', label: 'Employment Rate' },
 ];
 
 const About = () => {
