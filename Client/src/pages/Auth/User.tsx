@@ -67,7 +67,7 @@ function User() {
               </Link>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">Content Creator Login</h1>
@@ -151,9 +151,9 @@ function User() {
 
             {/* Alternative Login Option */}
             <div className="text-center text-sm">
-              <span className="text-gray-600 dark:text-gray-400">Not an admin? </span>
+              <span className="text-gray-600 dark:text-gray-400">Login as admin? </span>
               <Link to="/admin" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                back
+                here
               </Link>
             </div>
           </form>
