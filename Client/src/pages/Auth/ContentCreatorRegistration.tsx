@@ -7,7 +7,6 @@ function ContentCreatorRegistration() {
     username: "",
     email: "",
     password: "",
-    role: "",
     phone: "",
   });
   const navigate = useNavigate();
@@ -142,29 +141,6 @@ function ContentCreatorRegistration() {
                   placeholder="••••••••"
                 />
               </div>
-
-              {/* Role Selection */}
-              <div>
-                <label
-                  htmlFor="role"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Content Role <span className="text-red-500">*</span>
-                </label>
-                <select
-                  value={Form.role}
-                  onChange={(e) => setForm({ ...Form, role: e.target.value })}
-                  id="role"
-                  name="role"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                >
-                  <option value="">Select your role</option>
-                  <option value="Admin">Admin</option>
-                  <option value="Content_creator">Content Creator</option>
-                </select>
-              </div>
-
               {/* Phone Field */}
               <div>
                 <label

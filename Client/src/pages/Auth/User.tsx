@@ -17,6 +17,10 @@ function User() {
     navigate('/adminpanel');
   }
 }, [navigate]);
+
+const handleBack = () => {
+  navigate("/admin");
+};
  const handleForm = async (e) => {
   e.preventDefault();
   setMsg('');
@@ -61,20 +65,37 @@ function User() {
 };
 
   return (
-    <div className='min-h-screen flex flex-col bg-gray-50 dark:bg-black'>
-        <Link to="/admin" className="font-medium text-blue-600  ml-9 mt-9 w-24 flex justify-center items-center h-9 text-center  bg-white rounded shadow-md hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                back
-              </Link>
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
+      <button
+        onClick={handleBack}
+        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </button>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">Content Creator Login</h1>
+            <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">
+              Content Creator Login
+            </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Please enter your credentials to continue
             </p>
-
           </div>
           <div>
             <p>{msg}</p>
@@ -82,15 +103,18 @@ function User() {
 
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleForm}>
-                      <div className="space-y-4">
+            <div className="space-y-4">
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   value={Form.email}
-                  onChange={(e)=>setForm({...Form, email: e.target.value})}
+                  onChange={(e) => setForm({ ...Form, email: e.target.value })}
                   type="email"
                   id="email"
                   name="email"
@@ -102,12 +126,17 @@ function User() {
 
               {/* Password Field */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Password <span className="text-red-500">*</span>
                 </label>
                 <input
                   value={Form.password}
-                  onChange={(e)=>setForm({...Form, password: e.target.value})}
+                  onChange={(e) =>
+                    setForm({ ...Form, password: e.target.value })
+                  }
                   type="password"
                   id="password"
                   name="password"
@@ -126,13 +155,19 @@ function User() {
                     type="checkbox"
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+                  >
                     Remember me
                   </label>
                 </div>
 
                 <div className="text-sm">
-                  <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link
+                    to="/forgot-password"
+                    className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -151,9 +186,14 @@ function User() {
 
             {/* Alternative Login Option */}
             <div className="text-center text-sm">
-              <span className="text-gray-600 dark:text-gray-400">Not an admin? </span>
-              <Link to="/admin" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                back
+              <span className="text-black dark:text-white ">
+                Login as?{" "}
+              </span>
+              <Link
+                to="/admin"
+                className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+              >
+                Admin
               </Link>
             </div>
           </form>
