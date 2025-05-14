@@ -3,23 +3,38 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const ViewContentCreators = () => {
-  const [data, setData] = useState([]); // State to store API data
-  const [loading, setLoading] = useState(true); // State to handle loading
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch data from the backend API
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/account/creators",{withCredentials: true})
+      .get("http://localhost:5000/api/account/creators", { withCredentials: true })
       .then((res) => {
-        setData(res.data); // Set the fetched data
-        setLoading(false); // Stop loading
+        setData(res.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching content creators:", error);
-        setLoading(false); // Stop loading even if there's an error
+        setLoading(false);
       });
   }, []);
+
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this content creator?");
+    if (!confirmed) return;
+
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/account/creators/${id}`, {
+        withCredentials: true,
+      });
+      alert(response.data.message || "Content creator deleted successfully");
+      setData((prevData) => prevData.filter((item) => item._id !== id));
+    } catch (error) {
+      console.error("Error deleting content creator:", error);
+      alert("Failed to delete content creator.");
+    }
+  };
 
   return (
     <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5 flex flex-col">
@@ -46,50 +61,36 @@ const ViewContentCreators = () => {
         </Link>
       </div>
 
-      {/* Responsive Table that becomes cards on mobile */}
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        {/* Show loading state */}
         {loading ? (
           <div className="p-4 text-center text-gray-500">Loading...</div>
         ) : data.length > 0 ? (
           <>
-            {/* Table Headers - Hidden on mobile */}
+            {/* Desktop Table */}
             <div className="hidden sm:block">
               <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-500">
                 <thead className="bg-blue-600">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      No
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Email
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Role
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Phone
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Action
-                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Phone</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-black">
                   {data.map((item, index) => (
-                    <TableRow key={index} item={item} index={index} />
+                    <TableRow key={index} item={item} index={index} onDelete={handleDelete} />
                   ))}
                 </tbody>
-              </table>
+              </table>  
             </div>
 
-            {/* Mobile Cards - Shows table data as cards */}
+            {/* Mobile Cards */}
             <div className="sm:hidden space-y-3 p-3">
               {data.map((item, index) => (
-                <MobileCard key={index} item={item} index={index} />
+                <MobileCard key={index} item={item} index={index} onDelete={handleDelete} />
               ))}
             </div>
           </>
@@ -103,28 +104,17 @@ const ViewContentCreators = () => {
   );
 };
 
-// Table Row Component (for desktop)
-const TableRow = ({ item, index }) => (
+const TableRow = ({ item, index, onDelete }) => (
   <tr className="hover:bg-gray-50 transition-colors">
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      {index + 1}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      {item.username}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      {item.email}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      {item.role}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-      {item.phone || "N/A"}
-    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{index + 1}</td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.username}</td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.email}</td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.role}</td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.phone || "N/A"}</td>
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
       <button
         className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs transition-colors flex items-center"
-        onClick={() => console.log("Delete", item._id)}
+        onClick={() => onDelete(item._id)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -144,19 +134,18 @@ const TableRow = ({ item, index }) => (
   </tr>
 );
 
-// Mobile Card Component (for mobile)
-const MobileCard = ({ item, index }) => (
+const MobileCard = ({ item, index, onDelete }) => (
   <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
     <div className="flex justify-between items-start">
       <div>
-        <h3 className="font-medium text-gray-900">{item.name}</h3>
+        <h3 className="font-medium text-gray-900">{item.username}</h3>
         <p className="text-xs text-gray-500">
           #{index + 1} • {item.role}
         </p>
       </div>
       <button
         className="bg-red-600 hover:bg-red-700 text-white p-1 rounded-md"
-        onClick={() => console.log("Delete", item._id)}
+        onClick={() => onDelete(item._id)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

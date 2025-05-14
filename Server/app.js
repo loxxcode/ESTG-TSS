@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' }); 
+dotenv.config({ path: './config.env' });
 const cors = require('cors');
 const connectDB = require('./database/DB.js');
 const session = require("express-session")
@@ -12,11 +12,10 @@ const Accountmodel = require("./models/account_schema")
 const app = express();
 connectDB();
 
-app.use(cors({origin:"http://localhost:8000", credentials:true})); // Allow requests from the frontend
+app.use(cors({ origin: "http://localhost:8000", credentials: true })); // Allow requests from the frontend
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// allow the usage of session
 // Session middleware (without MongoStore)
 app.use(session({
   secret: "ddklddk", // Replace with your own secret key
@@ -28,7 +27,6 @@ app.use(session({
   }),
   cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24, sameSite: 'lax' }
 }));
-
 
 // API Routes
 app.use('/api', event_route);

@@ -35,8 +35,9 @@ function Event() {
         {data.map((item, index) => (
           <Card 
             key={index}
+            id={item._id || index}
             title={item.title}
-            author={item.author?.username}  // Added optional chaining in case author is null
+            author={item.author?.username}
             description={item.description}
             updatestype={item.type}
             onUpdate={() => console.log('Update', index)}

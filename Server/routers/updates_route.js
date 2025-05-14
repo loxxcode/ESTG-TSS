@@ -37,19 +37,19 @@ router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
 });
 
 // POST new updates 
-router.post('/upload_update', upload.single('file'), middleware.ensureAuthenticated, async (req, res) => {
+router.post('/upload_update', middleware.ensureAuthenticated, async (req, res) => {
   try {
     const { title, description, type } = req.body;
-    const fileUrl = req.file?.path;
+    // const fileUrl = req.file?.path;
     const authorId = req.session.Userid
 
-    if (!title || !fileUrl || !description || !type) {
+    if (!title || !description || !type) {
       return res.status(400).json({ message: 'No updates uploaded' });
     }
 
     const newupdates = new updates_model({
       title,
-      fileUrl,
+      // fileUrl,
       description,
       type,
       author: authorId
