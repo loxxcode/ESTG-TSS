@@ -72,10 +72,10 @@ export default function NewsDetailPage() {
         <img src={data.imageUrl}
           alt={data.title} className="w-full rounded-lg mb-6" />
         <p className="text-sm text-gray-800 mb-2">{new Date(data.createdAt).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}</p>
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}</p>
         <p className="text-gray-700">{data.description}</p>
 
       </div>
@@ -91,7 +91,11 @@ export default function NewsDetailPage() {
               <img src={item.imageUrl || Future} alt={item.title} className="h-48 w-full object-cover" />
               <div className="p-4">
                 <p className="text-sm text-gray-800">
-                  {new Date(item.createdAt).toLocaleDateString()}
+                 {new Date(data.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
                 </p>
                 <h3 className="text-lg font-bold mt-1 text-gray-400 uppercase">{item.title}</h3>
               </div>

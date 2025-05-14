@@ -1,66 +1,69 @@
-import React from 'react';
-import Navbar from '../../components/layout/Navbar';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-
+import React from "react";
+import Navbar from "../../components/layout/Navbar";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function AdminForm() {
-  const navigate = useNavigate()
- 
+  const navigate = useNavigate();
+
   const [Form, setForm] = React.useState({
     email: "",
     password: "",
   });
   React.useEffect(() => {
-  if (localStorage.getItem("username")) {
-    navigate('/adminpanel');
-  }
+    if (localStorage.getItem("username")) {
+      navigate("/adminpanel");
+    }
   }, [navigate]);
-  
+
   const handleBack = () => {
     navigate("/");
   };
-  const [errormsg,Seterrmsg] = React.useState("")   
-const handleForm = async (e) => {
-  e.preventDefault();
-  Seterrmsg(""); // clear old errors
+  const [errormsg, Seterrmsg] = React.useState("");
+  const handleForm = async (e) => {
+    e.preventDefault();
+    Seterrmsg(""); // clear old errors
 
-  try {
-    const response = await axios.post(
-      'http://localhost:5000/api/account/admin/login',
-      {
-        email: Form.email,
-        password: Form.password,
-      },
-      {
-        withCredentials: true,
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/account/admin/login",
+        {
+          email: Form.email,
+          password: Form.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Login successful", response.data);
+        navigate("/adminpanel");
+        // Redirect or handle success
+      } else {
+        Seterrmsg("Unexpected error. Please try again.");
       }
-    );
-
-    if (response.status === 200) {
-      console.log("Login successful", response.data);
-       navigate("/adminpanel")
-      // Redirect or handle success
-    } else {
-      Seterrmsg("Unexpected error. Please try again.");
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status outside 2xx
+        const msg =
+          error.response.data?.message ||
+          "Login failed. Check your credentials.";
+        Seterrmsg(msg);
+        console.error("Backend error:", error.response);
+      } else if (error.request) {
+        // Request made but no response received
+        Seterrmsg(
+          "No response from server. Please check your connection or server."
+        );
+        console.error("No response error:", error.request);
+      } else {
+        // Something else happened
+        Seterrmsg("An unexpected error occurred.");
+        console.error("Error", error.message);
+      }
     }
-  } catch (error) {
-    if (error.response) {
-      // Server responded with a status outside 2xx
-      const msg = error.response.data?.message || "Login failed. Check your credentials.";
-      Seterrmsg(msg);
-      console.error("Backend error:", error.response);
-    } else if (error.request) {
-      // Request made but no response received
-      Seterrmsg("No response from server. Please check your connection or server.");
-      console.error("No response error:", error.request);
-    } else {
-      // Something else happened
-      Seterrmsg("An unexpected error occurred.");
-      console.error("Error", error.message);
-    }
-  }
-};
+  };
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar with centered title */}

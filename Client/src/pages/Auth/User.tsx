@@ -1,68 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function User() {
   const navigate = useNavigate();
-  const [msg, setMsg] = useState('');
+  const [msg, setMsg] = useState("");
   const [Form, setForm] = useState({
     email: "",
     password: "",
-
   });
-  
-    React.useEffect(() => {
-  if (localStorage.getItem("username")) {
-    navigate('/adminpanel');
-  }
-}, [navigate]);
 
-const handleBack = () => {
-  navigate("/admin");
-};
- const handleForm = async (e) => {
-  e.preventDefault();
-  setMsg('');
-
-  try {
-    const response = await axios.post(
-      'http://localhost:5000/api/account/creator/login',
-      {
-        email: Form.email,
-        password: Form.password,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-
-    if (response.status === 200) {
-      console.log("Login successful", response.data);
-      navigate('/adminpanel');
-    } else {
-      console.error("Unexpected response", response.data);
-      setMsg('Login failed. Please try again.');
+  React.useEffect(() => {
+    if (localStorage.getItem("username")) {
+      navigate("/adminpanel");
     }
-  } catch (error) {
-    console.error("Error during login:", error);
+  }, [navigate]);
 
-    if (error.response) {
-      // Server responded with a status outside 2xx
-      if (error.response.status === 401) {
-        setMsg('Invalid credentials. Please try again.');
+  const handleBack = () => {
+    navigate("/admin");
+  };
+  const handleForm = async (e) => {
+    e.preventDefault();
+    setMsg("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/account/creator/login",
+        {
+          email: Form.email,
+          password: Form.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Login successful", response.data);
+        navigate("/adminpanel");
       } else {
-        setMsg(`Error: ${error.response.data?.message || 'Server error occurred.'}`);
+        console.error("Unexpected response", response.data);
+        setMsg("Login failed. Please try again.");
       }
-    } else if (error.request) {
-      // No response received
-      setMsg('No response from server. Please check your internet connection.');
-    } else {
-      // Other errors
-      setMsg('An unexpected error occurred.');
+    } catch (error) {
+      console.error("Error during login:", error);
+
+      if (error.response) {
+        // Server responded with a status outside 2xx
+        if (error.response.status === 401) {
+          setMsg("Invalid credentials. Please try again.");
+        } else {
+          setMsg(
+            `Error: ${error.response.data?.message || "Server error occurred."}`
+          );
+        }
+      } else if (error.request) {
+        // No response received
+        setMsg(
+          "No response from server. Please check your internet connection."
+        );
+      } else {
+        // Other errors
+        setMsg("An unexpected error occurred.");
+      }
     }
-  }
-};
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
@@ -87,7 +90,7 @@ const handleBack = () => {
       </button>
       {/* Centered Form Container */}
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
+        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 ">
           {/* Form Header */}
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-200 md:text-gray-800">
@@ -186,14 +189,14 @@ const handleBack = () => {
 
             {/* Alternative Login Option */}
             <div className="text-center text-sm">
-              <span className="text-black dark:text-white ">
-                Login as?{" "}
+              <span className="text-gray-600 dark:text-gray-400">
+                Login as admin?{" "}
               </span>
               <Link
                 to="/admin"
                 className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
               >
-                Admin
+                here
               </Link>
             </div>
           </form>

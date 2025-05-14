@@ -27,7 +27,7 @@ function StoryCard({ title, description, author, updatestype, onUpdate, onDelete
       )}
       {/* Role */}
       <div className="text-sm text-gray-500 italic dark:text-white">
-        update type: {updatestype}
+        type: {updatestype}
       </div>
       {/* Role */}
       <div className="text-sm text-gray-500 italic dark:text-white">
