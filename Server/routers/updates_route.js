@@ -27,7 +27,7 @@ router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
       data = await updates_model.find().populate("author");
     }
     else if (req.session.role === 'Content_creator') {
-      data = await updates_model.populate({ author: user }).populate("author");
+      data = await updates_model.find({ author: user }).populate("author");
 
     }
     return res.status(200).json({ message: 'success', data });
