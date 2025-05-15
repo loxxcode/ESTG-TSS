@@ -15,6 +15,19 @@ function Event() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/delete_update/${id}`, {
+        withCredentials: true,
+      });
+      alert('Update deleted successfully!');
+      fetchData(); // Refresh the data after deletion
+    } catch (error) {
+      console.error('Error deleting update:', error);
+      alert('Failed to delete the update. Please try again.');
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,13 +48,12 @@ function Event() {
         {data.map((item, index) => (
           <Card 
             key={index}
-            id={item._id || index}
             title={item.title}
             author={item.author?.username}
             description={item.description}
             updatestype={item.type}
             onUpdate={() => console.log('Update', index)}
-            onDelete={() => console.log('Delete', index)}
+            onDelete={() => handleDelete(item._id)}
           />
         ))}
       </div>
