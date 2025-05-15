@@ -38,16 +38,25 @@ const Campus = () => {
                 <img src={Running} alt="activity" className="w-full md:w-[300px] h-full md:h-[300px] object-cover rounded-2xl"/>
                 <div className="flex-1 p-2">
                   <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 1</h1>
+
+                  <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="p-1">
+                    <input type="checkbox" id="toggle1" className="peer hidden" />
+                    <div className="hidden peer-checked:block">
+                      <p className="text-start">With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally.</p>
+                      <label htmlFor="toggle1" className="cursor-pointer text-blue-500 hover:text-blue-600 mt-2 inline-block">
+
                   <p className="text-start pl-3">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
                   <div className="pl-3">
                     <input type="checkbox" id="toggle" className="peer hidden" />
                     <div className="hidden peer-checked:block">
                       <p className="text-start">With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally.</p>
                       <label htmlFor="toggle" className="cursor-pointer text-blue-500 hover:text-blue-600 mt-2 inline-block">
+
                         See Less
                       </label>
                     </div>
-                    <label htmlFor="toggle" className="cursor-pointer text-blue-500 hover:text-blue-600 peer-checked:hidden mt-2 inline-block">
+                    <label htmlFor="toggle1" className="cursor-pointer text-blue-500 hover:text-blue-600 peer-checked:hidden mt-2 inline-block">
                       See More
                     </label>
                   </div>
