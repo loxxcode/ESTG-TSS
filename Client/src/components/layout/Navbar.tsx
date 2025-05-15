@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link 
             to="/" 
-            className="text-xl font-display font-bold tracking-tight text-estg-blue"
+            className="hidden md:block text-xl font-display font-bold tracking-tight text-estg-blue"
           >
             ESTG<span className="text-estg-blue">.</span>
           </Link>
@@ -102,8 +102,8 @@ const Navbar = () => {
             </div>
           </div>
           
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Mobile Menu Toggle - Moved to right */}
+          <div className="md:hidden flex items-center gap-2 ml-auto">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
