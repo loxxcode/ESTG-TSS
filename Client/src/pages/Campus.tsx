@@ -34,7 +34,7 @@ const Campus = () => {
             <div className="max-w-6xl mx-auto space-y-6">
               {/* First Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
-                <img src={Running} alt="activity" className="w-full md:w-1/2 h-[250px] md:h-[300px] object-cover rounded-md"/>
+                <img src={Running} alt="activity" className="w-full md:w-[300px] h-full md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2">
                   <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 1</h1>
                   <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
