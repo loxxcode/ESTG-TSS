@@ -81,12 +81,8 @@ function Adminpanel() {
               </svg>
               Logout
             </button>
-<<<<<<< HEAD
             <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
 
-=======
-           
->>>>>>> 6df61f64b1c1ffb8461adc3165e14b4f2ebb8c1e
           </nav>
         </aside>
 
