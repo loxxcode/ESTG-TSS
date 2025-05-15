@@ -16,7 +16,6 @@ function Adminpanel() {
   const isAdmin = localStorage.getItem("role") === "Admin";
 
 
-  const navigate = useNavigate()
 
   React.useEffect(() => {
     if (!localStorage.getItem("username")) {
@@ -39,7 +38,7 @@ function Adminpanel() {
   const tabs = [
     { name: 'Updates', component: <Update /> },
     { name: 'Events', component: <Event /> },
-    ...(isAdmin ? [{ name: 'View Users', component: <UserManagement /> }] : []),
+    ...(isAdmin ? [{ name: 'Content Creators', component: <UserManagement /> }] : []),
   ];
 
 
@@ -97,8 +96,6 @@ function Adminpanel() {
               Logout
             </button>
 
-
-            <button onClick={handleLogout} className='mt-[340px] block px-3 py-2 rounded-md text-base font-medium transition-colors bg-red-500 text-white hover:bg-red-600'>Logout</button>
 
           </nav>
         </aside>
