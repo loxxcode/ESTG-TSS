@@ -34,11 +34,11 @@ const Campus = () => {
             <div className="max-w-6xl mx-auto space-y-6">
               {/* First Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
-                <img src={Running} alt="activity" className="w-full md:w-[300px] h-full md:h-[300px] object-cover rounded-md"/>
+                <img src={Running} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2">
                   <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 1</h1>
-                  <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
-                  <div className="p-1">
+                  <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="pl-3 md:mr-20">
                     <input type="checkbox" id="toggle" className="peer hidden" />
                     <div className="hidden peer-checked:block">
                       <div className="flex flex-col">
@@ -57,11 +57,11 @@ const Campus = () => {
 
               {/* Second Card */}
               <div className="flex flex-col md:flex-row-reverse gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
-                <img src={Running} alt="activity" className="w-full md:w-1/2 h-[250px] md:h-[300px] object-cover rounded-md"/>
-                <div className="flex-1 p-2">
-                  <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 2</h1>
+                <img src={Running} alt="activity" className="w-[70%] md:mr-28  md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
+                <div className="flex-1 p-2 ml-24">
+                  <h1 className="text-xl md:text-2xl font-semibold md:pb-4">Dr. John Smith 2</h1>
                   <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
-                  <div className="p-1">
+                  <div className="pl-3 ml-24">
                     <input type="checkbox" id="toggle2" className="peer hidden" />
                     <div className="hidden peer-checked:block">
                       <p className="text-start">With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally.</p>
@@ -78,11 +78,11 @@ const Campus = () => {
 
               {/* Third Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
-                <img src={Running} alt="activity" className="w-full md:w-1/2 h-[250px] md:h-[300px] object-cover rounded-md"/>
+                <img src={Running} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2">
                   <h2 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 3</h2>
-                  <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
-                  <div className="p-1">
+                  <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="pl-3 md:mr-20">
                     <input type="checkbox" id="toggle3" className="peer hidden" />
                     <div className="hidden peer-checked:block">
                       <p className="text-start">With over 20 years of experience in the field, Dr. Smith has dedicated his career to fostering environments where students can excel academically, socially, and emotionally.</p>
