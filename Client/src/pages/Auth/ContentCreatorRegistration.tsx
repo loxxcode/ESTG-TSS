@@ -141,6 +141,7 @@ function ContentCreatorRegistration() {
                   placeholder="••••••••"
                 />
               </div>
+
               {/* Role Selection */}
               <div>
                 <label
