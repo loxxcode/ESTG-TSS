@@ -51,7 +51,7 @@ function Event() {
             author={item.author.username}
             imageUrl={item.imageUrl || "https://via.placeholder.com/150"}
             onUpdate={() => console.log('Update', index)}
-            onDelete={() => handleDelete(item._id)}
+            onDelete={() => console.log('Delete', index)}
           />
         ))}
       </div>
