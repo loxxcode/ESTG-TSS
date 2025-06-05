@@ -68,7 +68,7 @@ function Update() {
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search updates..."
-            className="w-full px-12 py-3 rounded-md shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700"
+            className="w-full px-12 py-3 rounded-md shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-300 dark:border-gray-700"
           />
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 w-5 h-5" />
         </div>

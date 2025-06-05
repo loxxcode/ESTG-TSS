@@ -53,7 +53,7 @@ const News = () => {
             placeholder="Search events..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-12 py-3 rounded-md shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-300 dark:border-gray-700"
           />
         </div>
 
@@ -79,7 +79,7 @@ const News = () => {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                      })}
+                      })}x
                     </p>
                     <h3 className="text-lg font-semibold text-black dark:text-white uppercase">
                       {news.title}
