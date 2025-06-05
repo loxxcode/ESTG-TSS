@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from './Updatescards/cards';
+import Card from './cards';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -54,7 +54,7 @@ function Event() {
             description={item.description}
             updatestype={item.type}
             onUpdate={() => console.log('Update', index)}
-            onDelete={() => console.log('Delete', index)}
+            onDelete={() => handleDelete(item._id)}
           />
         ))}
       </div>
