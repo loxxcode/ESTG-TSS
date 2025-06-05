@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function StoryCard({ title, description, author, updatestype, onUpdate, onDelete }) {
+function StoryCard({ title, description, author,id, updatestype, onUpdate, onDelete }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const shortDescription = !isExpanded && description.length > 100
