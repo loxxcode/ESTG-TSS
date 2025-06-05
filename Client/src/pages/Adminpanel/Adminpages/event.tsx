@@ -19,6 +19,19 @@ function Event() {
   useEffect(() => {
     fetchData();
   }, []);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/delete_event/${id}`, {
+        withCredentials: true,
+      });
+      alert('Event deleted successfully!');
+      fetchData(); // Refresh the data after deletion
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      alert('Failed to delete the event. Please try again.');
+    }
+  };
+
 
   return (
     <div className="p-6 bg-gray-100 dark:bg-black min-h-screen">
@@ -59,7 +72,7 @@ function Event() {
         author={item.author.username}
         imageUrl={item.imageUrl || "https://via.placeholder.com/150"}
         onUpdate={() => console.log('Update', index)}
-        onDelete={() => console.log('Delete', index)}
+        onDelete={() => handleDelete(item._id)}
       />
     ))
   )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/layout/Navbar';
-import Update from './Adminpages/update';
+import Update from './Adminpages/updates/update';
 import Event from './Adminpages/event';
 import UserManagement from './Adminpages/usermagement';
 import { Link, useNavigate } from 'react-router-dom';
