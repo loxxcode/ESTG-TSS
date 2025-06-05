@@ -15,7 +15,7 @@ router.post("/admin/register", Admincontroller.adminsignup) //it is not neccessa
 router.post("/creator/login", creatorcontroller.creatorlogin)
 router.post("/admin/login", Admincontroller.adminlogin)
 router.put("/updateprofile", Updateprofilecontroller.update)
-router.get("/dashboard", dashboardcontroller.dashboard)
+router.get("/dashboard", dashboardcontroller.dashboard)  // get information for admin 
 router.get("/logout", Logoutcontroller.logout);
 // Request password reset OTP
 router.post('/forgot-password', forgetpasswordcontroller.requestPasswordReset);
