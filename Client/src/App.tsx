@@ -22,7 +22,7 @@ import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
 import Adminpanel from "./pages/Adminpanel";
 
-import Update from './pages/Adminpanel/Adminpages/update';
+import Update from './pages/Adminpanel/Adminpages/updates/update';
 import Event from './pages/Adminpanel/Adminpages/event';
 import Logout from './pages/Adminpanel/Adminpages/usermagement';
 import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
