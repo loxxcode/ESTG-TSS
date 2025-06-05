@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
+import Refe from "../assets/eating.jpg"
+import Elysee from "../assets/elysee.jpg"
+import Etianee from "../assets/etianne.jpg"
+import Marthe from "../assets/marthe.jpg"
+import Tv from "../assets/gettyimages-1786348765-612x612.jpg"
 import Refe from "../assets/eating.jpg";
 import Running from "../assets/elysee.jpg";
 import Tv from "../assets/gettyimages-1786348765-612x612.jpg";
@@ -37,6 +42,12 @@ const Campus = () => {
 
               {/* First Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
+                <img src={Elysee} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
+                <div className="flex-1 p-2">
+                  <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Mukunzi ELYSEE</h1>
+                  <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="pl-3 md:mr-20">
+                    <input type="checkbox" id="toggle" className="peer hidden" />
                 <img src={Running} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md" />
                 <div className="flex-1 p-2">
                   <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 1</h1>
@@ -62,6 +73,11 @@ const Campus = () => {
 
               {/* Second Card */}
               <div className="flex flex-col md:flex-row-reverse gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
+                <img src={Etianee} alt="activity" className="w-[70%] md:mr-28  md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
+                <div className="flex-1 p-2 ml-24">
+                  <h1 className="text-xl md:text-2xl font-semibold md:pb-4">Nzaramyimana Etianee</h1>
+                  <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="pl-3 ml-24">
                 <img src={Running} alt="activity" className="w-[70%] md:mr-28 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md" />
                 <div className="flex-1 p-2 ml-24">
                   <h1 className="text-xl md:text-2xl font-semibold md:pb-4">Dr. John Smith 2</h1>
@@ -87,6 +103,11 @@ const Campus = () => {
 
               {/* Third Card */}
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
+                <img src={Marthe} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
+                <div className="flex-1 p-2">
+                  <h2 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Uwamahoro Marthe</h2>
+                  <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
+                  <div className="pl-3 md:mr-20">
                 <img src={Running} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md" />
                 <div className="flex-1 p-2">
                   <h2 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Dr. John Smith 3</h2>
