@@ -41,7 +41,9 @@ const Campus = () => {
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
                 <img src={Elysee} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2">
-                  <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Mukunzi ELYSEE</h1>
+                  <div className="flex justify-between items-start">
+                    <h1 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Mukunzi ELYSEE</h1>
+                  </div>
                   <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
                   <div className="pl-3 md:mr-20">
                     <input type="checkbox" id="toggle" className="peer hidden" />
@@ -64,7 +66,9 @@ const Campus = () => {
               <div className="flex flex-col md:flex-row-reverse gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
                 <img src={Etianee} alt="activity" className="w-[70%] md:mr-28 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2 ml-24">
-                  <h1 className="text-xl md:text-2xl font-semibold md:pb-4">Nzaramyimana Etianee</h1>
+                  <div className="flex justify-between items-start">
+                    <h1 className="text-xl md:text-2xl font-semibold md:pb-4">Nzaramyimana Etianee</h1>
+                  </div>
                   <p className="text-start">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
                   <div className="p-1">
                     <input type="checkbox" id="toggle2" className="peer hidden" />
@@ -87,7 +91,9 @@ const Campus = () => {
               <div className="flex flex-col md:flex-row gap-4 shadow-lg rounded-md p-4 border-b-2 border-gray">
                 <img src={Marthe} alt="activity" className="w-[70%] ml-24 md:w-[300px] h-[350px] md:h-[300px] object-cover rounded-md"/>
                 <div className="flex-1 p-2">
-                  <h2 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Uwamahoro Marthe</h2>
+                  <div className="flex justify-between items-start">
+                    <h2 className="text-xl md:text-2xl font-semibold p-2 md:p-4">Uwamahoro Marthe</h2>
+                  </div>
                   <p className="text-start pl-3 md:mr-20">At the helm of ESTG is our esteemed principal, Dr. John Smith, a visionary leader with a deep passion for education and student development.</p> 
                   <div className="p-1">
                     <input type="checkbox" id="toggle3" className="peer hidden" />

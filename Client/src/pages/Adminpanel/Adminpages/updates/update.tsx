@@ -53,8 +53,21 @@ function Event() {
         Updates Cards
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {data.map((item, index) => (
+
+          <div key={index} className="flex flex-col">
+            <Card 
+              id={item._id || index}
+              title={item.title}
+              author={item.author?.username}
+              description={item.description}
+              updatestype={item.type}
+              onUpdate={() => console.log('Updates', index)}
+              onDelete={() => handleDelete(item._id)}
+            />
+          </div>
+
           <Card
             key={index}
             id={item._id || index}
@@ -65,6 +78,7 @@ function Event() {
             onUpdate={() => handleUpdate(item._id)} // Use the new handleUpdate function
             onDelete={() => handleDelete(item._id)}
           />
+
         ))}
       </div>
     </div>

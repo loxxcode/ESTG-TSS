@@ -1,3 +1,6 @@
+
+import React, { useState } from 'react';
+import { Pencil, Trash2 } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -76,16 +79,19 @@ function Card({
 
       <div className="mt-auto flex gap-3">
         <button
+          onClick={onUpdate}
+          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
           onClick={handleUpdate}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-        >
-          Update
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" >
+          <Pencil size={16} />
         </button>
         <button
           onClick={onDelete}
+          className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
           className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+
         >
-          Delete
+          <Trash2 size={16} />
         </button>
       </div>
     </div>
