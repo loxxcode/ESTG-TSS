@@ -40,7 +40,7 @@ function Card({
 
   return (
     <div
-      className={`max-w-md mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${
+      className={`max-w-md mx-auto bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${
         isExpanded ? "h-auto" : "h-[330px]"
       } overflow-hidden`}
     >
