@@ -7,8 +7,9 @@ import axios from 'axios';
 
 const News = () => {
   const navigate = useNavigate();
-  const [visibleNewsCount, setVisibleNewsCount] = useState(6); 
+  const [visibleNewsCount, setVisibleNewsCount] = useState(6);
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLoadMore = () => {
     setVisibleNewsCount((prev) => prev + 3);
@@ -28,6 +29,11 @@ const News = () => {
     fetchData();
   }, []);
 
+  // Filter events based on search term (case insensitive)
+  const filteredData = data.filter(event =>
+    event.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -40,10 +46,21 @@ const News = () => {
           </p>
         </AnimatedSection>
 
-        {data && data.length > 0 ? (
+        {/* Search bar */}
+        <div className="max-w-md mx-auto mb-10 px-6">
+          <input
+            type="text"
+            placeholder="Search events..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        {filteredData && filteredData.length > 0 ? (
           <>
             <div className="grid gap-8 grid-cols-1 md:grid-cols-3 cursor-pointer max-w-[89%] mx-auto px-6">
-              {data.slice(0, visibleNewsCount).map((news) => (
+              {filteredData.slice(0, visibleNewsCount).map((news) => (
                 <div
                   key={news._id}
                   className="rounded-sm border overflow-hidden shadow-md hover:shadow-xl transition duration-300"
@@ -72,7 +89,7 @@ const News = () => {
               ))}
             </div>
 
-            {visibleNewsCount < data.length && (
+            {visibleNewsCount < filteredData.length && (
               <div className="mt-12">
                 <button
                   onClick={handleLoadMore}
@@ -98,12 +115,25 @@ const News = () => {
                 d="M12 8v4l3 3m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
-              No Events Found
-            </h2>
-            <p className="text-gray-500 dark:text-gray-400">
-              There are currently no events to display. Please check back later for updates.
-            </p>
+            {searchTerm ? (
+              <>
+                <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
+                  No Matching events
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400">
+                  No events found for your search. Try a different keyword.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
+                  No Events Found
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400">
+                  There are currently no events to display. Please check back later for updates.
+                </p>
+              </>
+            )}
           </div>
         )}
       </section>

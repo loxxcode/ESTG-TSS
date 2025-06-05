@@ -93,7 +93,7 @@ const Footer = () => {
 
 {/* Powered by NotifyCode line */}
 <div className="mt-2 lg:mt-0 lg:ml-[-70px] ml-5 flex justify-center">
-  <div className="bg-gradient-to-r from-estg-blue/10 to-purple-600/10 backdrop-blur-md rounded-xl px-6 py-4 shadow-md transition-all hover:scale-105 hover:shadow-xl duration-300 flex items-center space-x-3">
+  <div className="bg-gradient-to-r mt-5 from-estg-blue/10 to-purple-600/10 backdrop-blur-md rounded-xl px-6 py-4 shadow-md transition-all hover:scale-105 hover:shadow-xl duration-300 flex items-center space-x-3">
     
     {/* Left Icon */}
     <Sparkles className="text-estg-blue animate-pulse" size={20} />

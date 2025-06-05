@@ -3,11 +3,14 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import axios from 'axios';
+import { Search } from 'lucide-react';
 
 const Announcement = () => {
   const [visibleNewsCount, setVisibleNewsCount] = useState(6);
   const [expandedItems, setExpandedItems] = useState({});
   const [data, setData] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const toggleExpand = (id) => {
     setExpandedItems((prev) => ({
@@ -20,11 +23,22 @@ const Announcement = () => {
     setVisibleNewsCount((prev) => prev + 3);
   };
 
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+    const filteredData = data.filter((item) =>
+      item.title.toLowerCase().includes(term) ||
+      item.description.toLowerCase().includes(term)
+    );
+    setFiltered(filteredData);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/all_updates');
         setData(response.data.data);
+        setFiltered(response.data.data);
       } catch (error) {
         console.error('Error fetching updates:', error);
       }
@@ -45,10 +59,70 @@ const Announcement = () => {
           </p>
         </AnimatedSection>
 
-        {data && data.length > 0 ? (
+        {/* Search bar */}
+        <div className="relative w-[90%] max-w-xl mx-auto mb-12">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Search announcements..."
+            className="w-full px-12 py-3 rounded-md shadow-sm shadow-gray-400 bg-white dark:bg-black border border-gray-300 dark:border-gray-700"
+          />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 w-5 h-5" />
+        </div>
+
+        {/* CONDITIONAL MESSAGES */}
+        {data.length === 0 ? (
+          // No announcements in the database
+          <div className="flex flex-col items-center justify-center py-24 text-center max-w-xl mx-auto">
+            <svg
+              className="w-20 h-20 mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 8v4l3 3m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
+              No Announcements Found
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              The announcements database is currently empty.
+            </p>
+          </div>
+        ) : searchTerm && filtered.length === 0 ? (
+          // Search term entered but no match
+          <div className="flex flex-col items-center justify-center py-24 text-center max-w-xl mx-auto">
+            <svg
+              className="w-20 h-20 mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 8v4l3 3m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
+              No Matching Announcements
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              No announcements found for your search. Try a different keyword.
+            </p>
+          </div>
+        ) : (
+          // Matching results found
           <>
             <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-[90%] mx-auto px-6 container">
-              {data.slice(0, visibleNewsCount).map((item) => {
+              {filtered.slice(0, visibleNewsCount).map((item) => {
                 const isExpanded = expandedItems[item._id];
                 const description = item.description;
                 const shortText =
@@ -88,7 +162,7 @@ const Announcement = () => {
               })}
             </div>
 
-            {visibleNewsCount < data.length && (
+            {visibleNewsCount < filtered.length && (
               <div className="mt-12">
                 <button
                   onClick={handleLoadMore}
@@ -99,28 +173,6 @@ const Announcement = () => {
               </div>
             )}
           </>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-center max-w-xl mx-auto">
-            <svg
-              className="w-20 h-20 mb-4 text-gray-400 dark:text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 8v4l3 3m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
-              No Announcements Found
-            </h2>
-            <p className="text-gray-500 dark:text-gray-400">
-              There are currently no announcements to display. Please check back later for updates.
-            </p>
-          </div>
         )}
       </section>
       <Footer />
