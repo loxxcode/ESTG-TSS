@@ -154,7 +154,7 @@ function AdminForm() {
                 </div>
                 <div className="flex justify-between ">
                   <h2>
-                    <a href="" className="text-blue-400">
+                    <a href="/forgetpassword" className="text-blue-400 flex">
                       forget password
                     </a>
                   </h2>

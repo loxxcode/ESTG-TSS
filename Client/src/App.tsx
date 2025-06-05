@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import AdminForm from "./pages/Auth/AdminForm";
 import User from "./pages/Auth/User";
 import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
+import ForgetPassword from "./pages/Auth/forgetPassword";
+import ResetPassword from "./pages/Auth/resetPassword";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
 import Adminpanel from "./pages/Adminpanel";
@@ -62,6 +64,8 @@ const App = () => (
             
             <Route path="/user" element={<User />} />
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/resetpassword" element={<ResetPassword />} />
             <Route path="/news/:id" element={<NewsDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
