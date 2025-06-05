@@ -9,7 +9,9 @@ const ViewContentCreators = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/account/creators", { withCredentials: true })
+      .get("http://localhost:5000/api/account/creators", {
+        withCredentials: true,
+      })
       .then((res) => {
         setData(res.data);
         setLoading(false);
@@ -21,13 +23,18 @@ const ViewContentCreators = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete this content creator?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this content creator?"
+    );
     if (!confirmed) return;
 
     try {
-      const response = await axios.delete(`http://localhost:5000/api/account/creators/${id}`, {
-        withCredentials: true,
-      });
+      const response = await axios.delete(
+        `http://localhost:5000/api/account/creators/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       alert(response.data.message || "Content creator deleted successfully");
       setData((prevData) => prevData.filter((item) => item._id !== id));
     } catch (error) {
@@ -37,12 +44,11 @@ const ViewContentCreators = () => {
   };
 
   return (
-    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5  flex flex-col">
+    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 gap-5 flex flex-col dark:bg-black min-h-screen">
       <div className="flex flex-col gap-4">
         <Link
           to="/contentcreatorregistration"
-          className="flex bg-blue-600 w-40 h-8 items-center justify-center rounded-sm text-white
-           "
+          className="flex bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 w-40 h-8 items-center justify-center rounded-sm text-white transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,18 +64,22 @@ const ViewContentCreators = () => {
           </svg>
           New Creator
         </Link>
-        <h1 className="text-xl sm:text-2xl  font-bold ">Content Creators</h1>
+        <h1 className="text-xl sm:text-2xl font-bold dark:text-white">
+          Content Creators
+        </h1>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-black shadow-md rounded-lg overflow-hidden">
         {loading ? (
-          <div className="p-4 text-center text-gray-500">Loading...</div>
+          <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+            Loading...
+          </div>
         ) : data.length > 0 ? (
           <>
             {/* Desktop Table */}
             <div className="hidden sm:block">
-              <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-500">
-                <thead className="bg-blue-600">
+              <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-black">
+                <thead className="bg-white dark:bg-black">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                       No
@@ -91,7 +101,7 @@ const ViewContentCreators = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:bg-black ">
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800">
                   {data.map((item, index) => (
                     <TableRow
                       key={index}
@@ -117,7 +127,7 @@ const ViewContentCreators = () => {
             </div>
           </>
         ) : (
-          <div className="p-4 text-center font-medium dark:bg-gray-800">
+          <div className="p-4 text-center font-medium dark:text-gray-300">
             No content creators found.
           </div>
         )}
@@ -127,13 +137,23 @@ const ViewContentCreators = () => {
 };
 
 const TableRow = ({ item, index, onDelete }) => (
-  <tr className="bg-gray-50 dark:bg-black transition-colors">
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{index + 1}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.username}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.email}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.role}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{item.phone || "N/A"}</td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+  <tr className="dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-700 border-spacing-1 transition-colors">
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+      {index + 1}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+      {item.username}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+      {item.email}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+      {item.role}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+      {item.phone || "N/A"}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm">
       <button
         className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs transition-colors flex items-center"
         onClick={() => onDelete(item._id)}
@@ -157,16 +177,18 @@ const TableRow = ({ item, index, onDelete }) => (
 );
 
 const MobileCard = ({ item, index, onDelete }) => (
-  <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+  <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-600 rounded-lg p-4 shadow-sm">
     <div className="flex justify-between items-start">
       <div>
-        <h3 className="font-medium text-gray-900">{item.username}</h3>
-        <p className="text-xs text-gray-500">
+        <h3 className="font-medium text-gray-900 dark:text-white">
+          {item.username}
+        </h3>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           #{index + 1} • {item.role}
         </p>
       </div>
       <button
-        className="bg-red-600 hover:bg-red-700 text-white p-1 rounded-md"
+        className="bg-red-600 hover:bg-red-700 text-white p-1 rounded-md transition-colors"
         onClick={() => onDelete(item._id)}
       >
         <svg
@@ -185,12 +207,16 @@ const MobileCard = ({ item, index, onDelete }) => (
     </div>
     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
       <div>
-        <p className="text-gray-500 font-medium">Email</p>
-        <p className="text-gray-700 truncate">{item.email}</p>
+        <p className="text-gray-500 dark:text-gray-300 font-medium">Email</p>
+        <p className="text-gray-700 dark:text-gray-200 truncate">
+          {item.email}
+        </p>
       </div>
       <div>
-        <p className="text-gray-500 font-medium">Phone</p>
-        <p className="text-gray-700">{item.phone || "N/A"}</p>
+        <p className="text-gray-500 dark:text-gray-300 font-medium">Phone</p>
+        <p className="text-gray-700 dark:text-gray-200">
+          {item.phone || "N/A"}
+        </p>
       </div>
     </div>
   </div>
