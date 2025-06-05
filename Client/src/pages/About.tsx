@@ -1,10 +1,10 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
-import Future from "../assets/future.png"
-import Future2 from "../assets/estg_image_4.jpg"
+import Future from "../assets/future.png";
+import Future2 from "../assets/event_2.jfif";
+
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,41 +13,63 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Page Header */}
       <div className="md:pt-10 text-center bg-estg-gray-light dark:bg-black">
-        <div className="py-8 text-center">
-        <AnimatedSection>
-            <h2 className="text-4xl font-bold mb-2 text-black dark:text-white">About Our School</h2>
-            <p className="text-black max-w-xl mx-auto mb-12 dark:text-white">
+        <div className="py-8 text-center px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-black dark:text-white">About Our School</h2>
+            <p className="text-black max-w-2xl mx-auto mb-12 dark:text-white text-sm sm:text-base">
               Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
             </p>
-        </AnimatedSection>
+          </AnimatedSection>
         </div>
       </div>
-      
-      {/* About Content - Placeholder, will be replaced with actual content */}
-      <div className="bg-white dark:bg-black mb-32">
-        <div className="container ml-11 px-4">
+
+      {/* About Content */}
+      <div className="bg-white dark:bg-black pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection animation="fade-in" className="text-center">
-            <div className='lg:ml-20 ml-10 mr-28 flex flex-col lg:flex-row gap-7' >
-              <div>
-                <img src={Future2} alt="leaders" className='h-[400px] w-[50rem] '/>
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              {/* Image Section */}
+              <div className="w-full lg:w-1/2">
+                <img
+                  src={Future2}
+                  alt="leaders"
+                  className="w-full h-auto lg:h-[500px] object-cover rounded-lg"
+                />
               </div>
-              <div>
-                <div className='w-[500px] justify-start text-start mt-1'>
-                  <h1 className='text-black dark:text-white text-3xl font-bold'>Shaping tomorrow Engineers</h1>
-                  <p className='mt-4'>At ESTG, we are committed to creating a vibrant and welcoming environment where every student can thrive. Our mission is to deliver a top-notch education that fosters academic excellence while encouraging creativity, critical thinking, and personal development. </p>
-                  <h1 className='text-black dark:text-white text-3xl font-bold mt-5'> Mission and Motto</h1>
-                  <p>To provide a comprehensive and inclusive education that fosters academic excellence, critical thinking, and personal growth.</p>
-                  <h1 className='text-black dark:text-white text-3xl font-bold mt-5'>Vision of Core values</h1>
-                  <p>Conscience , Science and Work to enreach capability of our success</p>
-                </div>
+
+              {/* Text Section */}
+              <div className="w-full lg:w-1/2 text-left">
+                <h1 className="text-black dark:text-white text-2xl font-bold mt-10">Shaping Tomorrow’s Engineers</h1>
+                <p className="mt-4 text-sm sm:text-base dark:text-white">
+                  At ESTG, we are committed to creating a vibrant and welcoming environment where every student can thrive. Our mission is to deliver a top-notch education that fosters academic excellence while encouraging creativity, critical thinking, and personal development.
+                </p>
+
+                <h1 className="text-black dark:text-white text-2xl font-bold mt-6">Mission and Motto</h1>
+                <p className="mt-2 text-sm sm:text-base dark:text-white">
+                  To provide a comprehensive and inclusive education that fosters academic excellence, critical thinking, and personal growth.
+                </p>
+
+                <h1 className="text-black dark:text-white text-2xl font-bold mt-6">Vision of Core Values</h1>
+                <p className="mt-2 text-sm sm:text-base dark:text-white">
+                  Conscience, Science and Work to enrich the capability of our success.
+                </p>
+
+                <p className="mt-2 text-sm sm:text-base dark:text-white">
+                  We strive to instill a deep sense of responsibility, integrity, and innovation in all our activities.
+                </p>
+
+                <p className="mt-2 text-sm sm:text-base dark:text-white">
+                  Our vision is to empower individuals with knowledge and practical skills to create meaningful impact in their communities.
+                </p>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </div>
+
       <Footer />
     </div>
   );
