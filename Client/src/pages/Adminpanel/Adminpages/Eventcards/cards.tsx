@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Pencil, Trash2 } from 'lucide-react';
 
 function Card({ title, description, author, onUpdate, onDelete, imageUrl }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -39,15 +40,15 @@ function Card({ title, description, author, onUpdate, onDelete, imageUrl }) {
       <div className="mt-auto flex gap-3">
         <button
           onClick={onUpdate}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
         >
-          Update
+          <Pencil size={16} />
         </button>
         <button
           onClick={onDelete}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
         >
-          Delete
+          <Trash2 size={16} />
         </button>
       </div>
     </div>

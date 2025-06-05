@@ -44,18 +44,19 @@ function Event() {
       
       <h1 className="text-2xl font-bold text-black dark:text-white mb-5 mt-5">Updates Cards</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {data.map((item, index) => (
-          <Card 
-            key={index}
-            id={item._id || index}
-            title={item.title}
-            author={item.author?.username}
-            description={item.description}
-            updatestype={item.type}
-            onUpdate={() => console.log('Updates', index)}
-            onDelete={() => handleDelete(item._id)}
-          />
+          <div key={index} className="flex flex-col">
+            <Card 
+              id={item._id || index}
+              title={item.title}
+              author={item.author?.username}
+              description={item.description}
+              updatestype={item.type}
+              onUpdate={() => console.log('Updates', index)}
+              onDelete={() => handleDelete(item._id)}
+            />
+          </div>
         ))}
       </div>
     </div>
