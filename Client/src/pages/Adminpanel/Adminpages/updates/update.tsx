@@ -53,7 +53,7 @@ function Event() {
             author={item.author?.username}
             description={item.description}
             updatestype={item.type}
-            onUpdate={() => console.log('Update', index)}
+            onUpdate={() => console.log('Updates', index)}
             onDelete={() => handleDelete(item._id)}
           />
         ))}
