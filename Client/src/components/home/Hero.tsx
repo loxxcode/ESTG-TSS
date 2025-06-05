@@ -1,15 +1,14 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
 import AnimatedSection from '../ui/AnimatedSection';
-
+import HeroImage from '../../assets/hero_image.jpg';
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
   
   useEffect(() => {
     const img = new Image();
-    img.src = 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80';
+    img.src = HeroImage;
     img.onload = () => setLoaded(true);
   }, []);
 
@@ -20,7 +19,7 @@ const Hero = () => {
         <div 
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}
           style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80')" 
+            backgroundImage: `url(${HeroImage})` 
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
