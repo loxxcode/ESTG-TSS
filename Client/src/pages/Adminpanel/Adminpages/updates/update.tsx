@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Card from './cards';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Card from "./cards";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function Event() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate(); // Add this hook for navigation
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/updates", { withCredentials: true });
+      const response = await axios.get("http://localhost:5000/api/updates", {
+        withCredentials: true,
+      });
       setData(response.data.data);
     } catch (error) {
       console.log(error);
@@ -20,12 +23,16 @@ function Event() {
       await axios.delete(`http://localhost:5000/api/delete_update/${id}`, {
         withCredentials: true,
       });
-      alert('Update deleted successfully!');
-      fetchData(); // Refresh the data after deletion
+      alert("Update deleted successfully!");
+      fetchData();
     } catch (error) {
-      console.error('Error deleting update:', error);
-      alert('Failed to delete the update. Please try again.');
+      console.error("Error deleting update:", error);
+      alert("Failed to delete the update. Please try again.");
     }
+  };
+
+  const handleUpdate = (id) => {
+    navigate(`/update/${id}`);
   };
 
   useEffect(() => {
@@ -41,19 +48,21 @@ function Event() {
           </button>
         </Link>
       </div>
-      
-      <h1 className="text-2xl font-bold text-black dark:text-white mb-5 mt-5">Updates Cards</h1>
+
+      <h1 className="text-2xl font-bold text-black dark:text-white mb-5 mt-5">
+        Updates Cards
+      </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data.map((item, index) => (
-          <Card 
+          <Card
             key={index}
             id={item._id || index}
             title={item.title}
             author={item.author?.username}
             description={item.description}
             updatestype={item.type}
-            onUpdate={() => console.log('Updates', index)}
+            onUpdate={() => handleUpdate(item._id)} // Use the new handleUpdate function
             onDelete={() => handleDelete(item._id)}
           />
         ))}

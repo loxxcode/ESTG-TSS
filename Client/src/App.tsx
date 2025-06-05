@@ -27,6 +27,8 @@ import Event from './pages/Adminpanel/Adminpages/event';
 import Logout from './pages/Adminpanel/Adminpages/usermagement';
 import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
 import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
+import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
+import EditEventForm from './pages/Adminpanel/Adminpages/Contents/createupdate';
 
 
 const queryClient = new QueryClient();
@@ -66,7 +68,10 @@ const App = () => (
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/update/:id" element={<UpdateForm />} />
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/editeevent/:id" element={<EditEventForm />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
