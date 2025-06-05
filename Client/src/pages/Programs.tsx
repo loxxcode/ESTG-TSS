@@ -38,10 +38,12 @@ const Programs = () => {
               <div className='flex flex-col gap-5'>
               <img src={Elc} alt="Electrical Technology" className='md:w-[500px] object-fit h-[300px]'/>
               <p className='text-black dark:text-white'>Electrical Technology</p>
+              <a href="">About This</a>
               </div>
               <div className='flex flex-col gap-5'>
               <img src={Sod} alt="Software Development" className='md:w-[500px] h-[300px]'/>
               <p className='text-black dark:text-white'>Software Development</p>
+              <a href="">About This</a>
               </div>
             </div>
           </AnimatedSection>
