@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Card from './cards'; // Update card component
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 
 function Update() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -48,8 +49,12 @@ function Update() {
     }
   };
 
+  const handleUpdate = (id) => {
+    navigate(`/update/${id}`);
+  };
+
   return (
-    <div className="p-6 bg-gray-100 dark:bg-black min-h-screen">
+    <div className="p-6 mt-5 bg-gray-100 dark:bg-black min-h-screen">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <Link to="/createupdate">
           <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
@@ -57,7 +62,7 @@ function Update() {
           </button>
         </Link>
 
-        <div className="relative w-full sm:w-96 mt-5">
+        <div className="relative w-full sm:w-96 mt-5 sm:mt-0">
           <input
             type="text"
             value={searchTerm}
@@ -73,7 +78,6 @@ function Update() {
 
       {/* === Conditional Rendering === */}
       {data.length === 0 ? (
-        // Case 1: No updates in DB
         <div className="col-span-full flex flex-col items-center justify-center text-center py-20 bg-white dark:bg-black rounded-lg shadow-md">
           <svg
             className="w-16 h-16 mb-4 text-gray-400 dark:text-gray-500"
@@ -94,7 +98,6 @@ function Update() {
           </p>
         </div>
       ) : searchTerm !== '' && filtered.length === 0 ? (
-        // Case 2: Search term entered but no matches
         <div className="col-span-full flex flex-col items-center justify-center text-center py-20 bg-white dark:bg-black rounded-lg shadow-md">
           <svg
             className="w-16 h-16 mb-4 text-gray-400 dark:text-gray-500"
@@ -115,7 +118,6 @@ function Update() {
           </p>
         </div>
       ) : (
-        // Case 3: Show updates
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filtered.map((item, index) => (
             <Card
@@ -125,7 +127,7 @@ function Update() {
               author={item.author?.username}
               description={item.description}
               updatestype={item.type}
-              onUpdate={() => console.log('Update', index)}
+              onUpdate={() => handleUpdate(item._id)}
               onDelete={() => handleDelete(item._id)}
             />
           ))}

@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import AdminForm from "./pages/Auth/AdminForm";
 import User from "./pages/Auth/User";
 import ContentCreatorRegistration from "./pages/Auth/ContentCreatorRegistration";
+import ForgetPassword from "./pages/Auth/forgetPassword";
+import ResetPassword from "./pages/Auth/resetPassword";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
 import Adminpanel from "./pages/Adminpanel";
@@ -25,6 +27,8 @@ import Event from './pages/Adminpanel/Adminpages/event';
 import Logout from './pages/Adminpanel/Adminpages/usermagement';
 import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
 import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
+import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
+import EditEventForm from './pages/Adminpanel/Adminpages/Contents/createupdate';
 
 
 const queryClient = new QueryClient();
@@ -62,7 +66,12 @@ const App = () => (
             
             <Route path="/user" element={<User />} />
             <Route path="/contentcreatorregistration" element={<ContentCreatorRegistration />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/update/:id" element={<UpdateForm />} />
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/editeevent/:id" element={<EditEventForm />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
