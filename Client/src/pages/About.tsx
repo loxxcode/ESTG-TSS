@@ -4,7 +4,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import Future from "../assets/future.png"
-import Future2 from "../assets/goal.png"
+import Future2 from "../assets/estg_image_4.jpg"
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);

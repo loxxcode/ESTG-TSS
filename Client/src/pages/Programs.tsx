@@ -6,7 +6,7 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import { Button } from '@/components/ui/button';
 import Elc from "../assets/electrical2022.jpg"
 import Elc2 from "../assets/students-during-electrical-installation-practicals-at-musanze-polytechnic.jpg"
-import Sod from "../assets/computer-lab-class.png"
+import Sod from "../assets/estg_image_5.jpg"
 import Sod2 from "../assets/Computer-Lab-02-q59alxkw3d4s38f3mk860lgxajiebl1sxa0uxckqzk.jpg"
 
 const Programs = () => {
