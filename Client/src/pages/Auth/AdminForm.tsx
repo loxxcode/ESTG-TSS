@@ -152,13 +152,13 @@ function AdminForm() {
                   <input type="checkbox" name="" id="" />
                   <span className="pl-2">Remember Me</span>
                 </div>
-                <div className="flex justify-between ">
+                {/* <div className="flex justify-between ">
                   <h2>
                     <a href="/forgetpassword" className="text-blue-400 flex">
                       forget password
                     </a>
                   </h2>
-                </div>
+                </div> */}
               </div>
             </div>
 
