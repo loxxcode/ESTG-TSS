@@ -12,7 +12,7 @@ exports.forgotPasswordWithBackupCode = async (req, res) => {
       });
     }
 
-    // Find the user and include hashed backupCode
+    // Find the user and include backupCode field
     const user = await Account.findOne({ email });
 
     if (!user) {
@@ -22,15 +22,20 @@ exports.forgotPasswordWithBackupCode = async (req, res) => {
       });
     }
 
-if (user.backupCode !== backupCode) {
-    console.log("Backup code is valid:", user.backupCode);
-  return res.status(400).json({
-    success: false,
-    message: `Invalid backup code: ${backupCode}`
-  });
-}
-    // Set a temporary default password (user should change it after login)
-    const tempPassword = "estg@gmail.com";
+    // Convert user input decimal backupCode (string or number) to hex uppercase string
+    const inputBackupCodeHex = parseInt(backupCode, 10).toString(16).toUpperCase();
+
+    // Compare with stored hex backupCode
+    if (user.backupCode !== inputBackupCodeHex) {
+      console.log("Backup code invalid:", inputBackupCodeHex, "stored:", user.backupCode);
+      return res.status(400).json({
+        success: false,
+        message: "Invalid backup code"
+      });
+    }
+
+    // If backup code matches, reset password to temp password
+    const tempPassword = "estg@gmail.com"; // Or generate a random temporary password here
     const hashedTempPassword = await bcrypt.hash(tempPassword, 10);
     user.password = hashedTempPassword;
 

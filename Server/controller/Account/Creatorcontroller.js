@@ -1,13 +1,14 @@
 const Account = require("../../models/account_schema");
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
 
-
-// Generate secure backup code
+// Helper: Generate 4-digit backup code, store hex, return decimal
 function generateBackupCode() {
-  return crypto.randomBytes(4).toString("hex"); // 8-character code
+  const decimalCode = Math.floor(1000 + Math.random() * 9000); // e.g. 4273
+  const hexCode = decimalCode.toString(16).toUpperCase(); // e.g. "10B1"
+  return { decimal: decimalCode, hex: hexCode };
 }
 
+// ==== Content Creator Signup ====
 exports.creatorsignup = async (req, res) => {
   try {
     const { username, email } = req.body;
@@ -26,19 +27,20 @@ exports.creatorsignup = async (req, res) => {
         message: "User already exists"
       });
     }
-    const tempPassword = "estg@gmail.com";
+
+    // Generate a temporary password or handle password creation elsewhere
+    const tempPassword = "estg@gmail.com"; // You can adjust this or get from req.body
     const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
-    // Generate the plaintext backup code (to send to client/admin)
-    const plainBackupCode = generateBackupCode();
-
+    // Generate backup code (decimal + hex)
+    const { decimal: plainBackupCode, hex: hexBackupCode } = generateBackupCode();
 
     const newUser = new Account({
       username,
       email,
       password: hashedPassword,
       role: "Content_creator",
-      backupCode: plainBackupCode, // Make sure your model has "backupCodes"
+      backupCode: hexBackupCode // Store hexadecimal code in DB
     });
 
     await newUser.save();
@@ -52,8 +54,9 @@ exports.creatorsignup = async (req, res) => {
         email: newUser.email,
         role: newUser.role,
       },
-      backupCode: plainBackupCode
+      backupCode: plainBackupCode // Send decimal backup code to user
     });
+
   } catch (error) {
     console.error("Registration error:", error);
     return res.status(500).json({
@@ -63,13 +66,11 @@ exports.creatorsignup = async (req, res) => {
   }
 };
 
-
-// Admin login function
+// ==== Content Creator Login ====
 exports.creatorlogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate input
     if (!email || !password) {
       return res.status(400).json({
         success: false,
@@ -77,8 +78,8 @@ exports.creatorlogin = async (req, res) => {
       });
     }
 
-    // Find user by email
-    const user = await Account.findOne({ email }).select('+password').exec();
+    // Include backupCode in selection if needed
+    const user = await Account.findOne({ email }).select('+password +backupCode').exec();
 
     if (!user) {
       return res.status(401).json({
@@ -87,7 +88,6 @@ exports.creatorlogin = async (req, res) => {
       });
     }
 
-    // Check admin role
     if (user.role !== "Content_creator") {
       return res.status(403).json({
         success: false,
@@ -95,7 +95,6 @@ exports.creatorlogin = async (req, res) => {
       });
     }
 
-    // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({
@@ -104,25 +103,27 @@ exports.creatorlogin = async (req, res) => {
       });
     }
 
-    // Omit password in response
+    // Store user session info including backupCode converted to decimal
+    req.session.username = user.username;
+    req.session.email = user.email;
+    req.session.role = user.role;
+    req.session.Userid = user._id;
+    req.session.backupCode = parseInt(user.backupCode, 16); // Convert hex back to decimal
+
     const userResponse = {
       id: user._id,
       username: user.username,
       email: user.email,
-      role: user.role
+      role: user.role,
     };
-
-    req.session.username = user.username;
-    req.session.email = user.email;
-    req.session.role = user.role;
-    req.session.backupCode = user.backupCode
-    req.session.Userid = user._id;
 
     return res.status(200).json({
       success: true,
       message: "Login successful",
-      user: userResponse
+      user: userResponse,
+      backupCode: parseInt(user.backupCode, 16) // optionally send decimal backup code here too
     });
+
   } catch (error) {
     console.error("Login error:", error);
     return res.status(500).json({
