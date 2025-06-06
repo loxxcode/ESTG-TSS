@@ -39,12 +39,12 @@ const News = () => {
       <Navbar />
 
       <section className="py-16 text-center">
-        <AnimatedSection>
-          <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">Events</h2>
-          <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-            Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
-          </p>
-        </AnimatedSection>
+      <AnimatedSection>
+  <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h2>
+  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+    Join us for exciting school activities, workshops, and celebrations! Stay updated on upcoming events and mark your calendars—we can't wait to see you there.
+  </p>
+</AnimatedSection>
 
         {/* Search bar */}
         <div className="max-w-md mx-auto mb-10 px-6">

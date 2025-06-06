@@ -52,12 +52,13 @@ const Announcement = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <section className="py-16 text-center">
+       
         <AnimatedSection>
-          <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">Announcements</h2>
-          <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-            Sunt autem nusquam hoc epicurus in gravissimo bello animadversionis metu degendae praesidia firmissima.
-          </p>
-        </AnimatedSection>
+  <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">SCHOOL UPDATES</h2>
+  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+    Stay informed with the latest news, events, and achievements from our school community. Check back regularly for important announcements and exciting developments in our learning journey together.
+  </p>
+</AnimatedSection>
 
         {/* Search bar */}
         <div className="relative w-[90%] max-w-xl mx-auto mb-12">

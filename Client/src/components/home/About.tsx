@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
 import Estgbanner from "../../assets/event_2.jfif";
 const stats = [
-  { value: '35+', label: 'Years of Excellence' },
+  { value: '19+', label: 'Years of Excellence' },
   { value: '600+', label: 'Students' },
   { value: '2', label: 'Combinations' },
   { value: '85%', label: 'Employment Rate' },
@@ -43,7 +43,7 @@ const About = () => {
             
             <AnimatedSection animation="fade-in" delay={200}>
               <p className="text-lg text-muted-foreground mb-6 dark:text-gray-300">
-                Since 1985, Ecole Secondaire Technique Gisenyi has been at the forefront of technical and management education in Rubavu, nurturing talent and driving innovation.
+                Since 2006, Ecole Secondaire Technique Gisenyi has been at the forefront of technical and management education in Rubavu, nurturing talent and driving innovation.
               </p>
             </AnimatedSection>
             
