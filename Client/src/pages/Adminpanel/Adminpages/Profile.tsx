@@ -9,6 +9,7 @@ interface ProfileData {
   email: string;
   avatar?: string;
   role?: string;
+  backupCode?: string;
 }
 
 function Profile() {
@@ -22,6 +23,9 @@ function Profile() {
   const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [newEmail, setNewEmail] = useState('');
   const [newUsername, setNewUsername] = useState('');
+  
+  const [showBackupCode, setShowBackupCode] = useState(false);
+
   const [isEditingPassword, setIsEditingPassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -258,7 +262,23 @@ function Profile() {
                     <p className="text-gray-500 dark:text-gray-400">********</p>
                   )}
                 </div>
-
+ {/* Backup Code Section */}
+                <div>
+                  <label className="text-sm text-gray-500 dark:text-gray-400">Backup Code</label>
+                  <div className="mt-1 flex items-center gap-3">
+                    <button
+                      onClick={() => setShowBackupCode(!showBackupCode)}
+                      className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+                    >
+                      {showBackupCode ? 'Hide' : 'Show'} Backup Code
+                    </button>
+                    {showBackupCode && (
+                      <span className="font-mono text-gray-900 dark:text-white">
+                        {profileData?.backupCode}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

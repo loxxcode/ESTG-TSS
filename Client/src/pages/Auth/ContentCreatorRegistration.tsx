@@ -1,51 +1,70 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Uncomment axios
+import axios from "axios";
+import { Copy } from "lucide-react";
 
 function ContentCreatorRegistration() {
   const [Form, setForm] = useState({
     username: "",
     email: "",
-    password: "",
     phone: "",
+    role: "",
   });
+  const [backupCode, setBackupCode] = useState(null);
+  const [copySuccess, setCopySuccess] = useState(false);
   const navigate = useNavigate();
+
   const handleBack = () => {
     navigate("/adminpanel");
   };
 
   const handleForm = async (e) => {
     e.preventDefault();
+
     try {
-      console.log("Form Data:", Form); // Log form data to the console
       const response = await axios.post(
         "http://localhost:5000/api/account/creator/register",
         Form,
         { withCredentials: true }
       );
-      if (response.status === 200) {
-        console.log("Registration successful", response.data);
-        navigate("/user"); // Redirect to a success page
+
+      if (response.status === 201) {
+        // Show backup code returned by API
+        setBackupCode(response.data.backupCode);
+        setCopySuccess(false);
       }
     } catch (error) {
       if (error.response) {
-        console.error("Server responded with an error:", error.response.data);
         alert("Registration failed: " + error.response.data.message);
       } else if (error.request) {
-        console.error("No response from server. Please check your connection.");
         alert("Network error: Unable to reach the server.");
       } else {
-        console.error("Unexpected error:", error.message);
         alert("An unexpected error occurred.");
       }
     }
   };
 
+  const copyToClipboard = () => {
+    if (backupCode) {
+      navigator.clipboard.writeText(backupCode).then(() => {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+      });
+    }
+  };
+
+  const closeModal = () => {
+    setBackupCode(null);
+    // Redirect after showing backup code if you want
+    navigate("/user");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black ">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
       <button
         onClick={handleBack}
         className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+        aria-label="Go back"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +72,7 @@ function ContentCreatorRegistration() {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -62,12 +82,11 @@ function ContentCreatorRegistration() {
           />
         </svg>
       </button>
-      {/* Centered Form Container */}
+
       <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md text-black bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
-          {/* Form Header */}
-          <div className="text-center ">
-            <h1 className="text-2xl font-bold text-black  dark:bg-black dark:text-white">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-black dark:text-white">
               Content Creator Registration
             </h1>
             <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
@@ -75,10 +94,9 @@ function ContentCreatorRegistration() {
             </p>
           </div>
 
-          {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleForm}>
             <div className="space-y-4 text-black">
-              {/* Username Field */}
+              {/* Username */}
               <div>
                 <label
                   htmlFor="username"
@@ -100,7 +118,7 @@ function ContentCreatorRegistration() {
                 />
               </div>
 
-              {/* Email Field */}
+              {/* Email */}
               <div>
                 <label
                   htmlFor="email"
@@ -120,29 +138,9 @@ function ContentCreatorRegistration() {
                 />
               </div>
 
-              {/* Password Field */}
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Password <span className="text-red-500">*</span>
-                </label>
-                <input
-                  value={Form.password}
-                  onChange={(e) =>
-                    setForm({ ...Form, password: e.target.value })
-                  }
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="••••••••"
-                />
-              </div>
+        
 
-              {/* Role Selection */}
+              {/* Role */}
               <div>
                 <label
                   htmlFor="role"
@@ -154,6 +152,8 @@ function ContentCreatorRegistration() {
                   id="role"
                   name="role"
                   required
+                  value={Form.role}
+                  onChange={(e) => setForm({ ...Form, role: e.target.value })}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select your role</option>
@@ -162,26 +162,8 @@ function ContentCreatorRegistration() {
                 </select>
               </div>
 
-              {/* Phone Field */}
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Phone Number
-                </label>
-                <input
-                  value={Form.phone}
-                  onChange={(e) => setForm({ ...Form, phone: e.target.value })}
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="+1 (123) 456-7890"
-                />
-              </div>
 
-              {/* Terms Agreement */}
+              {/* Terms */}
               <div className="flex items-center">
                 <input
                   id="terms"
@@ -203,9 +185,9 @@ function ContentCreatorRegistration() {
                   </Link>
                 </label>
               </div>
+          
             </div>
 
-            {/* Submit Button */}
             <div>
               <button
                 type="submit"
@@ -215,7 +197,6 @@ function ContentCreatorRegistration() {
               </button>
             </div>
 
-            {/* Login Option */}
             <div className="text-center text-sm">
               <span className="text-gray-600 dark:text-gray-400">
                 Already have an account?{" "}
@@ -230,6 +211,51 @@ function ContentCreatorRegistration() {
           </form>
         </div>
       </div>
+
+      {/* Backup Code Modal */}
+      {backupCode && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="backup-code-title"
+        >
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-sm w-full p-6 mx-4 text-center">
+            <h2
+              id="backup-code-title"
+              className="text-xl font-semibold mb-4 text-gray-900 dark:text-white"
+            >
+              Your Backup Code
+            </h2>
+            <p className="mb-2 text-gray-700 dark:text-gray-300">
+              Please save this backup code securely. You will need it to recover
+              your account.
+            </p>
+            <div className="flex items-center justify-center space-x-2 mb-6 p-3 border border-gray-300 dark:border-gray-700 rounded bg-gray-100 dark:bg-gray-800 font-mono text-lg select-all cursor-text">
+              <span>{backupCode}</span>
+              <button
+                onClick={copyToClipboard}
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600 transition-colors"
+                aria-label="Copy backup code"
+                title="Copy backup code"
+              >
+                <Copy size={20} />
+              </button>
+            </div>
+            {copySuccess && (
+              <p className="text-green-600 dark:text-green-400 mb-4">
+                Backup code copied to clipboard!
+              </p>
+            )}
+            <button
+              onClick={closeModal}
+              className="mt-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
