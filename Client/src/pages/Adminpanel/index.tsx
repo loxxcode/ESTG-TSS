@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import Update from './Adminpages/updates/update';
 import Event from './Adminpages/event';
 import UserManagement from './Adminpages/usermagement';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, X, PanelLeftOpen } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
 import Profile from './Adminpages/Profile';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface DashboardData {
   user: string;
@@ -24,11 +26,20 @@ function Adminpanel() {
   const [isProfileOpen, setIsProfileOpen] = React.useState(false);
   const [showProfile, setShowProfile] = React.useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const isAdmin = localStorage.getItem("role") === "Admin";
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (location.state?.message) {
+      toast.success(location.state.message, { position: "bottom-right" });
+      // Clear the message from state so it doesn't show again
+      navigate('.', { replace: true, state: {} }); 
+    }
+  }, [location.state, navigate]);
+
+  useEffect(() => {
   const fetchDashboardData = async () => {
     try {
       setIsLoading(true);
@@ -48,12 +59,12 @@ function Adminpanel() {
   fetchDashboardData();
 }, []);
 
-React.useEffect(() => {
+useEffect(() => {
   setShowProfile(false);
 }, [activeTab]);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!localStorage.getItem("username")) {
       navigate('/');
     }
