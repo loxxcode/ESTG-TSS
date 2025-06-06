@@ -7,7 +7,7 @@ exports.dashboard = async (req, res) => {
           user: req.session.username,
           email: req.session.email,
           role: req.session.role,
-          backup: req.session.backupCode, // Include backup code if needed
+          backupCode: req.session.backupCode, // Include backup code if needed
           userId: req.session.Userid, // Return the correct MongoDB _id
         });
       } else {
