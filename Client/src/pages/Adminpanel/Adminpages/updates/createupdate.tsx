@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface UpdateData {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
   type: string;
@@ -13,32 +15,37 @@ const EditUpdate = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<UpdateData>({
-    _id: "",
     title: "",
     description: "",
     type: "",
   });
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(id ? true : false);
+
+  const isEditMode = Boolean(id);
 
   useEffect(() => {
-    const fetchUpdate = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/single_update/${id}`,
-          { withCredentials: true }
-        );
-        setFormData(response.data);
-      } catch (err) {
-        console.error("Error fetching update:", err);
-        setError("Failed to load update data");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchUpdate();
-  }, [id]);
+    if (isEditMode) {
+      setIsLoading(true);
+      const fetchUpdate = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:5000/api/single_update/${id}`,
+            { withCredentials: true }
+          );
+          setFormData(response.data);
+        } catch (err) {
+          console.error("Error fetching update:", err);
+          toast.error("Failed to load update data. Please try again.", { position: "bottom-right" });
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchUpdate();
+    } else {
+      setFormData({ title: "", description: "", type: "" });
+      setIsLoading(false);
+    }
+  }, [id, isEditMode]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -59,31 +66,32 @@ const EditUpdate = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `http://localhost:5000/api/edit_update/${id}`,
-        formData,
-        { withCredentials: true }
-      );
-      alert("Update successfully saved!");
-      navigate("/adminpanel");
+      if (isEditMode) {
+        await axios.put(
+          `http://localhost:5000/api/edit_update/${id}`,
+          formData,
+          { withCredentials: true }
+        );
+        navigate("/adminpanel", { state: { message: 'Update successfully updated!' } });
+      } else {
+        const { _id, ...createData } = formData;
+        await axios.post(
+          `http://localhost:5000/api/create_update`,
+          createData,
+          { withCredentials: true }
+        );
+        navigate("/adminpanel", { state: { message: 'Update successfully created!' } });
+      }
     } catch (err) {
-      console.error("Error updating update:", err);
-      setError("Failed to save changes. Please try again.");
+      console.error(isEditMode ? "Error updating update:" : "Error creating update:", err);
+      toast.error(`Failed to ${isEditMode ? 'save changes' : 'create update'}. Please try again.`, { position: "bottom-right" });
     }
   };
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading update data...</div>
-      </div>
-    );
-  }
-
-  if (error && !formData._id) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        {error}
+        <div className="text-xl">Loading...</div>
       </div>
     );
   }
@@ -92,7 +100,7 @@ const EditUpdate = () => {
     <div className="min-h-screen flex flex-col">
       <button
         onClick={handleBack}
-        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -114,14 +122,12 @@ const EditUpdate = () => {
         <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
           <div className="text-center">
             <h1 className="text-3xl font-bold dark:text-gray-200 text-gray-800">
-              Edit Updates
+              {isEditMode ? "Edit Update" : "Create New Update"}
             </h1>
             <p className="mt-2 text-sm dark:text-gray-100 text-gray-800">
-              Please update the details below
+              {isEditMode ? "Please update the details below" : "Please fill in the details for the new update"}
             </p>
           </div>
-
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
@@ -183,12 +189,12 @@ const EditUpdate = () => {
               </div>
             </div>
 
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 pt-4">
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Save Changes
+                {isEditMode ? "Save Changes" : "Create Update"}
               </button>
             </div>
           </form>

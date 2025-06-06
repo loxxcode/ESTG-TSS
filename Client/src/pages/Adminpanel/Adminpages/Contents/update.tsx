@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Update() {
   const navigate = useNavigate();
@@ -28,11 +30,11 @@ function Update() {
     try {
       const response = await axios.post('http://localhost:5000/api/upload_update', Form, { withCredentials: true });
       console.log('Form submitted successfully:', response.data);
-      alert('Update submitted successfully!');
-      navigate('/adminpanel');
+      toast.success('Update submitted successfully!', { position: 'bottom-right' });
+      navigate('/adminpanel', { state: { message: 'Update created successfully!' } });
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit the update. Please try again.');
+      toast.error('Failed to submit the update. Please try again.', { position: 'bottom-right' });
     }
   };
 

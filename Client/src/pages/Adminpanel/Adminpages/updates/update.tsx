@@ -3,6 +3,8 @@ import Card from './cards'; // Update card component
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Update() {
   const [data, setData] = useState([]);
@@ -41,11 +43,11 @@ function Update() {
       await axios.delete(`http://localhost:5000/api/delete_update/${id}`, {
         withCredentials: true,
       });
-      alert('Update deleted successfully!');
+      toast.success('Update deleted successfully!', { position: "bottom-right" });
       fetchData();
     } catch (error) {
       console.error('Error deleting update:', error);
-      alert('Failed to delete the update. Please try again.');
+      toast.error('Failed to delete the update. Please try again.', { position: "bottom-right" });
     }
   };
 

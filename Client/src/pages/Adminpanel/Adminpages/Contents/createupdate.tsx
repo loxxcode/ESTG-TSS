@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface EventData {
   _id: string;
@@ -21,7 +23,6 @@ const EditEventForm = () => {
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     if (location.state) {
@@ -42,7 +43,7 @@ const EditEventForm = () => {
           setFormData(response.data.data);
         } catch (err) {
           console.error("Error fetching event:", err);
-          setError("Failed to load event data");
+          toast.error("Failed to load event data. Please try again later.", { position: "bottom-right" });
         } finally {
           setIsLoading(false);
         }
@@ -85,10 +86,10 @@ const EditEventForm = () => {
           }
         }
       );
-      navigate('/events', { state: { message: 'Event successfully updated!' } });
+      navigate('/adminpanel', { state: { message: 'Event successfully updated!' } });
     } catch (err) {
       console.error("Error updating event:", err);
-      setError("Failed to save changes. Please try again.");
+      toast.error("Failed to save changes. Please try again.", { position: "bottom-right" });
     }
   };
 
@@ -100,14 +101,6 @@ const EditEventForm = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-xl">Loading event data...</div>
-      </div>
-    );
-  }
-
-  if (error && !formData._id) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        {error}
       </div>
     );
   }
@@ -144,8 +137,6 @@ const EditEventForm = () => {
               Update the event details below
             </p>
           </div>
-
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
