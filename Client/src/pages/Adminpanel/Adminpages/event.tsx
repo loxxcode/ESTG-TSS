@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Card from "./Eventcards/cards";
 import { Search } from "lucide-react";
 
@@ -52,11 +54,11 @@ function Event() {
       await axios.delete(`http://localhost:5000/api/delete_event/${id}`, {
         withCredentials: true,
       });
-      alert("Event deleted successfully!");
+      toast.success("Event deleted successfully!", { position: "bottom-right" });
       fetchData(); // Refresh data after delete
     } catch (error) {
       console.error("Error deleting event:", error);
-      alert("Failed to delete the event. Please try again.");
+      toast.error("Failed to delete the event. Please try again.", { position: "bottom-right" });
     }
   };
 

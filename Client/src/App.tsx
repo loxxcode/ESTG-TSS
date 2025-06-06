@@ -28,6 +28,7 @@ import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
 import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
 import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
 import EditEventForm from './pages/Adminpanel/Adminpages/Contents/createupdate';
+import { ToastContainer } from 'react-toastify';
 
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <ToastContainer autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <BrowserRouter>
           <Routes>
             <Route path="/update" element={<Update />} />
