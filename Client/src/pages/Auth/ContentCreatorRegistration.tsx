@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Uncomment axios
+import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ContentCreatorRegistration() {
   const [Form, setForm] = useState({
@@ -23,20 +25,26 @@ function ContentCreatorRegistration() {
         Form,
         { withCredentials: true }
       );
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) { // Accept 201 Created as success
         console.log("Registration successful", response.data);
-        navigate("/user"); // Redirect to a success page
+        toast.success("Registration successful! Redirecting to login...", { 
+          position: "bottom-right",
+          autoClose: 2500 // Keep toast visible for 2.5 seconds
+        });
+        setTimeout(() => {
+          navigate("/user", { state: { message: "Registration successful! Please log in." } }); // Redirect with message
+        }, 2500); // Delay navigation
       }
     } catch (error) {
       if (error.response) {
         console.error("Server responded with an error:", error.response.data);
-        alert("Registration failed: " + error.response.data.message);
+        toast.error("Registration failed: " + (error.response?.data?.message || 'Unknown server error'), { position: "bottom-right" });
       } else if (error.request) {
         console.error("No response from server. Please check your connection.");
-        alert("Network error: Unable to reach the server.");
+        toast.error("Network error: Unable to reach the server.", { position: "bottom-right" });
       } else {
         console.error("Unexpected error:", error.message);
-        alert("An unexpected error occurred.");
+        toast.error("An unexpected error occurred. Please try again.", { position: "bottom-right" });
       }
     }
   };
@@ -142,25 +150,6 @@ function ContentCreatorRegistration() {
                 />
               </div>
 
-              {/* Role Selection */}
-              <div>
-                <label
-                  htmlFor="role"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Content Role <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="role"
-                  name="role"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                >
-                  <option value="">Select your role</option>
-                  <option value="Admin">Admin</option>
-                  <option value="Content_creator">Content Creator</option>
-                </select>
-              </div>
 
               {/* Phone Field */}
               <div>

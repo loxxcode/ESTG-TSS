@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ViewContentCreators = () => {
   const [data, setData] = useState([]);
@@ -22,25 +24,58 @@ const ViewContentCreators = () => {
       });
   }, []);
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this content creator?"
+  const handleDelete = async (id: string, username: string) => {
+    // Show confirmation toast
+    toast.info(
+      <div className="p-2">
+        <p className="font-semibold mb-2">Delete {username}?</p>
+        <p className="text-sm mb-3">This action cannot be undone.</p>
+        <div className="flex justify-end gap-2">
+          <button
+            onClick={() => {
+              toast.dismiss();
+              toast.success('Deletion cancelled', { position: 'bottom-right' });
+            }}
+            className="px-3 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded-md"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={async () => {
+              toast.dismiss();
+              try {
+                const response = await axios.delete(
+                  `http://localhost:5000/api/account/creators/${id}`,
+                  {
+                    withCredentials: true,
+                  }
+                );
+                if (response.status === 200) {
+                  toast.success(response.data.message || "Content creator deleted successfully", { position: 'bottom-right' });
+                  setData((prevData) => prevData.filter((item) => item._id !== id));
+                } else {
+                  throw new Error('Failed to delete');
+                }
+              } catch (error) {
+                console.error('Error deleting content creator:', error);
+                toast.error("Failed to delete content creator.", { position: 'bottom-right' });
+              }
+            }}
+            className="px-3 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded-md"
+          >
+            Delete
+          </button>
+        </div>
+      </div>,
+      {
+        position: 'bottom-right',
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+        draggable: false,
+        className: 'custom-toast',
+      }
     );
-    if (!confirmed) return;
-
-    try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/account/creators/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      alert(response.data.message || "Content creator deleted successfully");
-      setData((prevData) => prevData.filter((item) => item._id !== id));
-    } catch (error) {
-      console.error("Error deleting content creator:", error);
-      alert("Failed to delete content creator.");
-    }
   };
 
   return (
@@ -127,9 +162,28 @@ const ViewContentCreators = () => {
             </div>
           </>
         ) : (
-          <div className="p-4 text-center font-medium dark:text-gray-300">
-            No content creators found.
-          </div>
+          <div className="col-span-full flex flex-col items-center justify-center text-center py-20 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <svg
+            className="w-16 h-16 mb-4 text-gray-400 dark:text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 8v4l3 3m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-white mb-2">
+            No Content Creators Available
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400 max-w-md">
+            You haven't added any content creators yet. Click "Add Content Creator" to get
+            started.
+          </p>
+        </div>
         )}
       </div>
     </div>

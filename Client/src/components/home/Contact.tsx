@@ -2,6 +2,8 @@ import React from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import { Button } from '../ui/button';
 import { Send, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const contactInfo = [
   {
@@ -47,10 +49,12 @@ const Contact = () => {
 
     if (res.success) {
       console.log("Success", res);
-      alert("Message sent successfully!");
+      toast.success("Message sent successfully!", { position: 'bottom-right' });
+      // Reset form
+      (event.target as HTMLFormElement).reset();
     } else {
       console.error("Error", res);
-      alert("Failed to send the message. Please try again.");
+      toast.error("Failed to send the message. Please try again.", { position: 'bottom-right' });
     }
   };
 

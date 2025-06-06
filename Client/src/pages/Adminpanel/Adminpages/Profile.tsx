@@ -3,6 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '../../../components/ui/avat
 import { Pencil } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ProfileData {
   user: string;
@@ -220,7 +222,7 @@ function Profile() {
                         <button
                           onClick={async () => {
                             if (newPassword !== confirmPassword) {
-                              alert('Passwords do not match');
+                              toast.error('Passwords do not match', { position: 'bottom-right' });
                               return;
                             }
                             try {
@@ -231,11 +233,11 @@ function Profile() {
                               setIsEditingPassword(false);
                               setNewPassword('');
                               setConfirmPassword('');
-                              alert('Password updated successfully');
+                              toast.success('Password updated successfully', { position: 'bottom-right' });
                               await handleLogout();
                             } catch (err) {
                               console.error('Failed to update password:', err);
-                              alert('Failed to update password');
+                              toast.error('Failed to update password', { position: 'bottom-right' });
                             }
                           }}
                           className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"

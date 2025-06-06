@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function User() {
   const navigate = useNavigate();
-  const [msg, setMsg] = useState("");
+  const location = useLocation();
   const [Form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (location.state?.message) {
+      toast.success(location.state.message, { position: "bottom-right" });
+      navigate('.', { replace: true, state: {} });
+    }
+  }, [location.state, navigate]);
+
+  useEffect(() => {
     if (localStorage.getItem("username")) {
       navigate("/adminpanel");
     }
@@ -22,7 +30,6 @@ function User() {
   };
   const handleForm = async (e) => {
     e.preventDefault();
-    setMsg("");
 
     try {
       const response = await axios.post(
@@ -41,7 +48,7 @@ function User() {
         navigate("/adminpanel");
       } else {
         console.error("Unexpected response", response.data);
-        setMsg("Login failed. Please try again.");
+        toast.error("Login failed. Please try again.", { position: "bottom-right" });
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -49,20 +56,22 @@ function User() {
       if (error.response) {
         // Server responded with a status outside 2xx
         if (error.response.status === 401) {
-          setMsg("Invalid credentials. Please try again.");
+          toast.error("Invalid credentials. Please try again.", { position: "bottom-right" });
         } else {
-          setMsg(
-            `Error: ${error.response.data?.message || "Server error occurred."}`
+          toast.error(
+            `Error: ${error.response.data?.message || "Server error occurred."}`,
+            { position: "bottom-right" }
           );
         }
       } else if (error.request) {
         // No response received
-        setMsg(
-          "No response from server. Please check your internet connection."
+        toast.error(
+          "No response from server. Please check your internet connection.",
+          { position: "bottom-right" }
         );
       } else {
         // Other errors
-        setMsg("An unexpected error occurred.");
+        toast.error("An unexpected error occurred.", { position: "bottom-right" });
       }
     }
   };
@@ -100,10 +109,6 @@ function User() {
               Please enter your credentials to continue
             </p>
           </div>
-          <div>
-            <p>{msg}</p>
-          </div>
-
           {/* Form */}
           <form className="mt-8 space-y-6" onSubmit={handleForm}>
             <div className="space-y-4">

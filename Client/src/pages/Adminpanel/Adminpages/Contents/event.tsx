@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Event() {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ function Event() {
     e.preventDefault();
 
     if (!title || !description || !image) {
-      alert("Please fill out all fields and add an image.");
+      toast.warn("Please fill out all fields and add an image.", { position: "bottom-right" });
       return;
     }
     console.log(uploadedData)
@@ -28,11 +30,11 @@ function Event() {
     try {
       const res = await axios.post('http://localhost:5000/api/upload_events', formData, { withCredentials: true });
       setUploadedData(res.data);
-      alert('Event created successfully!');
+      toast.success('Event created successfully!', { position: "bottom-right" });
       navigate('/adminpanel', { state: { activeTab: 1 } });
     } catch (error) {
       console.error(error); 
-      alert('Failed to create event.');
+      toast.error('Failed to create event.', { position: "bottom-right" });
     }
   };
 
