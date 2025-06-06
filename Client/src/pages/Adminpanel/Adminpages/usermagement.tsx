@@ -151,7 +151,7 @@ const TableRow = ({ item, index, onDelete }) => (
       {item.role}
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-      {item.backupCode || "N/A"}
+      {item.backupCodeDecimal || "N/A"}
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-sm">
       <button

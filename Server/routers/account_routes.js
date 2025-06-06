@@ -11,7 +11,7 @@ const { allCreators } = require("../controller/Account/allCreators");
 const { deleteCreator } = require("../controller/Account/deleteCreators");
 const forgetpasswordcontroller = require("../controller/Account/Forget-password/forget")
 
-router.post("/admin/register", Admincontroller.adminsignup) //it is not neccessary
+// router.post("/admin/register", Admincontroller.adminsignup) 
 router.post("/creator/login", creatorcontroller.creatorlogin)
 router.post("/admin/login", Admincontroller.adminlogin)
 router.put("/updateprofile", Updateprofilecontroller.update)

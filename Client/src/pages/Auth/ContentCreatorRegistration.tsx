@@ -8,7 +8,6 @@ function ContentCreatorRegistration() {
     username: "",
     email: "",
     phone: "",
-    role: "",
   });
   const [backupCode, setBackupCode] = useState(null);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -140,28 +139,7 @@ function ContentCreatorRegistration() {
 
         
 
-              {/* Role */}
-              <div>
-                <label
-                  htmlFor="role"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Content Role <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="role"
-                  name="role"
-                  required
-                  value={Form.role}
-                  onChange={(e) => setForm({ ...Form, role: e.target.value })}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                >
-                  <option value="">Select your role</option>
-                  <option value="Admin">Admin</option>
-                  <option value="Content_creator">Content Creator</option>
-                </select>
-              </div>
-
+            
 
               {/* Terms */}
               <div className="flex items-center">
