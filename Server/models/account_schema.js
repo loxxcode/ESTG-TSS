@@ -19,15 +19,15 @@ const accountSchema = new mongoose.Schema({
         enum: ['Admin', 'Content_creator'],
         required: [true, 'Role is required'],
     },
-    phone: {  // Add this field for SMS functionality
+
+    // 🔐 Backup Codes: One-time-use tokens for password recovery
+    backupCode: {
         type: String,
-        required: [true, 'Phone number is required for OTP'],
+        default: '', 
     },
-    resetPasswordOTP: String,
-    resetPasswordOTPExpires: Date
-},
-{
+}, {
     timestamps: true,
 });
+
 const Accountmodel = mongoose.model('Account', accountSchema);
 module.exports = Accountmodel;

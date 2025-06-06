@@ -129,7 +129,7 @@ const ViewContentCreators = () => {
                       Role
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Phone
+                      Backup code
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                       Action
@@ -205,7 +205,7 @@ const TableRow = ({ item, index, onDelete }) => (
       {item.role}
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-      {item.phone || "N/A"}
+      {item.backupCode || "N/A"}
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-sm">
       <button

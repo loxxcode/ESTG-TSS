@@ -169,16 +169,15 @@ function User() {
                   >
                     Remember me
                   </label>
+                  <div className="flex justify-between ">
+                  <h2>
+                    <a href="/forgetpassword" className="text-blue-400 flex">
+                      forget password
+                    </a>
+                  </h2>
+                </div>
                 </div>
 
-                {/* <div className="text-sm">
-                  <Link
-                    to="/forgot-password"
-                    className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
-                  >
-                    Forgot password?
-                  </Link>
-                </div> */}
               </div>
             </div>
 
