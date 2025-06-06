@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Uncomment axios
+import axios from "axios";
+import { Copy } from "lucide-react";
 
 function ContentCreatorRegistration() {
   const [Form, setForm] = useState({
@@ -26,19 +27,18 @@ function ContentCreatorRegistration() {
         Form,
         { withCredentials: true }
       );
-      if (response.status === 200) {
-        console.log("Registration successful", response.data);
-        navigate("/user"); // Redirect to a success page
+
+      if (response.status === 201) {
+        // Show backup code returned by API
+        setBackupCode(response.data.backupCode);
+        setCopySuccess(false);
       }
     } catch (error) {
       if (error.response) {
-        console.error("Server responded with an error:", error.response.data);
         alert("Registration failed: " + error.response.data.message);
       } else if (error.request) {
-        console.error("No response from server. Please check your connection.");
         alert("Network error: Unable to reach the server.");
       } else {
-        console.error("Unexpected error:", error.message);
         alert("An unexpected error occurred.");
       }
     }
@@ -138,29 +138,9 @@ function ContentCreatorRegistration() {
                 />
               </div>
 
-              {/* Password Field */}
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-800 dark:text-gray-300"
-                >
-                  Password <span className="text-red-500">*</span>
-                </label>
-                <input
-                  value={Form.password}
-                  onChange={(e) =>
-                    setForm({ ...Form, password: e.target.value })
-                  }
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="••••••••"
-                />
-              </div>
+        
 
-              {/* Role Selection */}
+              {/* Role */}
               <div>
                 <label
                   htmlFor="role"
@@ -172,6 +152,8 @@ function ContentCreatorRegistration() {
                   id="role"
                   name="role"
                   required
+                  value={Form.role}
+                  onChange={(e) => setForm({ ...Form, role: e.target.value })}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select your role</option>
