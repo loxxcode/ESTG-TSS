@@ -150,6 +150,7 @@ function Update() {
               author={item.author?.username}
               description={item.description}
               updatestype={item.type}
+              fileUrl={item.fileUrl}
               onUpdate={() => handleUpdate(item._id)}
               onDelete={() => handleDelete(item._id)}
             />

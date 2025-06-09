@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Update() {
   const navigate = useNavigate();
   const [Form, setForm] = useState({
-    title: "",
-    description: "",
-    type: "",
+    title: '',
+    description: '',
+    type: '',
   });
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleBack = () => {
     navigate("/adminpanel", { state: { activeTab: 0 } });
@@ -28,29 +31,46 @@ function Update() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
 
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload_update",
-        Form,
-        { withCredentials: true }
-      );
-      console.log("Form submitted successfully:", response.data);
-      toast.success("Update submitted successfully!", {
-        position: "bottom-right",
-      });
-      navigate("/adminpanel", {
-        state: { message: "Update created successfully!" },
-      });
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("Failed to submit the update. Please try again.", {
-        position: "bottom-right",
-      });
+      // Create preview for images
+      if (selectedFile.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setPreviewUrl(reader.result as string);
+        };
+        reader.readAsDataURL(selectedFile);
+      } else {
+        // For non-image files, show a generic preview
+        setPreviewUrl(null);
+      }
     }
   };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+    setPreviewUrl(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/upload_update', Form, { withCredentials: true });
+      console.log('Form submitted successfully:', response.data);
+      toast.success('Update submitted successfully!', { position: 'bottom-right' });
+      navigate('/adminpanel', { state: { message: 'Update created successfully!' } });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Failed to submit the update. Please try again.', { position: 'bottom-right' });
+    }
+  };
+
+  const isImageFile = previewUrl && previewUrl.startsWith('data:image');
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
@@ -73,90 +93,60 @@ function Update() {
           />
         </svg>
       </button>
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg dark:bg-black text-black">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-2xl font-semibold text-gray-800">Create New Update</h3>
+        </div>
 
-      <div className="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 p-8 rounded-lg shadow-md shadow-gray-400 bg-white dark:bg-black border border-gray-200 dark:border-gray-700">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold dark:text-gray-200 text-gray-800">
-              Create New Update
-            </h1>
-            <p className="mt-2 text-sm dark:text-gray-100 text-gray-800">
-              Please fill in the details for the new update
-            </p>
-          </div>
-
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={Form.title}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  required
-                  placeholder="Enter update title"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="type"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Update Type
-                </label>
-                <select
-                  id="type"
-                  name="type"
-                  value={Form.type}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  required
-                >
-                  <option value="">Select Type</option>
-                  <option value="news">News</option>
-                  <option value="announcement">Announcement</option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={Form.description}
-                  onChange={handleChange}
-                  rows={4}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  required
-                  placeholder="Enter detailed description"
-                />
-              </div>
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                value={Form.title}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label htmlFor="updateType" className="block text-sm font-medium text-gray-700">Update Type:</label>
+              <select
+                name="type"
+                id="updateType"
+                value={Form.type}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="hidden">Select Type</option>
+                <option value="news">News</option>
+                <option value="announcement">Announcement</option>
+              </select>
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Upload Update
-              </button>
+              <label htmlFor="desc" className="block text-sm font-medium text-gray-700">Updates Description:</label>
+              <textarea
+                name="description"
+                id="desc"
+                value={Form.description}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
             </div>
-          </form>
-        </div>
+
+
+
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              Upload Updates
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
