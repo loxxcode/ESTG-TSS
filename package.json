@@ -8,7 +8,7 @@
     "Server"
   ],
   "scripts": {
-    "install:all": "cd Server && npm install && cd ../Client && npm install",
+    "install:all": "cd Server && npm install",
     "build": "cd Client && npm run build",
     "start": "cd Server && npm run dev",
     "heroku-postbuild": "npm run install:all && npm run build"
