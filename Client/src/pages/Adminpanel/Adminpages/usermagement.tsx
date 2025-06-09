@@ -116,22 +116,22 @@ const ViewContentCreators = () => {
               <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-black">
                 <thead className="bg-white dark:bg-black">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       No
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Email
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       Role
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Backup code
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
