@@ -67,7 +67,7 @@ const Contact = () => {
               Have questions or need more information? We're here to help. Reach out to us and we'll get back to you as soon as possible.
             </p>
         </AnimatedSection>
-        
+        <br /><br />
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Contact Form */}
