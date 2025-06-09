@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: estg-tss-server
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    plan: free
+
+  - type: web
+    name: estg-tss-client
+    env: node
+    buildCommand: cd Client && npm install && npm run build
+    staticPublishPath: "./Client/build"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REACT_APP_API_URL
+        value: https://estg-tss-server.onrender.com
+    plan: free
