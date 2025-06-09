@@ -3,29 +3,22 @@
   "version": "1.0.0",
   "description": "ESTG TSS - Full Stack Application",
   "private": true,
+  "workspaces": [
+    "Client",
+    "Server"
+  ],
   "scripts": {
-    "install:all": "npm run install:server && npm run install:client",
-    "install:server": "cd Server && npm install",
-    "install:client": "cd Client && npm install",
-    "build:client": "cd Client && npm run build",
-    "start:server": "cd Server && npm start",
-    "start:client": "cd Client && npm start",
-    "start": "npm-run-all --parallel start:server start:client",
-    "build": "npm run build:client",
+    "install:all": "cd Server && npm install && cd ../Client && npm install",
+    "build": "cd Client && npm run build",
+    "start": "cd Server && npm start",
     "heroku-postbuild": "npm run install:all && npm run build"
   },
-  "keywords": [
-    "estg",
-    "tss",
-    "education"
-  ],
+  "keywords": ["estg", "tss", "education"],
   "author": "Your Name",
   "license": "ISC",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
   },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5"
-  }
+  "dependencies": {}
 }
