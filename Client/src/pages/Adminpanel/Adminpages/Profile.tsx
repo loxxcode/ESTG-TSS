@@ -266,20 +266,22 @@ function Profile() {
                 </div>
  {/* Backup Code Section */}
                 <div>
-                  <label className="text-sm text-gray-500 dark:text-gray-400">Backup Code</label>
-                  <div className="mt-1 flex items-center gap-3">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm text-gray-500 dark:text-gray-400">Backup Code</label>
                     <button
                       onClick={() => setShowBackupCode(!showBackupCode)}
                       className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
                     >
                       {showBackupCode ? 'Hide' : 'Show'} Backup Code
                     </button>
-                    {showBackupCode && (
+                  </div>
+                  {showBackupCode && (
+                    <div className="mt-2">
                       <span className="font-mono text-gray-900 dark:text-white">
                         {profileData?.backupCode}
                       </span>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -155,6 +155,18 @@ const Announcement = () => {
                         {isExpanded ? 'Show Less' : 'Show More'}
                       </button>
                     )}
+                    {/* Download Option for fileUrl */}
+                    {item.fileUrl && (
+                      <a
+                        href={item.fileUrl}
+                        download={`${item.title}.pdf`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm mt-3 text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                      >
+                        📥 Download Attachment
+                      </a>
+                    )}
                     <p className="text-sm text-gray-600 text-left mt-4 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-2 hover:border-gray-600 hover:cursor-pointer rounded-lg">
                       # {item.type}
                     </p>

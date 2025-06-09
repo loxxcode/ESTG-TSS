@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
-
-function StoryCard({ title, description, author, id, updatestype, onUpdate, onDelete }) {
+function StoryCard({ title, description, author, id, updatestype, fileUrl, onUpdate, onDelete }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const descriptionLimit = 180; // Adjusted limit for truncation
+  const descriptionLimit = 180;
   const needsTruncation = description && description.length > descriptionLimit;
   const truncatedDescription = description ? description.slice(0, descriptionLimit) + '...' : '';
-  
   const displayDescription = isExpanded || !needsTruncation ? description : truncatedDescription;
 
   return (
@@ -16,7 +14,7 @@ function StoryCard({ title, description, author, id, updatestype, onUpdate, onDe
       <div className="text-xl dark:text-white font-semibold text-gray-800 mb-2">
         {title}
       </div>
-      
+
       {/* Body */}
       <div className={`text-gray-600 dark:text-white flex-grow overflow-hidden ${!isExpanded && needsTruncation ? 'line-clamp-6' : ''}`}>
         {displayDescription}
@@ -40,27 +38,33 @@ function StoryCard({ title, description, author, id, updatestype, onUpdate, onDe
         </button>
       )}
 
-      {/* Info Section and Actions (pushed to bottom) */}
+      {/* Download Option */}
+      {fileUrl && (
+        <a
+          href={fileUrl}
+          download={`${title}.pdf`} // 🔁 forces filename with .pdf
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm mt-3 text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+        >
+          📥 Download Attachment
+        </a>
+
+      )}
+
+      {/* Info Section and Actions */}
       <div className="mt-auto space-y-2">
-        {/* Info Section */}
         <div className="text-sm text-gray-500 italic dark:text-white">
           Type: {updatestype}
         </div>
         <div className="text-sm text-gray-500 italic dark:text-white">
           Written by: {author || 'Anonymous'}
         </div>
-        {/* Actions */}
         <div className="flex gap-4 pt-2">
-          <button
-            onClick={onUpdate}
-            className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
-          >
+          <button onClick={onUpdate} className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors">
             <Pencil size={16} />
           </button>
-          <button
-            onClick={onDelete}
-            className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors"
-          >
+          <button onClick={onDelete} className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg text-sm font-medium flex-1 flex items-center justify-center transition-colors">
             <Trash2 size={16} />
           </button>
         </div>
@@ -68,5 +72,4 @@ function StoryCard({ title, description, author, id, updatestype, onUpdate, onDe
     </div>
   );
 }
-
 export default StoryCard;
