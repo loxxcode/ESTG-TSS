@@ -68,7 +68,7 @@ function Update() {
       formData.append('type', form.type);
       
       if (file) {
-        formData.append('file', file);
+        formData.append('imageUrl', file);
       }
 
       const response = await axios.post(
@@ -162,7 +162,7 @@ function Update() {
               <input
                 type="file"
                 id="file"
-                name="file"
+                name="fileUrl"
                 onChange={handleFileChange}
                 className="mt-1 block w-full text-sm text-gray-500
                   file:mr-4 file:py-2 file:px-4
@@ -170,10 +170,10 @@ function Update() {
                   file:text-sm file:font-semibold
                   file:bg-blue-50 file:text-blue-700
                   hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-300"
-                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                accept=".pdf"
               />
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                PDF, DOC, DOCX, JPG, JPEG, or PNG (Max: 5MB)
+                PDF file(Max: 5MB)
               </p>
             </div>
 

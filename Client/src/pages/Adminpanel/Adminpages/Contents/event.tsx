@@ -26,7 +26,7 @@ function Event() {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    formData.append('file', image);
+    formData.append('imageUrl', image);
     try {
       const res = await axios.post('http://localhost:5000/api/upload_events', formData, { withCredentials: true });
       setUploadedData(res.data);
@@ -70,6 +70,7 @@ function Event() {
               <label htmlFor="eventImage" className="block text-sm font-medium text-gray-700">Add Image:</label>
               <input
                 type="file"
+                name="imageUrl"
                 accept=".jpg,.jpeg,.png"
                 onChange={(e) => setImage(e.target.files[0])}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"

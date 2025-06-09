@@ -1,7 +1,14 @@
 const express = require('express');
 const multer = require('multer');
 const { storage, cloudinary } = require('../cloudinaryConfig');
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'application/pdf') {
+    cb(null, true);
+  } else {
+    cb(new Error('Only PDF files are allowed!'), false);
+  }
+};
+const upload = multer({ storage, fileFilter });
 const router = express.Router();
 const updates_model = require('../models/updates_schema');
 const middleware = require("../middleware/AuthMiddleware");
@@ -37,7 +44,7 @@ router.get('/updates', middleware.ensureAuthenticated, async (req, res) => {
 });
 
 // POST new update
-router.post('/upload_update', upload.single('file'), middleware.ensureAuthenticated, async (req, res) => {
+router.post('/upload_update', upload.single('fileUrl'), middleware.ensureAuthenticated, async (req, res) => {
   try {
     const { title, description, type } = req.body;
     const fileUrl = req.file?.path;
@@ -81,8 +88,20 @@ router.get('/single_update/:id', async (req, res) => {
   }
 });
 
+// Helper to extract Cloudinary public ID from fileUrl
+function getCloudinaryPublicId(fileUrl) {
+  if (!fileUrl) return null;
+  // Example: https://res.cloudinary.com/xxx/raw/upload/v1234567890/ESTG_uploads/filename.pdf
+  // We want: ESTG_uploads/filename (without extension)
+  const urlParts = fileUrl.split('/');
+  const publicIdWithExt = urlParts[urlParts.length - 1];
+  const publicId = publicIdWithExt.split('.')[0];
+  const folder = urlParts[urlParts.length - 2];
+  return `${folder}/${publicId}`;
+}
+
 // PUT update by ID (with file replacement + Cloudinary deletion)
-router.put('/edit_update/:id', upload.single('file'), middleware.ensureAuthenticated, async (req, res) => {
+router.put('/edit_update/:id', upload.single('fileUrl'), middleware.ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
   const { title, description, type } = req.body;
   const fileUrl = req.file?.path;
@@ -100,13 +119,14 @@ router.put('/edit_update/:id', upload.single('file'), middleware.ensureAuthentic
 
     // Delete old Cloudinary file if new file uploaded
     if (fileUrl && existingUpdate.fileUrl) {
-      const parts = existingUpdate.fileUrl.split('/');
-      const publicIdWithExt = parts[parts.length - 1];
-      const publicId = publicIdWithExt.split('.')[0];
-      const folder = parts[parts.length - 2];
-      const fullPublicId = `${folder}/${publicId}`;
-
-      await cloudinary.uploader.destroy(fullPublicId);
+      const publicId = getCloudinaryPublicId(existingUpdate.fileUrl);
+      if (publicId) {
+        try {
+          await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' });
+        } catch (err) {
+          console.error('Failed to delete old file from Cloudinary:', err);
+        }
+      }
     }
 
     const updated_data = {
@@ -143,13 +163,14 @@ router.delete('/delete_update/:id', middleware.ensureAuthenticated, async (req, 
 
     // Delete Cloudinary file
     if (data.fileUrl) {
-      const parts = data.fileUrl.split('/');
-      const publicIdWithExt = parts[parts.length - 1];
-      const publicId = publicIdWithExt.split('.')[0];
-      const folder = parts[parts.length - 2];
-      const fullPublicId = `${folder}/${publicId}`;
-
-      await cloudinary.uploader.destroy(fullPublicId);
+      const publicId = getCloudinaryPublicId(data.fileUrl);
+      if (publicId) {
+        try {
+          await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' });
+        } catch (err) {
+          console.error('Failed to delete file from Cloudinary:', err);
+        }
+      }
     }
 
     return res.status(200).json({ message: "Successfully deleted update and file" });
