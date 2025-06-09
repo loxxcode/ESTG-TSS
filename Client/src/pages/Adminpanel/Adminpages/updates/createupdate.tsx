@@ -9,6 +9,7 @@ interface UpdateData {
   title: string;
   description: string;
   type: string;
+  fileUrl?: string;
 }
 
 const EditUpdate = () => {
@@ -19,7 +20,9 @@ const EditUpdate = () => {
     description: "",
     type: "",
   });
+  const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(id ? true : false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const isEditMode = Boolean(id);
 
@@ -33,6 +36,9 @@ const EditUpdate = () => {
             { withCredentials: true }
           );
           setFormData(response.data);
+          if (response.data.fileUrl) {
+            setPreviewUrl(response.data.fileUrl);
+          }
         } catch (err) {
           console.error("Error fetching update:", err);
           toast.error("Failed to load update data. Please try again.", { position: "bottom-right" });
@@ -59,32 +65,81 @@ const EditUpdate = () => {
     }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+
+      // Create preview for images
+      if (selectedFile.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setPreviewUrl(reader.result as string);
+        };
+        reader.readAsDataURL(selectedFile);
+      } else {
+        // For non-image files, show a generic preview
+        setPreviewUrl(null);
+      }
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+    setPreviewUrl(null);
+    if (isEditMode) {
+      setFormData(prev => ({ ...prev, fileUrl: '' }));
+    }
+  };
+
   const handleBack = () => {
     navigate("/adminpanel");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('title', formData.title);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('type', formData.type);
+      
+      if (file) {
+        formDataToSend.append('fileUrl', file);
+      }
+
       if (isEditMode) {
         await axios.put(
           `http://localhost:5000/api/edit_update/${id}`,
-          formData,
-          { withCredentials: true }
+          formDataToSend,
+          { 
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
         );
         navigate("/adminpanel", { state: { message: 'Update successfully updated!' } });
       } else {
-        const { _id, ...createData } = formData;
         await axios.post(
-          `http://localhost:5000/api/create_update`,
-          createData,
-          { withCredentials: true }
+          `http://localhost:5000/api/upload_update`,
+          formDataToSend,
+          { 
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
         );
         navigate("/adminpanel", { state: { message: 'Update successfully created!' } });
       }
     } catch (err) {
       console.error(isEditMode ? "Error updating update:" : "Error creating update:", err);
       toast.error(`Failed to ${isEditMode ? 'save changes' : 'create update'}. Please try again.`, { position: "bottom-right" });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -95,6 +150,8 @@ const EditUpdate = () => {
       </div>
     );
   }
+
+  const isImageFile = previewUrl && (previewUrl.startsWith('http') || previewUrl.startsWith('data:image'));
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -187,14 +244,88 @@ const EditUpdate = () => {
                   required
                 />
               </div>
+
+              <div>
+                <label
+                  htmlFor="file"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  {isEditMode ? "Update File (Optional)" : "Upload File (Optional)"}
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={handleFileChange}
+                  className="mt-1 block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-md file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100"
+                  accept=".pdf"
+                />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  PDF file (Max: 5MB)
+                </p>
+              </div>
+
+              {(previewUrl || formData.fileUrl) && (
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    File Preview
+                  </label>
+                  <div className="mt-2 p-2 border border-gray-300 dark:border-gray-600 rounded-md">
+                    {isImageFile ? (
+                      <img 
+                        src={previewUrl || formData.fileUrl} 
+                        alt="Preview" 
+                        className="max-h-40 mx-auto"
+                      />
+                    ) : (
+                      <div className="flex items-center">
+                        <svg className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div className="ml-4">
+                          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {file?.name || (formData.fileUrl ? "Uploaded File" : "No file selected")}
+                          </p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            {file?.type || (formData.fileUrl ? "Click to view/download" : "")}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleRemoveFile}
+                      className="mt-2 text-sm text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                    >
+                      Remove File
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="flex space-x-4 pt-4">
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                disabled={isLoading}
               >
-                {isEditMode ? "Save Changes" : "Create Update"}
+                {isLoading ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {isEditMode ? "Saving..." : "Creating..."}
+                  </span>
+                ) : (
+                  <span>{isEditMode ? "Save Changes" : "Create Update"}</span>
+                )}
               </button>
             </div>
           </form>
