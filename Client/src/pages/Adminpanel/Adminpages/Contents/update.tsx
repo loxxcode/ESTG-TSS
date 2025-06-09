@@ -68,7 +68,7 @@ function Update() {
       formData.append('type', form.type);
       
       if (file) {
-        formData.append('imageUrl', file);
+        formData.append('fileUrl', file);
       }
 
       const response = await axios.post(

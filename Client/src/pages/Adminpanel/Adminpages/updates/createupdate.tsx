@@ -107,7 +107,7 @@ const EditUpdate = () => {
       formDataToSend.append('type', formData.type);
       
       if (file) {
-        formDataToSend.append('file', file);
+        formDataToSend.append('fileUrl', file);
       }
 
       if (isEditMode) {
@@ -263,10 +263,10 @@ const EditUpdate = () => {
                     file:text-sm file:font-semibold
                     file:bg-blue-50 file:text-blue-700
                     hover:file:bg-blue-100"
-                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                  accept=".pdf"
                 />
                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  PDF, DOC, DOCX, JPG, JPEG, or PNG (Max: 5MB)
+                  PDF file (Max: 5MB)
                 </p>
               </div>
 
