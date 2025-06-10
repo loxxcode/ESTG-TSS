@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/layout/Navbar";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import Update from './Adminpages/updates/update';
-import Event from './Adminpages/event';
-import UserManagement from './Adminpages/usermagement';
+import Event from './Adminpages/Events/event';
+import UserManagement from './Adminpages/ContentCreater';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, X, PanelLeftOpen } from 'lucide-react';

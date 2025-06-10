@@ -22,9 +22,9 @@ import EventsDetail from "./pages/EventsDetail";
 import Adminpanel from "./pages/Adminpanel";
 
 import Update from './pages/Adminpanel/Adminpages/updates/update';
-import Event from './pages/Adminpanel/Adminpages/event';
-import Logout from './pages/Adminpanel/Adminpages/usermagement';
-import CreateEvent from './pages/Adminpanel/Adminpages/Contents/event';
+import Event from './pages/Adminpanel/Adminpages/Events/event';
+import Logout from './pages/Adminpanel/Adminpages/ContentCreater';
+import CreateEvent from './pages/Adminpanel/Adminpages/Events/CreateEvent';
 import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
 import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
 import EditEventForm from './pages/Adminpanel/Adminpages/Contents/createupdate';
