@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Card from "./Eventcards/cards";
+import Card from "./cards";
 import { Search } from "lucide-react";
 
 interface EventItem {

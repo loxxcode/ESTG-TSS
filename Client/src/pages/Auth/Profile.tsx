@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../../components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
 import { Pencil } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
