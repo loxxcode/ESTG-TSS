@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import Update from './Adminpages/updates/update';
 import Event from './Adminpages/Events/event';
-import UserManagement from './Adminpages/ContentCreater';
+import ContentCreater from './Adminpages/Contents/ContentCreater';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, X, PanelLeftOpen } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
-import Profile from './Adminpages/Profile';
+import Profile from '../Auth/Profile';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -95,7 +95,7 @@ useEffect(() => {
   const tabs = [
     { name: 'Updates', component: <Update /> },
     { name: 'Events', component: <Event /> },
-    ...(isAdmin ? [{ name: 'Content Creators', component: <UserManagement /> }] : []),
+    ...(isAdmin ? [{ name: 'Content Creators', component: <ContentCreater /> }] : []),
     ...(isProfileOpen ? [{ name: 'Profile', component: <Profile /> }] : []),
   ];
 

@@ -23,7 +23,7 @@ import Adminpanel from "./pages/Adminpanel";
 
 import Update from './pages/Adminpanel/Adminpages/updates/update';
 import Event from './pages/Adminpanel/Adminpages/Events/event';
-import Logout from './pages/Adminpanel/Adminpages/ContentCreater';
+import Logout from './pages/Adminpanel/Adminpages/Contents/ContentCreater';
 import CreateEvent from './pages/Adminpanel/Adminpages/Events/CreateEvent';
 import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
 import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
