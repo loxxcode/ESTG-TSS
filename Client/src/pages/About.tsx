@@ -14,14 +14,15 @@ const About = () => {
       <Navbar />
 
       {/* Page Header */}
-      <div className="md:pt-10 text-center bg-estg-gray-light dark:bg-black">
-        <div className="py-8 text-center px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-black dark:text-white">About Our School</h1>
-            <p className="text-black max-w-2xl mx-auto mb-12 dark:text-white text-sm sm:text-base">
-              Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
-            </p>
-          </AnimatedSection>
+      <div className="md:pt-10 pt-20 text-center bg-estg-gray-light dark:bg-black">
+        <div className="py-12 text-center px-4 sm:px-6 lg:px-8">
+        <AnimatedSection>
+  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">About Our School</h1>
+  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+  Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
+  </p>
+</AnimatedSection>
+    
         </div>
       </div>
 

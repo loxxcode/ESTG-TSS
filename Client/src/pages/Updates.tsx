@@ -61,7 +61,7 @@ const Announcement = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <section className="py-16 text-center">
+      <section className="py-20 text-center">
        
         <AnimatedSection>
   <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">School Updates</h1>
