@@ -48,7 +48,7 @@ const News = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="py-16 text-center">
+      <section className="py-20 text-center">
       <AnimatedSection>
   <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h1>
   <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
