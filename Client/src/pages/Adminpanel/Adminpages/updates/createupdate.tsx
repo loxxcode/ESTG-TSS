@@ -4,6 +4,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 interface UpdateData {
   _id?: string;
   title: string;
@@ -32,7 +42,7 @@ const EditUpdate = () => {
       const fetchUpdate = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/single_update/${id}`,
+            `${API_URL}/single_update/${id}`,
             { withCredentials: true }
           );
           setFormData(response.data);
@@ -114,7 +124,7 @@ const EditUpdate = () => {
 
       if (isEditMode) {
         await axios.put(
-          `http://localhost:5000/api/edit_update/${id}`,
+          `${API_URL}/edit_update/${id}`,
           formDataToSend,
           { 
             withCredentials: true,
@@ -128,7 +138,7 @@ const EditUpdate = () => {
         });
       } else {
         await axios.post(
-          `http://localhost:5000/api/upload_update`,
+          `${API_URL}/upload_update`,
           formDataToSend,
           { 
             withCredentials: true,

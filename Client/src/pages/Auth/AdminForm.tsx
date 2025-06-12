@@ -2,6 +2,16 @@ import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 function AdminForm() {
   const navigate = useNavigate();
 
@@ -25,7 +35,7 @@ function AdminForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/account/admin/login",
+        `${API_URL}/account/admin/login`,
         {
           email: Form.email,
           password: Form.password,
@@ -36,6 +46,9 @@ function AdminForm() {
       );
 
       if (response.status === 200) {
+        localStorage.setItem("username", response.data.user.username);
+        localStorage.setItem("role", response.data.user.role);
+        localStorage.setItem("email", response.data.user.email);
         console.log("Login successful", response.data);
         navigate("/adminpanel");
         // Redirect or handle success

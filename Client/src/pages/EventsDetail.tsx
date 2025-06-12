@@ -6,6 +6,16 @@ import Footer from "@/components/layout/Footer";
 import axios from "axios";
 import NotFound from "./NotFound";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 interface NewsItem {
   id: number;
   title: string;
@@ -28,7 +38,7 @@ export default function NewsDetailPage() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/single_event/${id}`);
+        const response = await axios.get(`${API_URL}/single_event/${id}`);
         setData(response.data);
         console.log("API response:", response.data);
       } catch (error) {
@@ -45,7 +55,7 @@ export default function NewsDetailPage() {
   useEffect(() => {
     const fetchAllNews = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/all_events");
+        const response = await axios.get(`${API_URL}/all_events`);
         const filtered = response.data.data.filter((item: NewsItem) => item.id !== Number(id));
         setOtherNews(filtered);
       } catch (error) {

@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -17,7 +27,7 @@ function ForgotPassword() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/account/reset-with-backup-code",
+        `${API_URL}/account/reset-with-backup-code`,
         { email, backupCode },
         { withCredentials: true }
       );

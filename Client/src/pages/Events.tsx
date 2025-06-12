@@ -5,6 +5,16 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 const News = () => {
   const navigate = useNavigate();
   const [visibleNewsCount, setVisibleNewsCount] = useState(6);
@@ -18,7 +28,7 @@ const News = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/all_events");
+        const response = await axios.get(`${API_URL}/all_events`);
         setData(response.data.data);
       } catch (error) {
         console.error('Error fetching stories:', error);

@@ -4,6 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 const ViewContentCreators = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +21,7 @@ const ViewContentCreators = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/account/creators", {
+      .get(`${API_URL}/account/creators`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -45,7 +55,7 @@ const ViewContentCreators = () => {
               toast.dismiss();
               try {
                 const response = await axios.delete(
-                  `http://localhost:5000/api/account/creators/${id}`,
+                  `${API_URL}/account/creators/${id}`,
                   {
                     withCredentials: true,
                   }

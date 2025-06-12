@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
-import { Button } from '../ui/button';
 import ThemeToggle from '../ui/ThemeToggle';
 import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -34,7 +43,7 @@ const Navbar = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/account/dashboard", {
+        const response = await axios.get(`${API_URL}/account/dashboard`, {
           withCredentials: true,
         });
         if (response.data.loggedIn) {

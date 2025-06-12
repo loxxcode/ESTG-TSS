@@ -5,6 +5,16 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import axios from 'axios';
 import { Search } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 const Announcement = () => {
   const [visibleNewsCount, setVisibleNewsCount] = useState(6);
   const [expandedItems, setExpandedItems] = useState({});
@@ -36,7 +46,7 @@ const Announcement = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/all_updates');
+        const response = await axios.get(`${API_URL}/all_updates`);
         setData(response.data.data);
         setFiltered(response.data.data);
       } catch (error) {

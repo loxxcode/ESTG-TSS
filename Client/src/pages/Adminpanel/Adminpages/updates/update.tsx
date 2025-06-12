@@ -6,6 +6,16 @@ import { Search } from 'lucide-react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 function Update() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -16,7 +26,7 @@ function Update() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/updates", {
+      const response = await axios.get(`${API_URL}/updates`, {
         withCredentials: true,
       });
       setData(response.data.data);
@@ -45,7 +55,7 @@ function Update() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete_update/${id}`, {
+      await axios.delete(`${API_URL}/delete_update/${id}`, {
         withCredentials: true,
       });
       toast.success('Update deleted successfully!', { position: "bottom-right" });

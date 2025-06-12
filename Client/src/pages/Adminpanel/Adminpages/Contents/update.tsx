@@ -4,6 +4,17 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
+
 function Update() {
   const navigate = useNavigate();
   const [Form, setForm] = useState({
@@ -60,7 +71,7 @@ function Update() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/upload_update', Form, { withCredentials: true });
+      const response = await axios.post(`${API_URL}/upload_update`, Form, { withCredentials: true });
       console.log('Form submitted successfully:', response.data);
       toast.success('Update submitted successfully!', { position: 'bottom-right' });
       navigate('/adminpanel', { state: { message: 'Update created successfully!' } });

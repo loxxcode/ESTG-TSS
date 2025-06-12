@@ -6,6 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 import Card from "./cards";
 import { Search } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
+
 interface EventItem {
   _id: string;
   title: string;
@@ -26,7 +37,7 @@ function Event() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/events", {
+      const response = await axios.get(`${API_URL}/events`, {
         withCredentials: true,
       });
       setData(response.data.data);
@@ -55,7 +66,7 @@ function Event() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete_event/${id}`, {
+      await axios.delete(`${API_URL}/delete_event/${id}`, {
         withCredentials: true,
       });
       toast.success("Event deleted successfully!", {

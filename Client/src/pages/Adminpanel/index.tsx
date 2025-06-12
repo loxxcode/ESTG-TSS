@@ -11,6 +11,16 @@ import Profile from './Adminpages/Profile';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 interface DashboardData {
   user: string;
   email: string;
@@ -43,7 +53,7 @@ function Adminpanel() {
   const fetchDashboardData = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:5000/api/account/dashboard', {
+      const response = await axios.get(`${API_URL}/account/dashboard`, {
         withCredentials: true
       });
       setDashboardData(response.data);
@@ -72,7 +82,7 @@ useEffect(() => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/account/logout', { withCredentials: true });
+      await axios.get(`${API_URL}/account/logout`, { withCredentials: true });
       navigate('/');
       localStorage.removeItem("username")
       localStorage.removeItem("role")
