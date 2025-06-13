@@ -3,6 +3,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import Future2 from "../assets/event_2.jfif";
+import { Helmet } from 'react-helmet';
 
 const About = () => {
   useEffect(() => {
@@ -11,18 +12,35 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Panel | ESTG-TSS</title>
+        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
 
       {/* Page Header */}
       <div className="md:pt-10 pt-20 text-center bg-estg-gray-light dark:bg-black">
         <div className="py-12 text-center px-4 sm:px-6 lg:px-8">
-        <AnimatedSection>
-  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">About Our School</h1>
-  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-  Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
-  </p>
-</AnimatedSection>
-    
+          <AnimatedSection>
+            <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">About Our School</h1>
+            <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+              Learn about our history, mission, values, and the dedicated team that makes ESTG a leading educational institution.
+            </p>
+          </AnimatedSection>
+
         </div>
       </div>
 

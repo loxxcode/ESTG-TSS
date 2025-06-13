@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from 'react-helmet';
 interface CardProps {
   id: string;
   title: string;
@@ -40,10 +40,26 @@ function Card({
 
   return (
     <div
-      className={`max-w-md mx-auto bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${
-        isExpanded ? "h-auto" : "h-[330px]"
-      } overflow-hidden`}
+      className={`max-w-md mx-auto bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-4 flex flex-col transition-all duration-300 ${isExpanded ? "h-auto" : "h-[330px]"
+        } overflow-hidden`}
     >
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Panel | ESTG-TSS</title>
+        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <img
         src={imageUrl || "https://via.placeholder.com/150"}
         alt="Event"
@@ -55,9 +71,8 @@ function Card({
       </div>
 
       <div
-        className={`text-gray-600 dark:text-gray-300 text-sm mb-1 ${
-          !isExpanded ? "line-clamp-4" : ""
-        } overflow-hidden`}
+        className={`text-gray-600 dark:text-gray-300 text-sm mb-1 ${!isExpanded ? "line-clamp-4" : ""
+          } overflow-hidden`}
       >
         {shortDescription}
       </div>

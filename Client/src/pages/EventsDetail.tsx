@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
 import axios from "axios";
 import NotFound from "./NotFound";
+import { Helmet } from "react-helmet";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -75,17 +76,35 @@ export default function NewsDetailPage() {
   if (!data) return <NotFound />
 
   return (
+
     <section className="py-16 px-6">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Panel | ESTG-TSS</title>
+        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
       <div className="max-w-4xl mt-10 mb-20 mx-auto">
         <h1 className="text-4xl font-bold mb-2 uppercase">{data.title}</h1>
         <img src={data.imageUrl}
           alt={data.title} className="w-full rounded-lg mb-6" />
         <p className="text-sm text-gray-800 mb-2">{new Date(data.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}</p>
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}</p>
         <p className="text-gray-700">{data.description}</p>
 
       </div>
@@ -101,11 +120,11 @@ export default function NewsDetailPage() {
               <img src={item.imageUrl || Future} alt={item.title} className="h-48 w-full object-cover" />
               <div className="p-4">
                 <p className="text-sm text-gray-800">
-                 {new Date(item.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                  {new Date(item.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </p>
                 <h3 className="text-lg font-bold mt-1 text-gray-400 uppercase">{item.title}</h3>
               </div>

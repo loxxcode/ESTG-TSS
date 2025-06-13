@@ -4,6 +4,7 @@ import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -46,15 +47,32 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Panel | ESTG-TSS</title>
+        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
 
       <section className="py-20 text-center">
-      <AnimatedSection>
-  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h1>
-  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-    Join us for exciting school activities, workshops, and celebrations! Stay updated on upcoming events and mark your calendars—we can't wait to see you there.
-  </p>
-</AnimatedSection>
+        <AnimatedSection>
+          <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h1>
+          <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+            Join us for exciting school activities, workshops, and celebrations! Stay updated on upcoming events and mark your calendars—we can't wait to see you there.
+          </p>
+        </AnimatedSection>
 
         {/* Search bar */}
         <div className="max-w-md mx-auto mb-10 px-6">

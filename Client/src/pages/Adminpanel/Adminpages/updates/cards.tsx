@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 function StoryCard({ title, description, author, id, updatestype, fileUrl, onUpdate, onDelete }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -10,6 +11,23 @@ function StoryCard({ title, description, author, id, updatestype, fileUrl, onUpd
 
   return (
     <div className={`w-full bg-estg-gray-light dark:bg-black border border-gray-200 rounded-2xl shadow-md p-6 space-y-2 transition-all duration-300 flex flex-col justify-between ${!isExpanded ? 'h-[430px]' : 'h-auto'}`}>
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+              <title>Admin Panel | ESTG-TSS</title>
+              <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+      
+              {/* Open Graph Meta Tags */}
+              <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+              <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+              <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+              <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      
+              {/* Twitter Card Meta Tags */}
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+              <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+              <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+            </Helmet>
       {/* Header */}
       <div className="text-xl dark:text-white font-semibold text-gray-800 mb-2">
         {title}

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -35,7 +36,7 @@ function Profile() {
   const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [newEmail, setNewEmail] = useState('');
   const [newUsername, setNewUsername] = useState('');
-  
+
   const [showBackupCode, setShowBackupCode] = useState(false);
 
   const [isEditingPassword, setIsEditingPassword] = useState(false);
@@ -91,18 +92,35 @@ function Profile() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 mt-20">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Panel | ESTG-TSS</title>
+        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <div className="bg-white dark:bg-black dark:shadow-gray-800 rounded-lg shadow-lg p-6">
         <div className="flex flex-col items-center">
           <Avatar className="h-24 w-24 mb-4">
-            <AvatarImage 
-              src={profileData?.avatar || ''} 
-              alt={profileData?.user || 'User'} 
+            <AvatarImage
+              src={profileData?.avatar || ''}
+              alt={profileData?.user || 'User'}
             />
             <AvatarFallback>
               {profileData?.user?.charAt(0) || 'U'}
             </AvatarFallback>
           </Avatar>
-          
+
           <h2 className="text-2xl font-bold mb-1 dark:text-white">
             {profileData?.user || localStorage.getItem("username")}
           </h2>
@@ -140,7 +158,7 @@ function Profile() {
                       <button
                         onClick={async () => {
                           try {
-                            await axios.put(`${API_URL}/account/updateprofile`, 
+                            await axios.put(`${API_URL}/account/updateprofile`,
                               { email: newEmail },
                               { withCredentials: true }
                             );
@@ -187,7 +205,7 @@ function Profile() {
                       <button
                         onClick={async () => {
                           try {
-                            await axios.put(`${API_URL}/account/updateprofile`, 
+                            await axios.put(`${API_URL}/account/updateprofile`,
                               { username: newUsername },
                               { withCredentials: true }
                             );
@@ -248,7 +266,7 @@ function Profile() {
                               return;
                             }
                             try {
-                              await axios.put(`${API_URL}/account/updateprofile`, 
+                              await axios.put(`${API_URL}/account/updateprofile`,
                                 { password: newPassword },
                                 { withCredentials: true }
                               );
@@ -282,7 +300,7 @@ function Profile() {
                     <p className="text-gray-500 dark:text-gray-400">********</p>
                   )}
                 </div>
- {/* Backup Code Section */}
+                {/* Backup Code Section */}
                 <div>
                   <div className="flex items-center justify-between">
                     <label className="text-sm text-gray-500 dark:text-gray-400">Backup Code</label>
