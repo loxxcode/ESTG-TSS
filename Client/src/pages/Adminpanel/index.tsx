@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import Update from './Adminpages/updates/update';
-import Event from './Adminpages/event';
-import UserManagement from './Adminpages/usermagement';
+import Event from './Adminpages/Events/event';
+import ContentCreater from './Adminpages/Contents/ContentCreater';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, X, PanelLeftOpen } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
-import Profile from './Adminpages/Profile';
+import Profile from '../Auth/Profile';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 interface DashboardData {
   user: string;
@@ -43,7 +53,7 @@ function Adminpanel() {
   const fetchDashboardData = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:5000/api/account/dashboard', {
+      const response = await axios.get(`${API_URL}/account/dashboard`, {
         withCredentials: true
       });
       setDashboardData(response.data);
@@ -72,7 +82,7 @@ useEffect(() => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/account/logout', { withCredentials: true });
+      await axios.get(`${API_URL}/account/logout`, { withCredentials: true });
       navigate('/');
       localStorage.removeItem("username")
       localStorage.removeItem("role")
@@ -85,7 +95,7 @@ useEffect(() => {
   const tabs = [
     { name: 'Updates', component: <Update /> },
     { name: 'Events', component: <Event /> },
-    ...(isAdmin ? [{ name: 'Content Creators', component: <UserManagement /> }] : []),
+    ...(isAdmin ? [{ name: 'Content Creators', component: <ContentCreater /> }] : []),
     ...(isProfileOpen ? [{ name: 'Profile', component: <Profile /> }] : []),
   ];
 

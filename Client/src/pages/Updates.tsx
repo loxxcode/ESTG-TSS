@@ -5,6 +5,16 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import axios from 'axios';
 import { Search } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 const Announcement = () => {
   const [visibleNewsCount, setVisibleNewsCount] = useState(6);
   const [expandedItems, setExpandedItems] = useState({});
@@ -36,7 +46,7 @@ const Announcement = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/all_updates');
+        const response = await axios.get(`${API_URL}/all_updates`);
         setData(response.data.data);
         setFiltered(response.data.data);
       } catch (error) {
@@ -51,10 +61,10 @@ const Announcement = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <section className="py-16 text-center">
+      <section className="py-20 text-center">
        
         <AnimatedSection>
-  <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">SCHOOL UPDATES</h2>
+  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">School Updates</h1>
   <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
     Stay informed with the latest news, events, and achievements from our school community. Check back regularly for important announcements and exciting developments in our learning journey together.
   </p>
@@ -134,9 +144,9 @@ const Announcement = () => {
                     key={item._id}
                     className="group w-auto transition-all duration-300 ease-in-out p-6 mb-6 dark:bg-gray-900 dark:text-gray-100 rounded-2xl shadow-lg hover:shadow-xl flex flex-col items-start text-left justify-between"
                   >
-                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 uppercase">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 uppercase">
                       {item.title}
-                    </h1>
+                    </h2>
                     <p className="text-sm text-gray-800 mb-2 dark:text-gray-300">
                       {new Date(item.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',

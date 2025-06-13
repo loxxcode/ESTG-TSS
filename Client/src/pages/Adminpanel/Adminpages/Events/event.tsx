@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Card from "./Eventcards/cards";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Card from "./cards";
 import { Search } from "lucide-react";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 
 interface EventItem {
   _id: string;
@@ -20,17 +31,21 @@ function Event() {
   const [data, setData] = useState<EventItem[]>([]);
   const [filtered, setFiltered] = useState<EventItem[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const fetchData = async () => {
+    setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/events", {
+      const response = await axios.get(`${API_URL}/events`, {
         withCredentials: true,
       });
       setData(response.data.data);
       setFiltered(response.data.data);
     } catch (error) {
       console.error("Error fetching events:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,14 +66,18 @@ function Event() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete_event/${id}`, {
+      await axios.delete(`${API_URL}/delete_event/${id}`, {
         withCredentials: true,
       });
-      toast.success("Event deleted successfully!", { position: "bottom-right" });
+      toast.success("Event deleted successfully!", {
+        position: "bottom-right",
+      });
       fetchData(); // Refresh data after delete
     } catch (error) {
       console.error("Error deleting event:", error);
-      toast.error("Failed to delete the event. Please try again.", { position: "bottom-right" });
+      toast.error("Failed to delete the event. Please try again.", {
+        position: "bottom-right",
+      });
     }
   };
 
@@ -89,7 +108,23 @@ function Event() {
         Event Cards
       </h1>
 
-      {data.length === 0 ? (
+      {loading ? (
+        // Loading state
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+          {[...Array(4)].map((_, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 animate-pulse"
+            >
+              <div className="h-40 bg-gray-300 dark:bg-gray-700 rounded-md mb-4"></div>
+              <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded mb-3 w-3/4"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2 w-full"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2 w-5/6"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      ) : data.length === 0 ? (
         // No events in DB
         <div className="col-span-full flex flex-col items-center justify-center text-center py-20 bg-white dark:bg-gray-800 rounded-lg shadow-md">
           <svg
@@ -109,8 +144,7 @@ function Event() {
             No Events Available
           </h2>
           <p className="text-gray-500 dark:text-gray-400 max-w-md">
-            You haven't added any events yet. Click "Add Event" to get
-            started.
+            You haven't added any events yet. Click "Add Event" to get started.
           </p>
         </div>
       ) : searchTerm !== "" && filtered.length === 0 ? (

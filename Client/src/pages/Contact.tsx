@@ -2,8 +2,9 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+
 import AnimatedSection from '../components/ui/AnimatedSection';
-import Contact from '../components/home/Contact';
+import ContactForm from '../components/home/Contact';
 
 const ContactPage = () => {
   useEffect(() => {
@@ -14,26 +15,24 @@ const ContactPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Page Header */}
-      {/* <div className="pt-32 pb-16 md:pt-40 md:pb-20 bg-estg-gray-light dark:bg-black">
-        <div className="container px-4">
-          <AnimatedSection animation="slide-up" className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 dark:text-white">
-              Contact Us
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300">
-              Get in touch with our team. We're here to answer your questions and provide the information you need.
-            </p>
-          </AnimatedSection>
-        </div>
-      </div>
-       */}
-      {/* Contact Form Component */}
-      <Contact />
       
+      {/* Contact Form Component */}
+      {/* <div className="py-16 md:py-20"> */}
+        <div className="container px-4">
+          <ContactForm />
+        </div>
+      {/* </div> */}
       <Footer />
     </div>
   );
 };
 
 export default ContactPage;
+//       <Contact />
+      
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default ContactPage;

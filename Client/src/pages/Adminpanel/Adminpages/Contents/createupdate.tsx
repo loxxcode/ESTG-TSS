@@ -4,6 +4,16 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 interface EventData {
   _id: string;
   title: string;
@@ -37,7 +47,7 @@ const EditEventForm = () => {
       const fetchEvent = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/events/${id}`,
+            `${API_URL}/events/${id}`,
             { withCredentials: true }
           );
           setFormData(response.data.data);
@@ -77,7 +87,7 @@ const EditEventForm = () => {
       }
 
       await axios.put(
-        `http://localhost:5000/api/update_event/${id}`,
+        `${API_URL}/update_event/${id}`,
         formDataToSend,
         { 
           withCredentials: true,

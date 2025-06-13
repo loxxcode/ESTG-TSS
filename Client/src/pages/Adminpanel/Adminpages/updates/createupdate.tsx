@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 interface UpdateData {
   _id?: string;
@@ -32,7 +42,7 @@ const EditUpdate = () => {
       const fetchUpdate = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/single_update/${id}`,
+            `${API_URL}/single_update/${id}`,
             { withCredentials: true }
           );
           setFormData(response.data);
@@ -41,7 +51,9 @@ const EditUpdate = () => {
           }
         } catch (err) {
           console.error("Error fetching update:", err);
-          toast.error("Failed to load update data. Please try again.", { position: "bottom-right" });
+          toast.error("Failed to load update data. Please try again.", {
+            position: "bottom-right",
+          });
         } finally {
           setIsLoading(false);
         }
@@ -112,7 +124,7 @@ const EditUpdate = () => {
 
       if (isEditMode) {
         await axios.put(
-          `http://localhost:5000/api/edit_update/${id}`,
+          `${API_URL}/edit_update/${id}`,
           formDataToSend,
           { 
             withCredentials: true,
@@ -121,10 +133,12 @@ const EditUpdate = () => {
             }
           }
         );
-        navigate("/adminpanel", { state: { message: 'Update successfully updated!' } });
+        navigate("/adminpanel", {
+          state: { message: "Update successfully updated!" },
+        });
       } else {
         await axios.post(
-          `http://localhost:5000/api/upload_update`,
+          `${API_URL}/upload_update`,
           formDataToSend,
           { 
             withCredentials: true,
@@ -133,20 +147,20 @@ const EditUpdate = () => {
             }
           }
         );
-        navigate("/adminpanel", { state: { message: 'Update successfully created!' } });
+        navigate("/adminpanel", {
+          state: { message: "Update successfully created!" },
+        });
       }
     } catch (err) {
       console.error(isEditMode ? "Error updating update:" : "Error creating update:", err);
       toast.error(`Failed to ${isEditMode ? 'save changes' : 'create update'}. Please try again.`, { position: "bottom-right" });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-xl dark:text-gray-200">Loading...</div>
       </div>
     );
   }
@@ -154,10 +168,10 @@ const EditUpdate = () => {
   const isImageFile = previewUrl && (previewUrl.startsWith('http') || previewUrl.startsWith('data:image'));
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
       <button
         onClick={handleBack}
-        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full z-10"
+        className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +196,9 @@ const EditUpdate = () => {
               {isEditMode ? "Edit Update" : "Create New Update"}
             </h1>
             <p className="mt-2 text-sm dark:text-gray-100 text-gray-800">
-              {isEditMode ? "Please update the details below" : "Please fill in the details for the new update"}
+              {isEditMode
+                ? "Please update the details below"
+                : "Please fill in the details for the new update"}
             </p>
           </div>
 
@@ -203,6 +219,7 @@ const EditUpdate = () => {
                   onChange={handleChange}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   required
+                  placeholder="Enter update title"
                 />
               </div>
 
@@ -224,6 +241,7 @@ const EditUpdate = () => {
                   <option value="">Select a type</option>
                   <option value="news">News</option>
                   <option value="announcement">Announcement</option>
+                  <option value="update">Update</option>
                 </select>
               </div>
 
@@ -242,6 +260,7 @@ const EditUpdate = () => {
                   rows={4}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   required
+                  placeholder="Enter detailed description"
                 />
               </div>
 
@@ -309,7 +328,7 @@ const EditUpdate = () => {
               )}
             </div>
 
-            <div className="flex space-x-4 pt-4">
+            <div>
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

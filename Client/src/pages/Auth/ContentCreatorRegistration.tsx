@@ -3,6 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Copy } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 function ContentCreatorRegistration() {
   const [Form, setForm] = useState({
     username: "",
@@ -22,7 +32,7 @@ function ContentCreatorRegistration() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/account/creator/register",
+        `${API_URL}/account/creator/register`,
         Form,
         { withCredentials: true }
       );

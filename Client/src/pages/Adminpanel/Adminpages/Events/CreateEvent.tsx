@@ -4,6 +4,17 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
+
 function Event() {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
@@ -28,7 +39,7 @@ function Event() {
     formData.append('description', description);
     formData.append('imageUrl', image);
     try {
-      const res = await axios.post('http://localhost:5000/api/upload_events', formData, { withCredentials: true });
+      const res = await axios.post(`${API_URL}/upload_events`, formData, { withCredentials: true });
       setUploadedData(res.data);
       toast.success('Event created successfully!', { position: "bottom-right" });
       navigate('/adminpanel', { state: { activeTab: 1 } });

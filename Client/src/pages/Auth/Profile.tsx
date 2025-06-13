@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../../components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
 import { Pencil } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 interface ProfileData {
   user: string;
@@ -35,13 +45,21 @@ function Profile() {
   const fetchProfileData = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:5000/api/account/dashboard', {
-        withCredentials: true
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API_URL}/account/dashboard`, {
+        withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       setProfileData(response.data);
     } catch (err) {
       setError('Failed to fetch profile data');
       console.error('Profile data fetch error:', err);
+      if (err.response?.status === 401) {
+        localStorage.clear();
+        navigate('/login');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -53,7 +71,7 @@ function Profile() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/account/logout', { withCredentials: true });
+      await axios.get(`${API_URL}/account/logout`, { withCredentials: true });
       localStorage.removeItem("username");
       localStorage.removeItem("role");
       localStorage.removeItem("email");
@@ -122,7 +140,7 @@ function Profile() {
                       <button
                         onClick={async () => {
                           try {
-                            await axios.put('http://localhost:5000/api/account/updateprofile', 
+                            await axios.put(`${API_URL}/account/updateprofile`, 
                               { email: newEmail },
                               { withCredentials: true }
                             );
@@ -169,7 +187,7 @@ function Profile() {
                       <button
                         onClick={async () => {
                           try {
-                            await axios.put('http://localhost:5000/api/account/updateprofile', 
+                            await axios.put(`${API_URL}/account/updateprofile`, 
                               { username: newUsername },
                               { withCredentials: true }
                             );
@@ -230,7 +248,7 @@ function Profile() {
                               return;
                             }
                             try {
-                              await axios.put('http://localhost:5000/api/account/updateprofile', 
+                              await axios.put(`${API_URL}/account/updateprofile`, 
                                 { password: newPassword },
                                 { withCredentials: true }
                               );

@@ -4,6 +4,16 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 function User() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +43,7 @@ function User() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/account/creator/login",
+        `${API_URL}/account/creator/login`,
         {
           email: Form.email,
           password: Form.password,

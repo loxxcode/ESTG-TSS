@@ -5,6 +5,16 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 const News = () => {
   const navigate = useNavigate();
   const [visibleNewsCount, setVisibleNewsCount] = useState(6);
@@ -18,7 +28,7 @@ const News = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/all_events");
+        const response = await axios.get(`${API_URL}/all_events`);
         setData(response.data.data);
       } catch (error) {
         console.error('Error fetching stories:', error);
@@ -38,9 +48,9 @@ const News = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="py-16 text-center">
+      <section className="py-20 text-center">
       <AnimatedSection>
-  <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h2>
+  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">Upcoming Events</h1>
   <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
     Join us for exciting school activities, workshops, and celebrations! Stay updated on upcoming events and mark your calendars—we can't wait to see you there.
   </p>
@@ -64,7 +74,7 @@ const News = () => {
                 <div
                   key={news._id}
                   className="rounded-sm border overflow-hidden shadow-md hover:shadow-xl transition duration-300"
-                  onClick={() => navigate(`/news/${news._id}`)}
+                  onClick={() => navigate(`/events/${news._id}`)}
                 >
                   <div className="relative h-[300px]">
                     <img
