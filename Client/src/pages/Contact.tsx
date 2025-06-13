@@ -28,11 +28,4 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-//       <Contact />
-      
-//       <Footer />
-//     </div>
-//   );
-// };
 
-// export default ContactPage;
