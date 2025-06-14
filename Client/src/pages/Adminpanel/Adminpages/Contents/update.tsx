@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Helmet } from 'react-helmet';  
 const API_URL = import.meta.env.VITE_API_URL;
 
 interface ImportMetaEnv {
@@ -85,6 +85,23 @@ function Update() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Content Updates | ESTG-TSS</title>
+        <meta key="description" name="description" content="Manage and review all content updates for ESTG-TSS. Use this admin panel to organize, edit, or delete content updates and keep the school community informed." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Content Updates | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Access and manage all content updates for ESTG-TSS from the admin panel. Organize and update content easily." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/content-updates" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Content Updates | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Manage and organize all content updates for ESTG-TSS from the admin panel. Keep your content up to date." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <button
         onClick={handleBack}
         className="absolute top-4 left-4 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"

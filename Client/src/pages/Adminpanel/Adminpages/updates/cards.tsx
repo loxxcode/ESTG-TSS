@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 function StoryCard({ title, description, author, id, updatestype, fileUrl, onUpdate, onDelete }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -10,6 +11,23 @@ function StoryCard({ title, description, author, id, updatestype, fileUrl, onUpd
 
   return (
     <div className={`w-full bg-estg-gray-light dark:bg-black border border-gray-200 rounded-2xl shadow-md p-6 space-y-2 transition-all duration-300 flex flex-col justify-between ${!isExpanded ? 'h-[430px]' : 'h-auto'}`}>
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Update Cards | ESTG-TSS</title>
+        <meta key="description" name="description" content="View, edit, and manage all update cards for ESTG-TSS. This admin panel component allows you to efficiently organize and maintain school announcements and updates." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Update Cards | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Manage and organize update cards for ESTG-TSS announcements and news in the admin panel." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/update-cards" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Update Cards | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Easily manage and organize update cards for ESTG-TSS announcements and news from the admin panel." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       {/* Header */}
       <div className="text-xl dark:text-white font-semibold text-gray-800 mb-2">
         {title}

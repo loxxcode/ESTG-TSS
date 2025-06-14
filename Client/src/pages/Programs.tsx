@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import Elc from "../assets/electrical2022.jpg";
 import Sod from "../assets/estg_image_5.jpg";
+import { Helmet } from "react-helmet";
 
 const Programs = () => {
   useEffect(() => {
@@ -18,6 +19,23 @@ const Programs = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Programs | ESTG-TSS</title>
+        <meta key="description" name="description" content="Explore the academic programs offered at ESTG-TSS, including Electrical Technology and Software Development. Find the right program to launch your career." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Programs | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Discover a range of academic programs at ESTG-TSS designed to prepare students for success in engineering and technology fields." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/programs" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Programs | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Learn about the academic programs at ESTG-TSS, including hands-on training and industry-relevant coursework." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
       
       {/* Page Header */}
@@ -115,4 +133,4 @@ const Programs = () => {
   );
 };
 
-export default Programs;  
+export default Programs;

@@ -5,6 +5,7 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import Elysee from "../assets/elysee.jpg";
 import Etianee from "../assets/etianne.jpg";
 import Marthe from "../assets/marthe.jpg";
+import { Helmet } from 'react-helmet';
 
 const Administrative = () => {
   useEffect(() => {
@@ -13,6 +14,23 @@ const Administrative = () => {
 
   return (
     <div className="min-h-screen">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Administrative | ESTG-TSS</title>
+        <meta key="description" name="description" content="Meet the dedicated administrative team at ESTG-TSS. Learn about our leadership, their vision, and commitment to student success and school excellence." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Administrative | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Discover the leadership and administrative staff at ESTG-TSS, committed to fostering a vibrant and supportive educational environment." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/administrative" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Administrative | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Meet the ESTG-TSS administrative team and learn about their vision for academic and community excellence." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
 
       {/* Page Header */}

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Card from "./cards";
 import { Search } from "lucide-react";
+import { Helmet } from 'react-helmet';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -83,6 +84,23 @@ function Event() {
 
   return (
     <div className="p-6 mt-5 bg-gray-100 dark:bg-black min-h-screen">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Admin Events | ESTG-TSS</title>
+        <meta key="description" name="description" content="Manage and review all school events and activities from the ESTG-TSS admin panel. Keep your school community informed and organized with up-to-date event management." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Admin Events | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Access and manage the latest school events and activities from the ESTG-TSS admin panel." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/events" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Admin Events | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Stay up to date and manage all school events and activities from the ESTG-TSS admin panel." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <button
           onClick={() => navigate("/createevent")}

@@ -4,6 +4,7 @@ import Update from './Adminpages/updates/update';
 import Event from './Adminpages/Events/event';
 import ContentCreater from './Adminpages/Contents/ContentCreater';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { Menu, X, PanelLeftOpen } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
@@ -45,33 +46,33 @@ function Adminpanel() {
     if (location.state?.message) {
       toast.success(location.state.message, { position: "bottom-right" });
       // Clear the message from state so it doesn't show again
-      navigate('.', { replace: true, state: {} }); 
+      navigate('.', { replace: true, state: {} });
     }
   }, [location.state, navigate]);
 
   useEffect(() => {
-  const fetchDashboardData = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(`${API_URL}/account/dashboard`, {
-        withCredentials: true
-      });
-      setDashboardData(response.data);
-      setError(null);
-    } catch (err) {
-      setError('Failed to fetch dashboard data');
-      console.error('Dashboard data fetch error:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const fetchDashboardData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`${API_URL}/account/dashboard`, {
+          withCredentials: true
+        });
+        setDashboardData(response.data);
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch dashboard data');
+        console.error('Dashboard data fetch error:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  fetchDashboardData();
-}, []);
+    fetchDashboardData();
+  }, []);
 
-useEffect(() => {
-  setShowProfile(false);
-}, [activeTab]);
+  useEffect(() => {
+    setShowProfile(false);
+  }, [activeTab]);
 
 
   useEffect(() => {
@@ -102,6 +103,24 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-estg-gray-light dark:bg-black">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Admin Dashboard | ESTG-TSS</title>
+        <meta key="description" name="description" content="Access the ESTG-TSS admin dashboard to manage updates, events, users, and content. Streamline school administration and keep your community informed." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Admin Dashboard | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Manage school updates, events, and users from the ESTG-TSS admin dashboard. Efficiently control and organize your school’s digital presence." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Admin Dashboard | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Access the ESTG-TSS admin dashboard to manage updates, events, and users. Keep your school community organized and informed." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
+
       {/* Mobile Menu Button */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
@@ -119,10 +138,9 @@ useEffect(() => {
       {/* Layout after navbar */}
       <div className="pt-4 flex">
         {/* Sidebar - Hidden on mobile by default, shown when isSidebarOpen is true */}
-        <aside 
-          className={`fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-estg-gray-light dark:bg-black border-r shadow-md z-30 transform transition-transform duration-200 ease-in-out ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } md:translate-x-0`}
+        <aside
+          className={`fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-estg-gray-light dark:bg-black border-r shadow-md z-30 transform transition-transform duration-200 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            } md:translate-x-0`}
         >
           <nav className="flex flex-col gap-2 p-4 bg-estg-gray-light dark:bg-black">
             {tabs.map((tab, index) => (
@@ -135,11 +153,10 @@ useEffect(() => {
                     setIsSidebarOpen(false);
                   }
                 }}
-                className={`px-4 py-2 rounded-md text-left transition-colors w-full ${
-                  activeTab === index
+                className={`px-4 py-2 rounded-md text-left transition-colors w-full ${activeTab === index
                     ? 'bg-blue-700 text-white'
                     : 'hover:bg-blue-700 text-white-700'
-                }`}
+                  }`}
               >
                 <p className='text-dark-800 dark:text-white'>{tab.name}</p>
               </button>
@@ -153,18 +170,18 @@ useEffect(() => {
               </svg>
               Logout
             </button>
-            <div className="flex items-center gap-2 px-1 py-2 text-left text-sm cursor-pointer" 
+            <div className="flex items-center gap-2 px-1 py-2 text-left text-sm cursor-pointer"
               onClick={() => {
-              setShowProfile(true);
-              if (window.innerWidth < 768) {
-                setIsSidebarOpen(false);
-              }
-            }}
+                setShowProfile(true);
+                if (window.innerWidth < 768) {
+                  setIsSidebarOpen(false);
+                }
+              }}
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage 
-                  src={dashboardData?.avatar || ''} 
-                  alt={dashboardData?.user || 'User'} 
+                <AvatarImage
+                  src={dashboardData?.avatar || ''}
+                  alt={dashboardData?.user || 'User'}
                 />
                 <AvatarFallback className="rounded-lg">
                   {dashboardData?.user?.charAt(0) || 'A'}
@@ -185,7 +202,7 @@ useEffect(() => {
                 )}
               </div>
             </div>
-           
+
 
 
           </nav>
