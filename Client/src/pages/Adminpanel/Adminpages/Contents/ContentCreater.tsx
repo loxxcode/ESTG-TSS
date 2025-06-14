@@ -101,13 +101,13 @@ const ViewContentCreators = () => {
         <meta key="og:title" property="og:title" content="Content Creators | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Access and manage all content creators for ESTG-TSS from the admin panel. Organize and update contributors easily." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/content-creators" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Content Creators | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Manage and organize all content creators for ESTG-TSS from the admin panel. Keep your contributors up to date." />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
       <div className="flex flex-col gap-4">
         <Link

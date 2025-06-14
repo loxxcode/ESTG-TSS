@@ -93,13 +93,13 @@ function Event() {
         <meta key="og:title" property="og:title" content="Admin Events | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Access and manage the latest school events and activities from the ESTG-TSS admin panel." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/events" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Admin Events | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Stay up to date and manage all school events and activities from the ESTG-TSS admin panel." />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <button

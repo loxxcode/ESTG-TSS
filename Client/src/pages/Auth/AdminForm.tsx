@@ -88,13 +88,13 @@ function AdminForm() {
               <meta property="og:title" content="Admin Panel | ESTG-TSS" />
               <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
               <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-              <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+              <meta property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       
               {/* Twitter Card Meta Tags */}
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
               <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-              <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+              <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
             </Helmet>
       {/* Navbar with centered title */}
       {/* <Navbar /> */}
