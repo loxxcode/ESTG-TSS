@@ -186,7 +186,6 @@ const Contact = () => {
             </AnimatedSection>
           </div>
         </div>
-
         {/* Embedded Google Map */}
         <div className="mt-16 overflow-hidden rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
           <iframe
