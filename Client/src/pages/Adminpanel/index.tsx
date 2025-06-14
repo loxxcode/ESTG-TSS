@@ -105,20 +105,20 @@ function Adminpanel() {
     <div className="min-h-screen bg-estg-gray-light dark:bg-black">
       {/* 🔍 SEO + Social Media Meta Tags */}
       <Helmet>
-        <title>Admin Panel | ESTG-TSS</title>
-        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+        <title>Admin Dashboard | ESTG-TSS</title>
+        <meta key="description" name="description" content="Access the ESTG-TSS admin dashboard to manage updates, events, users, and content. Streamline school administration and keep your community informed." />
 
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
-        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:title" property="og:title" content="Admin Dashboard | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Manage school updates, events, and users from the ESTG-TSS admin dashboard. Efficiently control and organize your school’s digital presence." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
 
         {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
-        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Admin Dashboard | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Access the ESTG-TSS admin dashboard to manage updates, events, and users. Keep your school community organized and informed." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
       </Helmet>
 
       {/* Mobile Menu Button */}

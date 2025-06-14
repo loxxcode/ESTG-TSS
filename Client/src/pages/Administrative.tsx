@@ -16,21 +16,21 @@ const Administrative = () => {
     <div className="min-h-screen">
        {/* 🔍 SEO + Social Media Meta Tags */}
             <Helmet>
-              <title>Admin Panel | ESTG-TSS</title>
-              <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
-      
-              {/* Open Graph Meta Tags */}
-              <meta property="og:title" content="Admin Panel | ESTG-TSS" />
-              <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
-              <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-              <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
-      
-              {/* Twitter Card Meta Tags */}
-              <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
-              <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-              <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
-            </Helmet>
+        <title>Administrative | ESTG-TSS</title>
+        <meta key="description" name="description" content="Meet the dedicated administrative team at ESTG-TSS. Learn about our leadership, their vision, and commitment to student success and school excellence." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Administrative | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Discover the leadership and administrative staff at ESTG-TSS, committed to fostering a vibrant and supportive educational environment." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/administrative" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Administrative | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Meet the ESTG-TSS administrative team and learn about their vision for academic and community excellence." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+      </Helmet>
       <Navbar />
 
       {/* Page Header */}

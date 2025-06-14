@@ -45,20 +45,20 @@ function Card({
     >
       {/* 🔍 SEO + Social Media Meta Tags */}
       <Helmet>
-        <title>Admin Panel | ESTG-TSS</title>
-        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+        <title>Event Cards | ESTG-TSS</title>
+        <meta key="description" name="description" content="View, edit, and manage all event cards for ESTG-TSS. This admin panel component allows you to efficiently organize and maintain school events and activities." />
 
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
-        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:title" property="og:title" content="Event Cards | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Manage and organize event cards for ESTG-TSS events and activities in the admin panel." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/event-cards" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
 
         {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
-        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Event Cards | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Easily manage and organize event cards for ESTG-TSS events and activities from the admin panel." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
       </Helmet>
       <img
         src={imageUrl || "https://via.placeholder.com/150"}

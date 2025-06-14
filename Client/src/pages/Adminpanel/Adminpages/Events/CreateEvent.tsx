@@ -54,20 +54,20 @@ function Event() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-10 relative dark:bg-black">
       {/* 🔍 SEO + Social Media Meta Tags */}
       <Helmet>
-        <title>Admin Panel | ESTG-TSS</title>
-        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+        <title>Create Event | ESTG-TSS</title>
+        <meta key="description" name="description" content="Add new events and activities for ESTG-TSS. Use this admin panel to keep the school community informed about upcoming events and important dates." />
 
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
-        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:title" property="og:title" content="Create Event | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Create and publish new events and activities for the ESTG-TSS community from the admin panel." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/create-event" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
 
         {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
-        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Create Event | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Easily add new events and activities for ESTG-TSS using the admin panel." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
       </Helmet>
       <button
         onClick={handleBack}

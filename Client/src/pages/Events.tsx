@@ -49,20 +49,20 @@ const News = () => {
     <div className="min-h-screen bg-background">
       {/* 🔍 SEO + Social Media Meta Tags */}
       <Helmet>
-        <title>Admin Panel | ESTG-TSS</title>
-        <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+        <title>Events | ESTG-TSS</title>
+        <meta key="description" name="description" content="Explore upcoming events at ESTG-TSS. Stay updated on school activities, workshops, and celebrations. Join us and be part of our vibrant community!" />
 
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Admin Panel | ESTG-TSS" />
-        <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
-        <meta property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:title" property="og:title" content="Events | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Discover the latest events, workshops, and celebrations happening at ESTG-TSS. Stay connected with our school community." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/events" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
 
         {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
-        <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
-        <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Events | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Stay up to date with all upcoming events and activities at ESTG-TSS. Join our community events and celebrations!" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
       </Helmet>
       <Navbar />
 
