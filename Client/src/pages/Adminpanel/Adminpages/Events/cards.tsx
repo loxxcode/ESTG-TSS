@@ -52,13 +52,13 @@ function Card({
         <meta key="og:title" property="og:title" content="Event Cards | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Manage and organize event cards for ESTG-TSS events and activities in the admin panel." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/event-cards" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Event Cards | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Easily manage and organize event cards for ESTG-TSS events and activities from the admin panel." />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
       <img
         src={imageUrl || "https://via.placeholder.com/150"}

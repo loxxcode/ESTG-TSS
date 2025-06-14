@@ -112,13 +112,13 @@ function Adminpanel() {
         <meta key="og:title" property="og:title" content="Admin Dashboard | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Manage school updates, events, and users from the ESTG-TSS admin dashboard. Efficiently control and organize your school’s digital presence." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Admin Dashboard | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Access the ESTG-TSS admin dashboard to manage updates, events, and users. Keep your school community organized and informed." />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
 
       {/* Mobile Menu Button */}

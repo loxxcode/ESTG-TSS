@@ -179,13 +179,13 @@ const EditUpdate = () => {
         <meta key="og:title" property="og:title" content="Create Update | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Create and publish new updates and announcements for the ESTG-TSS community from the admin panel." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/createupdate" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Create Update | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Easily add new updates and announcements for ESTG-TSS using the admin panel." />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
       <button
         onClick={handleBack}

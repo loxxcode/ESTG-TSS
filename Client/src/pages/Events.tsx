@@ -56,13 +56,13 @@ const News = () => {
         <meta key="og:title" property="og:title" content="Events | ESTG-TSS" />
         <meta key="og:description" property="og:description" content="Discover the latest events, workshops, and celebrations happening at ESTG-TSS. Stay connected with our school community." />
         <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/events" />
-        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
 
         {/* Twitter Card Meta Tags */}
         <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         <meta key="twitter:title" name="twitter:title" content="Events | ESTG-TSS" />
         <meta key="twitter:description" name="twitter:description" content="Stay up to date with all upcoming events and activities at ESTG-TSS. Join our community events and celebrations!" />
-        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
       </Helmet>
       <Navbar />
 

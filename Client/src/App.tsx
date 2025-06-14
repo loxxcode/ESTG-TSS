@@ -28,7 +28,7 @@ import CreateUpdate from './pages/Adminpanel/Adminpages/Contents/update';
 import UpdateForm from './pages/Adminpanel/Adminpages/updates/createupdate';
 import EditEventForm from './pages/Adminpanel/Adminpages/Contents/createupdate';
 import { ToastContainer } from 'react-toastify';
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 
 const queryClient = new QueryClient();
@@ -41,17 +41,17 @@ const App = () => (
         <Sonner />
         <ToastContainer autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <BrowserRouter>
-          <Helmet>
+          {/* <Helmet>
             <title key="default-title">ESTG-TSS | School of Technology and Science</title>
             <meta key="description" name="description" content="ESTG-TSS is a leading educational institution offering programs in technology and science. Explore our school, programs, events, and updates." />
             <meta key="og:title" property="og:title" content="ESTG-TSS | School of Technology and Science" />
             <meta key="og:description" property="og:description" content="Discover ESTG-TSS, a premier school for technology and science education. Stay informed about our programs, events, and community." />
-            <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
+            <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
             <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
             <meta key="twitter:title" name="twitter:title" content="ESTG-TSS | School of Technology and Science" />
             <meta key="twitter:description" name="twitter:description" content="ESTG-TSS is a top institution for technology and science. Learn more about our school, programs, and events." />
-            <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/admin-preview.jpg" />
-          </Helmet>
+            <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+          </Helmet> */}
           <Routes>
             <Route path="/update" element={<Update />} />
             <Route path="/adminevent" element={<Event />} />
