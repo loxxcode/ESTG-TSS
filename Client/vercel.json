@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/:path*",
-            "destination": "https://server-az7z.onrender.com/:path*"
+            "destination": "https://estg-tss.onrender.com/:path*"
         },
         {
             "source": "/(.*)",
