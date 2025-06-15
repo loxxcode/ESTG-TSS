@@ -50,7 +50,7 @@ app.use(session({
     mongoUrl: `${process.env.MONGODB_URI}`, // MongoDB URL
     collectionName: 'sessions', // Optional: name of the collection to store sessions
   }),
-  cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 30, sameSite: 'lax' }
+  cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 * 30, sameSite: 'none' }
 }));
 
 // Routes
