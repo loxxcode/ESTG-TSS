@@ -1,52 +1,35 @@
 {
-    "rewrites": [
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://estg-tss.onrender.com/:path*"
+    },
+    {
+      "source": "/((?!api).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "source": "/api/:path*",
-            "destination": "https://estg-tss.onrender.com/:path*"
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://estg-tss.onrender.com https://estg-tss.vercel.app; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
         },
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ],
-    "headers": [
-        {
-            "source": "/api/(.*)",
-            "headers": [
-                {
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "*"
-                },
-                {
-                    "key": "Access-Control-Allow-Methods",
-                    "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-                },
-                {
-                    "key": "Access-Control-Allow-Headers",
-                    "value": "X-Requested-With, Content-Type, Accept, Authorization"
-                }
-            ]
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://estg-tss.onrender.com https://estg-tss.vercel.app; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
-                },
-                {
-                    "key": "X-Content-Type-Options",
-                    "value": "nosniff"
-                },
-                {
-                    "key": "X-Frame-Options",
-                    "value": "DENY"
-                },
-                {
-                    "key": "X-XSS-Protection",
-                    "value": "1; mode=block"
-                }
-            ]
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
-    ]
+      ]
+    }
+  ]
 }
