@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -78,6 +79,23 @@ function AdminForm() {
   };
   return (
     <div className="min-h-screen flex flex-col">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+              <title>Admin Panel | ESTG-TSS</title>
+              <meta name="description" content="Manage updates, events, and content creators from the admin panel of ESTG-TSS." />
+      
+              {/* Open Graph Meta Tags */}
+              <meta property="og:title" content="Admin Panel | ESTG-TSS" />
+              <meta property="og:description" content="Control content and users from the admin panel of ESTG-TSS." />
+              <meta property="og:url" content="https://estg-tss.vercel.app/admin" />
+              <meta property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+      
+              {/* Twitter Card Meta Tags */}
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content="Admin Panel | ESTG-TSS" />
+              <meta name="twitter:description" content="Control content and users from the admin panel of ESTG-TSS." />
+              <meta name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+            </Helmet>
       {/* Navbar with centered title */}
       {/* <Navbar /> */}
 

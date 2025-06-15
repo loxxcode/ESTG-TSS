@@ -14,7 +14,6 @@ services:
           name: mongodb
           property: connectionString
     plan: free
-
   - type: web
     name: estg-tss-client
     env: node

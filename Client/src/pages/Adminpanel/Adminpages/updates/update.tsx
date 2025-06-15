@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -72,6 +73,23 @@ function Update() {
 
   return (
     <div className="p-6 mt-5 bg-gray-100 dark:bg-black min-h-screen">
+       {/* 🔍 SEO + Social Media Meta Tags */}
+            <Helmet>
+        <title>Admin Updates | ESTG-TSS</title>
+        <meta key="description" name="description" content="Manage and review all school updates, announcements, and important information from the ESTG-TSS admin panel. Stay organized and informed as an administrator." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Admin Updates | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Access and manage the latest school updates and announcements from the ESTG-TSS admin panel." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/admin/updates" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Admin Updates | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Stay up to date and manage all school updates and announcements from the ESTG-TSS admin panel." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+      </Helmet>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <Link to="/createupdate">
           <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">

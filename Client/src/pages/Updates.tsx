@@ -4,6 +4,7 @@ import Footer from '../components/layout/Footer';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import axios from 'axios';
 import { Search } from 'lucide-react';
+import { Helmet } from "react-helmet";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,15 +61,33 @@ const Announcement = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* 🔍 SEO + Social Media Meta Tags */}
+      <Helmet>
+        <title>Updates | ESTG-TSS</title>
+        <meta key="description" name="description" content="Stay informed with the latest updates, announcements, and achievements from ESTG-TSS. Check back regularly for important news and developments." />
+
+        {/* Open Graph Meta Tags */}
+        <meta key="og:title" property="og:title" content="Updates | ESTG-TSS" />
+        <meta key="og:description" property="og:description" content="Get the latest updates and announcements from ESTG-TSS. Stay connected with our school community and never miss important news." />
+        <meta key="og:url" property="og:url" content="https://estg-tss.vercel.app/updates" />
+        <meta key="og:image" property="og:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:title" name="twitter:title" content="Updates | ESTG-TSS" />
+        <meta key="twitter:description" name="twitter:description" content="Read the latest updates and announcements from ESTG-TSS. Stay up to date with our school’s news and achievements." />
+        <meta key="twitter:image" name="twitter:image" content="https://estg-tss.vercel.app/assets/hero_image.jpg" />
+      </Helmet>
+
       <Navbar />
       <section className="py-20 text-center">
-       
+
         <AnimatedSection>
-  <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">School Updates</h1>
-  <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
-    Stay informed with the latest news, events, and achievements from our school community. Check back regularly for important announcements and exciting developments in our learning journey together.
-  </p>
-</AnimatedSection>
+          <h1 className="text-4xl font-bold mb-4 text-black dark:text-white">School Updates</h1>
+          <p className="text-black dark:text-white max-w-xl mx-auto mb-12">
+            Stay informed with the latest news, events, and achievements from our school community. Check back regularly for important announcements and exciting developments in our learning journey together.
+          </p>
+        </AnimatedSection>
 
         {/* Search bar */}
         <div className="relative w-[90%] max-w-xl mx-auto mb-12">
